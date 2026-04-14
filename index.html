@@ -138,6 +138,29 @@
   .feat .status.plan { background: rgba(139,92,246,0.12); color: #c4b5fd; border-color: rgba(139,92,246,0.3); }
   .feat .status.future { background: rgba(236,72,153,0.12); color: #f9a8d4; border-color: rgba(236,72,153,0.3); }
 
+  /* Rich Menu showcase */
+  .richmenu-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .richmenu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 24px; text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .richmenu-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(6,182,212,0.2); }
+  .richmenu-card img {
+    width: 100%; border-radius: 12px; display: block;
+    border: 1px solid var(--border);
+  }
+  .richmenu-card .tab-label {
+    display: inline-block; margin-bottom: 16px;
+    padding: 6px 16px; border-radius: 999px;
+    font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  }
+  .richmenu-card.t1 .tab-label { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+  .richmenu-card.t2 .tab-label { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+  .richmenu-card h3 { font-size: 18px; margin-bottom: 6px; }
+  .richmenu-card p { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+  @media (max-width: 768px) { .richmenu-wrap { grid-template-columns: 1fr; } }
+
   /* Resident groups */
   .resident-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .res-card {
@@ -322,6 +345,31 @@
         <h3>清潔 · 報修 · 安防回報</h3>
         <p>案場人員 TG 快速回報，照片與位置自動紀錄。</p>
         <span class="status plan">開發中</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RICH MENU SHOWCASE -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">LINE RICH MENU</span>
+      <h2>住戶 LINE 一開即用</h2>
+      <p>雙 Tab 切換設計 · 12 項社區服務一頁到齊</p>
+    </div>
+    <div class="richmenu-wrap">
+      <div class="richmenu-card t1">
+        <span class="tab-label">TAB 1 · 社區服務</span>
+        <h3>日常服務六宮格</h3>
+        <p>訪客預約、報修、包裹、公設、繳費、我的紀錄</p>
+        <img src="images/richmenu1.png" alt="Rich Menu 社區服務">
+      </div>
+      <div class="richmenu-card t2">
+        <span class="tab-label">TAB 2 · 社區互動</span>
+        <h3>互動參與六宮格</h3>
+        <p>服務評分、社區公告、客服、投票、意見箱、戶籍</p>
+        <img src="images/richmenu2.png" alt="Rich Menu 社區互動">
       </div>
     </div>
   </div>
