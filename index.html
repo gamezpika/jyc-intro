@@ -139,7 +139,7 @@
   .feat .status.future { background: rgba(236,72,153,0.12); color: #f9a8d4; border-color: rgba(236,72,153,0.3); }
   .feat video {
     width: 100%; border-radius: 10px; margin-top: 14px;
-    background: black; aspect-ratio: 16/9; object-fit: cover;
+    background: black; max-height: 420px; object-fit: contain;
     border: 1px solid var(--border);
   }
 
@@ -347,8 +347,8 @@
       </div>
       <div class="feat">
         <div class="emoji">🧹</div>
-        <h3>清潔 · 報修 · 安防回報</h3>
-        <p>案場人員 TG 快速回報，照片與位置自動紀錄。</p>
+        <h3>清潔 · 安防 AI 判讀</h3>
+        <p>案場人員只要拍一張照，AI 自動判斷環境是否需要清潔、是否有異常，回報零負擔。</p>
         <span class="status">已上線</span>
         <video controls preload="metadata" playsinline>
           <source src="videos/video.mp4" type="video/mp4">
