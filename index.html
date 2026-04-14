@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JYC 怡盛物業 · 智慧管理系統</title>
+<meta name="description" content="怡盛物業 AI 智慧管理系統 — 總公司管理 × 33 案場 × 住戶服務一站式整合">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple: #8b5cf6;
+    --cyan: #06b6d4;
+    --pink: #ec4899;
+    --bg: #0a0a1a;
+    --bg2: #13132a;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --text: #e8e8f0;
+    --muted: #8b8ba7;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  /* Animated gradient background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(600px at 10% 20%, rgba(139,92,246,0.15), transparent 60%),
+      radial-gradient(500px at 90% 30%, rgba(6,182,212,0.12), transparent 60%),
+      radial-gradient(700px at 50% 80%, rgba(236,72,153,0.10), transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(18px);
+    background: rgba(10,10,26,0.7);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .brand { font-weight: 700; font-size: 18px; letter-spacing: 0.5px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  nav .links a { color: var(--muted); text-decoration: none; margin-left: 24px; font-size: 14px; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero { padding: 120px 24px 80px; text-align: center; }
+  .hero .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3);
+    font-size: 13px; color: #c4b5fd; margin-bottom: 24px;
+  }
+  .hero h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+  .hero h1 .grad {
+    background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 50%, var(--pink) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 auto 36px; }
+  .cta {
+    display: inline-flex; gap: 12px; align-items: center;
+    padding: 14px 28px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: white; text-decoration: none; font-weight: 600;
+    box-shadow: 0 10px 30px rgba(139,92,246,0.35);
+    transition: transform 0.2s;
+  }
+  .cta:hover { transform: translateY(-2px); }
+
+  /* Sections */
+  section { padding: 80px 0; }
+  .section-title { text-align: center; margin-bottom: 48px; }
+  .section-title .tag {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--cyan);
+    text-transform: uppercase; margin-bottom: 12px; display: block;
+  }
+  .section-title h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; }
+  .section-title p { color: var(--muted); margin-top: 12px; }
+
+  /* Architecture diagram */
+  .arch {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 32px;
+  }
+  .arch-box { padding: 24px; border-radius: 16px; text-align: center; }
+  .arch-box.a { background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.05)); border: 1px solid rgba(139,92,246,0.3); }
+  .arch-box.b { background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(6,182,212,0.05)); border: 1px solid rgba(6,182,212,0.3); }
+  .arch-box.c { background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(236,72,153,0.05)); border: 1px solid rgba(236,72,153,0.3); }
+  .arch-box h3 { font-size: 18px; margin-bottom: 8px; }
+  .arch-box p { font-size: 13px; color: var(--muted); }
+  .arch-box .icon { font-size: 40px; margin-bottom: 12px; }
+
+  /* Video showcase */
+  .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .video-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .video-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(139,92,246,0.2); }
+  .video-card video { width: 100%; display: block; background: black; aspect-ratio: 16/9; object-fit: contain; }
+  .video-meta { padding: 24px; }
+  .video-meta .step { font-size: 12px; letter-spacing: 2px; color: var(--cyan); font-weight: 700; margin-bottom: 8px; }
+  .video-meta h3 { font-size: 20px; margin-bottom: 8px; }
+  .video-meta p { color: var(--muted); font-size: 14px; }
+  .video-flow { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+  .video-flow span {
+    font-size: 12px; padding: 4px 10px; border-radius: 8px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted);
+  }
+
+  /* Feature cards */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .feat {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; transition: all 0.3s;
+  }
+  .feat:hover { border-color: rgba(139,92,246,0.4); background: rgba(139,92,246,0.06); }
+  .feat .emoji { font-size: 32px; margin-bottom: 14px; }
+  .feat h3 { font-size: 17px; margin-bottom: 8px; }
+  .feat p { font-size: 14px; color: var(--muted); }
+  .feat .status {
+    display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px;
+    background: rgba(34,197,94,0.15); color: #86efac; margin-top: 10px; border: 1px solid rgba(34,197,94,0.3);
+  }
+  .feat .status.plan { background: rgba(139,92,246,0.12); color: #c4b5fd; border-color: rgba(139,92,246,0.3); }
+  .feat .status.future { background: rgba(236,72,153,0.12); color: #f9a8d4; border-color: rgba(236,72,153,0.3); }
+
+  /* Resident groups */
+  .resident-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .res-card {
+    padding: 32px 24px; border-radius: 20px; text-align: center;
+    background: var(--card); border: 1px solid var(--border);
+  }
+  .res-card.a { background: linear-gradient(180deg, rgba(139,92,246,0.1), transparent); border-color: rgba(139,92,246,0.3); }
+  .res-card.b { background: linear-gradient(180deg, rgba(6,182,212,0.1), transparent); border-color: rgba(6,182,212,0.3); }
+  .res-card.c { background: linear-gradient(180deg, rgba(236,72,153,0.1), transparent); border-color: rgba(236,72,153,0.3); }
+  .res-card .ico { font-size: 44px; margin-bottom: 14px; }
+  .res-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .res-card ul { list-style: none; text-align: left; margin-top: 16px; }
+  .res-card ul li { padding: 6px 0; color: var(--muted); font-size: 14px; border-bottom: 1px dashed var(--border); }
+  .res-card ul li::before { content: "✓ "; color: var(--cyan); font-weight: 700; }
+
+  /* Footer */
+  footer { padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer p { color: var(--muted); font-size: 14px; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .arch { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    nav .links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">JYC · 怡盛智慧物業</div>
+  <div class="links">
+    <a href="#arch">系統架構</a>
+    <a href="#demo">功能展示</a>
+    <a href="#features">全功能地圖</a>
+    <a href="#future">未來擴展</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="badge">AI 驅動 · 一站式智慧物業</span>
+  <h1>讓每一個案場<br><span class="grad">都像總公司就在隔壁</span></h1>
+  <p>怡盛物業 × AI 智慧管理系統。整合總公司管理、33 案場營運、住戶服務三大系統，從任務派發到訪客預約，全流程數位化。</p>
+  <a href="#demo" class="cta">觀看實機展示 →</a>
+</section>
+
+<!-- ARCH -->
+<section id="arch">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">SYSTEM ARCHITECTURE</span>
+      <h2>三層系統 · 一體運作</h2>
+      <p>從總公司決策到住戶互動，完整貫穿</p>
+    </div>
+    <div class="arch">
+      <div class="arch-box a">
+        <div class="icon">🏢</div>
+        <h3>A · 總公司管理</h3>
+        <p>TG 群組任務萃取、巡場打卡、案場評分</p>
+      </div>
+      <div class="arch-box b">
+        <div class="icon">🛠️</div>
+        <h3>B · 案場管理</h3>
+        <p>33 案場人員考勤、排班、回報一條龍</p>
+      </div>
+      <div class="arch-box c">
+        <div class="icon">🏠</div>
+        <h3>C · 住戶服務</h3>
+        <p>LINE Bot + LIFF 訪客、報修、繳費</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO VIDEOS -->
+<section id="demo">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">LIVE DEMO</span>
+      <h2>訪客預約全流程展示</h2>
+      <p>住戶 LINE 端 × 管理處 Web 後台，雙端即時同步</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 1 · 住戶端</div>
+          <h3>LINE 訪客預約 → 收到 QR</h3>
+          <p>住戶打開 LINE Rich Menu，點選訪客預約填寫資料送出後，系統自動發送 QR Code 到住戶手機。</p>
+          <div class="video-flow">
+            <span>Rich Menu</span><span>→ 填表</span><span>→ 送出</span><span>→ 收到 QR</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video2.mov" type="video/quicktime">
+          <source src="videos/video2.mov" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 2 · 管理處後台</div>
+          <h3>後台確認 → 核發 QR → 掃碼放行</h3>
+          <p>管理處在 Web 後台看到預約、確認收款後發 QR，警衛手機掃碼即刻放行，住戶收到到場通知。</p>
+          <div class="video-flow">
+            <span>後台查看</span><span>→ 確認收款</span><span>→ 發 QR</span><span>→ 掃碼放行</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A SYSTEM -->
+<section id="features">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">SYSTEM A</span>
+      <h2>總公司管理人員回報系統</h2>
+      <p>Telegram 平台 · 即時掌握全台案場動態</p>
+    </div>
+    <div class="features">
+      <div class="feat">
+        <div class="emoji">🤖</div>
+        <h3>群組任務 AI 萃取</h3>
+        <p>TG 群組閒聊自動識別任務指派、進度更新、完成回報。</p>
+        <span class="status">已上線</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">📍</div>
+        <h3>巡場打卡紀錄</h3>
+        <p>地理圍欄定位打卡，異地打卡自動擋下，後台 CSV 匯出。</p>
+        <span class="status">已上線</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">⚠️</div>
+        <h3>案場異況反映</h3>
+        <p>現場人員 TG 一鍵上報，總公司即時接收分派。</p>
+        <span class="status">已上線</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">⭐</div>
+        <h3>案場人員評分</h3>
+        <p>JYC 對案場人員績效評分，多維度評核機制。</p>
+        <span class="status plan">開發中</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- B SYSTEM -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">SYSTEM B</span>
+      <h2>案場人員智慧管理</h2>
+      <p>33 案場 · 社區經理、秘書、財務、保全、清潔全員數位化</p>
+    </div>
+    <div class="features">
+      <div class="feat">
+        <div class="emoji">📋</div>
+        <h3>群組任務萃取</h3>
+        <p>案場群組對話 AI 自動擷取待辦事項，不漏工作。</p>
+        <span class="status">已上線</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">⏰</div>
+        <h3>考勤 · 打卡 · 排班</h3>
+        <p>Mini App 請假、加班、補卡、班表查詢一站搞定。</p>
+        <span class="status">已上線</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">💼</div>
+        <h3>請假 · 加班 · 補卡</h3>
+        <p>主管 inline 按鈕審批，額度自動計算，推播即時通知。</p>
+        <span class="status">已上線</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">🧹</div>
+        <h3>清潔 · 報修 · 安防回報</h3>
+        <p>案場人員 TG 快速回報，照片與位置自動紀錄。</p>
+        <span class="status plan">開發中</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESIDENT SERVICES -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">SYSTEM C · LINE</span>
+      <h2>住戶服務分眾設計</h2>
+      <p>一般住戶、商業戶、地主戶各自專屬服務設計</p>
+    </div>
+    <div class="resident-cards">
+      <div class="res-card a">
+        <div class="ico">🏠</div>
+        <h3>一般住戶</h3>
+        <ul>
+          <li>訪客預約</li>
+          <li>報修申請</li>
+          <li>包裹通知</li>
+          <li>公設預約</li>
+          <li>繳費查詢</li>
+          <li>社區公告</li>
+        </ul>
+      </div>
+      <div class="res-card b">
+        <div class="ico">🏢</div>
+        <h3>商業戶</h3>
+        <ul>
+          <li>訪客預約（含收費）</li>
+          <li>車道管理</li>
+          <li>接待室預約</li>
+          <li>商業包裹管理</li>
+          <li>活動場地登記</li>
+        </ul>
+      </div>
+      <div class="res-card c">
+        <div class="ico">🔑</div>
+        <h3>地主戶</h3>
+        <ul>
+          <li>房仲代看紀錄</li>
+          <li>車道管理</li>
+          <li>接待訪客</li>
+          <li>看屋時段預約</li>
+          <li>維護狀況查詢</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 案場人員 ↔ 管委會 -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">COMMUNITY BRIDGE</span>
+      <h2>案場人員 × 管委會</h2>
+      <p>LINE 群組 Bot 輔助，決議、通知、追蹤三合一</p>
+    </div>
+    <div class="features">
+      <div class="feat">
+        <div class="emoji">💬</div>
+        <h3>LINE 群組智慧管家</h3>
+        <p>Bot 駐群自動記錄、彙整、提醒關鍵事項。</p>
+        <span class="status plan">規劃中</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">📝</div>
+        <h3>決議事項追蹤</h3>
+        <p>會議決議自動建任務、定期追蹤執行進度。</p>
+        <span class="status plan">規劃中</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">📣</div>
+        <h3>公告雙向同步</h3>
+        <p>管委會公告推送到住戶端，已讀未讀可追蹤。</p>
+        <span class="status plan">規劃中</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE -->
+<section id="future">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">ROADMAP</span>
+      <h2>未來特殊業務擴展</h2>
+      <p>不只是物業管理 · 重新定義智慧社區</p>
+    </div>
+    <div class="features">
+      <div class="feat">
+        <div class="emoji">🚁</div>
+        <h3>空拍機巡檢</h3>
+        <p>外牆、屋頂、公設自動化巡檢，AI 偵測異常。</p>
+        <span class="status future">未來規劃</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">🧽</div>
+        <h3>清潔智慧回報</h3>
+        <p>清潔人員路線紀錄、照片佐證、區域完成率分析。</p>
+        <span class="status future">未來規劃</span>
+      </div>
+      <div class="feat">
+        <div class="emoji">🔧</div>
+        <h3>環境 · 設備異況</h3>
+        <p>社區環境、機電設備狀況整合回報平台。</p>
+        <span class="status future">未來規劃</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 JYC 怡盛物業管理股份有限公司 · AI 智慧管理系統</p>
+  <p style="margin-top:8px; font-size:12px;">Powered by WorkBot AI · Telegram × LINE 全平台整合</p>
+</footer>
+
+</body>
+</html>
