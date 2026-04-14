@@ -91,7 +91,7 @@
 
   /* Architecture diagram */
   .arch {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
     background: var(--card); border: 1px solid var(--border);
     border-radius: 24px; padding: 32px;
   }
@@ -222,20 +222,15 @@
       <p>從總公司決策到住戶互動，完整貫穿</p>
     </div>
     <div class="arch">
-      <div class="arch-box a">
-        <div class="icon">🏢</div>
-        <h3>A · 總公司管理</h3>
-        <p>TG 群組任務萃取、巡場打卡、案場評分</p>
-      </div>
       <div class="arch-box b">
         <div class="icon">🛠️</div>
-        <h3>B · 案場管理</h3>
+        <h3>A · 案場人員智慧管理</h3>
         <p>33 案場人員考勤、排班、回報一條龍</p>
       </div>
       <div class="arch-box c">
         <div class="icon">🏠</div>
-        <h3>C · 住戶服務</h3>
-        <p>LINE Bot + LIFF 訪客、報修、繳費</p>
+        <h3>B · 住戶 LINE 服務</h3>
+        <p>訪客預約、報修、繳費、公告互動</p>
       </div>
     </div>
   </div>
@@ -281,48 +276,11 @@
   </div>
 </section>
 
-<!-- A SYSTEM -->
+<!-- B SYSTEM -->
 <section id="features">
   <div class="container">
     <div class="section-title">
       <span class="tag">SYSTEM A</span>
-      <h2>總公司管理人員回報系統</h2>
-      <p>Telegram 平台 · 即時掌握全台案場動態</p>
-    </div>
-    <div class="features">
-      <div class="feat">
-        <div class="emoji">🤖</div>
-        <h3>群組任務 AI 萃取</h3>
-        <p>TG 群組閒聊自動識別任務指派、進度更新、完成回報。</p>
-        <span class="status">已上線</span>
-      </div>
-      <div class="feat">
-        <div class="emoji">📍</div>
-        <h3>巡場打卡紀錄</h3>
-        <p>地理圍欄定位打卡，異地打卡自動擋下，後台 CSV 匯出。</p>
-        <span class="status">已上線</span>
-      </div>
-      <div class="feat">
-        <div class="emoji">⚠️</div>
-        <h3>案場異況反映</h3>
-        <p>現場人員 TG 一鍵上報，總公司即時接收分派。</p>
-        <span class="status">已上線</span>
-      </div>
-      <div class="feat">
-        <div class="emoji">⭐</div>
-        <h3>案場人員評分</h3>
-        <p>JYC 對案場人員績效評分，多維度評核機制。</p>
-        <span class="status plan">開發中</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- B SYSTEM -->
-<section>
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">SYSTEM B</span>
       <h2>案場人員智慧管理</h2>
       <p>33 案場 · 社區經理、秘書、財務、保全、清潔全員數位化</p>
     </div>
@@ -396,6 +354,48 @@
         <img src="images/richmenu2.png" alt="Rich Menu 社區互動">
       </div>
     </div>
+  </div>
+</section>
+
+<!-- RATING DEMO (placeholder) -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">RATING SYSTEM</span>
+      <h2>案場人員評分</h2>
+      <p>住戶端手機評分 × 總公司網頁端績效彙整，雙端同步掌握服務品質</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls preload="metadata" playsinline style="background:#1a1a2e;">
+          <source src="videos/rating-mobile.mp4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 1 · 手機端</div>
+          <h3>住戶 LINE 匿名評分</h3>
+          <p>服務完成後推送評分邀請，住戶一鍵評星＋留言，匿名保障真實回饋。</p>
+          <div class="video-flow">
+            <span>服務完成</span><span>→ 推送評分</span><span>→ 匿名評星</span><span>→ 送出</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" playsinline style="background:#1a1a2e;">
+          <source src="videos/rating-web.mp4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 2 · 網頁端</div>
+          <h3>總公司績效儀表板</h3>
+          <p>全 33 案場評分一覽，人員排行、趨勢圖、異常警示，績效考核有據可循。</p>
+          <div class="video-flow">
+            <span>即時彙整</span><span>→ 人員排行</span><span>→ 趨勢分析</span><span>→ 績效考核</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; color:var(--muted); font-size:13px; margin-top:20px;">
+      📹 影片展示位預留中 · 功能開發完成後將放上實機操作
+    </p>
   </div>
 </section>
 
