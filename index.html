@@ -79,6 +79,16 @@
   }
   .cta:hover { transform: translateY(-2px); }
 
+  /* Star highlight badge */
+  .highlight-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px;
+    background: linear-gradient(90deg, rgba(250,204,21,0.15), rgba(251,146,60,0.12));
+    border: 1px solid rgba(250,204,21,0.4);
+    font-size: 13px; font-weight: 700; color: #fde047;
+    margin-bottom: 16px;
+  }
+
   /* Sections */
   section { padding: 80px 0; }
   .section-title { text-align: center; margin-bottom: 48px; }
@@ -236,46 +246,6 @@
   </div>
 </section>
 
-<!-- DEMO VIDEOS -->
-<section id="demo">
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">LIVE DEMO</span>
-      <h2>訪客預約全流程展示</h2>
-      <p>住戶 LINE 端 × 管理處 Web 後台，雙端即時同步</p>
-    </div>
-    <div class="video-grid">
-      <div class="video-card">
-        <video controls preload="metadata" playsinline>
-          <source src="videos/video1.mp4" type="video/mp4">
-        </video>
-        <div class="video-meta">
-          <div class="step">PART 1 · 住戶端</div>
-          <h3>LINE 訪客預約 → 收到 QR</h3>
-          <p>住戶打開 LINE Rich Menu，點選訪客預約填寫資料送出後，系統自動發送 QR Code 到住戶手機。</p>
-          <div class="video-flow">
-            <span>Rich Menu</span><span>→ 填表</span><span>→ 送出</span><span>→ 收到 QR</span>
-          </div>
-        </div>
-      </div>
-      <div class="video-card">
-        <video controls preload="metadata" playsinline>
-          <source src="videos/video2.mov" type="video/quicktime">
-          <source src="videos/video2.mov" type="video/mp4">
-        </video>
-        <div class="video-meta">
-          <div class="step">PART 2 · 管理處後台</div>
-          <h3>後台確認 → 核發 QR → 掃碼放行</h3>
-          <p>管理處在 Web 後台看到預約、確認收款後發 QR，警衛手機掃碼即刻放行，住戶收到到場通知。</p>
-          <div class="video-flow">
-            <span>後台查看</span><span>→ 確認收款</span><span>→ 發 QR</span><span>→ 掃碼放行</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- B SYSTEM -->
 <section id="features">
   <div class="container">
@@ -342,10 +312,52 @@
   </div>
 </section>
 
-<!-- RATING DEMO (placeholder) -->
+<!-- DEMO VIDEOS -->
+<section id="demo">
+  <div class="container">
+    <div class="section-title">
+      <span class="highlight-badge">⭐ 亮點功能</span>
+      <span class="tag">LIVE DEMO</span>
+      <h2>訪客預約全流程展示</h2>
+      <p>住戶 LINE 端 × 管理處 Web 後台，雙端即時同步</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 1 · 住戶端</div>
+          <h3>LINE 訪客預約 → 收到 QR</h3>
+          <p>住戶打開 LINE Rich Menu，點選訪客預約填寫資料送出後，系統自動發送 QR Code 到住戶手機。</p>
+          <div class="video-flow">
+            <span>Rich Menu</span><span>→ 填表</span><span>→ 送出</span><span>→ 收到 QR</span>
+          </div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video2.mov" type="video/quicktime">
+          <source src="videos/video2.mov" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 2 · 管理處後台</div>
+          <h3>後台確認 → 核發 QR → 掃碼放行</h3>
+          <p>管理處在 Web 後台看到預約、確認收款後發 QR，警衛手機掃碼即刻放行，住戶收到到場通知。</p>
+          <div class="video-flow">
+            <span>後台查看</span><span>→ 確認收款</span><span>→ 發 QR</span><span>→ 掃碼放行</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RATING DEMO -->
 <section>
   <div class="container">
     <div class="section-title">
+      <span class="highlight-badge">⭐ 亮點功能</span>
       <span class="tag">RATING SYSTEM</span>
       <h2>案場人員評分</h2>
       <p>住戶端手機評分 × 總公司網頁端績效彙整，雙端同步掌握服務品質</p>
@@ -423,6 +435,7 @@
     </div>
     <div class="features">
       <div class="feat">
+        <span class="highlight-badge">⭐ 亮點功能</span>
         <div class="emoji">🚁</div>
         <h3>空拍機巡檢</h3>
         <p>空拍機拍一張照片回傳 AI，即可初步判斷可疑人物是否需要派人前往。</p>
@@ -432,6 +445,7 @@
         </video>
       </div>
       <div class="feat">
+        <span class="highlight-badge">⭐ 亮點功能</span>
         <div class="emoji">🧽</div>
         <h3>清潔智慧回報</h3>
         <p>清潔人員隨手拍一張照片回傳，AI 自動判斷環境是否需要清潔、是否有異常，零負擔留存紀錄。</p>
