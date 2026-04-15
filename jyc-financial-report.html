@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JYC 專案財務分析報告</title>
+<style>
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page-break { page-break-before: always; }
+    @page { margin: 15mm 12mm; size: A4; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang TC", "Microsoft JhengHei", -apple-system, sans-serif;
+    color: #1a1a2e; line-height: 1.8; padding: 40px;
+    max-width: 900px; margin: 0 auto; background: #fff;
+  }
+  .cover { text-align: center; padding: 120px 0 80px; border-bottom: 3px solid #8b5cf6; margin-bottom: 40px; }
+  .cover h1 { font-size: 32px; font-weight: 800; color: #1a1a2e; margin-bottom: 12px; }
+  .cover .sub { font-size: 18px; color: #6b7280; margin-bottom: 32px; }
+  .cover .meta { font-size: 14px; color: #9ca3af; }
+  .cover .badge {
+    display: inline-block; padding: 8px 20px; border-radius: 999px;
+    background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+    color: white; font-weight: 700; font-size: 14px; margin-bottom: 24px;
+  }
+  h2 {
+    font-size: 22px; font-weight: 800; color: #8b5cf6;
+    border-left: 4px solid #8b5cf6; padding-left: 14px;
+    margin: 40px 0 20px;
+  }
+  h3 { font-size: 17px; font-weight: 700; color: #374151; margin: 24px 0 12px; }
+  p { margin-bottom: 12px; color: #374151; font-size: 15px; }
+  .note {
+    background: #f5f3ff; border-left: 4px solid #8b5cf6;
+    padding: 12px 16px; margin: 16px 0; border-radius: 0 8px 8px 0;
+    font-size: 14px; color: #4c1d95;
+  }
+  .warn {
+    background: #fef3c7; border-left: 4px solid #f59e0b;
+    padding: 12px 16px; margin: 16px 0; border-radius: 0 8px 8px 0;
+    font-size: 14px; color: #92400e;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+  th {
+    background: #f5f3ff; color: #4c1d95; font-weight: 700;
+    padding: 10px 14px; text-align: left; border-bottom: 2px solid #8b5cf6;
+  }
+  td { padding: 10px 14px; border-bottom: 1px solid #e5e7eb; color: #374151; }
+  tr:hover td { background: #faf9ff; }
+  .amount { text-align: right; font-family: "SF Mono", "Menlo", monospace; font-weight: 600; }
+  .total td { font-weight: 800; background: #f5f3ff !important; color: #4c1d95; border-top: 2px solid #8b5cf6; }
+  .highlight td { background: #ecfdf5 !important; color: #065f46; font-weight: 700; }
+  .section-divider { border: none; border-top: 1px dashed #d1d5db; margin: 32px 0; }
+  ul { margin: 8px 0 16px 20px; }
+  li { margin-bottom: 6px; font-size: 14px; color: #374151; }
+  .profit-box {
+    background: linear-gradient(135deg, #f5f3ff, #ecfdf5);
+    border: 2px solid #8b5cf6; border-radius: 16px;
+    padding: 28px; margin: 24px 0; text-align: center;
+  }
+  .profit-box .big { font-size: 48px; font-weight: 900; color: #8b5cf6; }
+  .profit-box .label { font-size: 16px; color: #6b7280; margin-top: 4px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+  .stat-card {
+    background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 20px; text-align: center;
+  }
+  .stat-card .num { font-size: 28px; font-weight: 800; color: #8b5cf6; }
+  .stat-card .desc { font-size: 13px; color: #6b7280; margin-top: 4px; }
+  footer { text-align: center; color: #9ca3af; font-size: 12px; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="badge">CONFIDENTIAL · 內部財務分析</div>
+  <h1>JYC 怡盛物業智慧管理系統</h1>
+  <div class="sub">專案報價 · 財務分析 · 利潤評估</div>
+  <div class="meta">
+    報告日期：2026 年 4 月 15 日<br>
+    涵蓋範圍：Telegram 員工管理 + LINE 住戶服務 + Web 共用後端<br>
+    目標客戶：怡盛物業管理（33 案場 · 高端住宅社區）
+  </div>
+</div>
+
+<!-- 1. 基本假設 -->
+<h2>一、基本假設</h2>
+
+<table>
+  <tr><th>項目</th><th>估算值</th><th>說明</th></tr>
+  <tr><td>案場數</td><td class="amount">33 個</td><td>高端住宅社區</td></tr>
+  <tr><td>每案場員工</td><td class="amount">7 - 10 人</td><td>社區經理＋秘書＋財務＋保全＋清潔</td></tr>
+  <tr><td>員工總數</td><td class="amount">230 - 330 人</td><td>TG 端使用者</td></tr>
+  <tr><td>每案場住戶</td><td class="amount">50 - 200 戶</td><td>高端社區戶數偏少、坪數大</td></tr>
+  <tr><td>住戶總戶數</td><td class="amount">2,000 - 6,600 戶</td><td></td></tr>
+  <tr><td>LINE 活躍住戶</td><td class="amount">1,200 - 4,000 人</td><td>採用率約 60%</td></tr>
+</table>
+
+<!-- 2. 開發成本 -->
+<h2>二、開發成本（已投入 = 系統價值）</h2>
+
+<table>
+  <tr><th>模組</th><th class="amount">工時</th><th>說明</th></tr>
+  <tr><td>TG Bot 核心</td><td class="amount">~150 hr</td><td>AI 任務萃取、自然語言結案、子任務拆解</td></tr>
+  <tr><td>TG 人事系統</td><td class="amount">~100 hr</td><td>考勤打卡＋請假加班＋審批＋地理圍欄</td></tr>
+  <tr><td>LINE 住戶端</td><td class="amount">~100 hr</td><td>Rich Menu＋LIFF＋訪客預約＋匿名評分</td></tr>
+  <tr><td>Web 管理後台</td><td class="amount">~100 hr</td><td>住戶/預約/打卡/HR/車位 CRUD</td></tr>
+  <tr><td>AI 影像判讀</td><td class="amount">~30 hr</td><td>清潔/安防/空拍機 Gemini Vision</td></tr>
+  <tr><td>基礎建設</td><td class="amount">~50 hr</td><td>DB/部署/Redis/排程/Migration</td></tr>
+  <tr class="total"><td>合計</td><td class="amount">~530 hr</td><td></td></tr>
+</table>
+
+<h3>開發成本折算</h3>
+<table>
+  <tr><th>計算方式</th><th class="amount">單價</th><th class="amount">總額</th></tr>
+  <tr><td>台灣資深全端市場行情（低）</td><td class="amount">NT$1,500/hr</td><td class="amount">NT$795,000</td></tr>
+  <tr><td>台灣資深全端市場行情（高）</td><td class="amount">NT$2,500/hr</td><td class="amount">NT$1,325,000</td></tr>
+  <tr class="total"><td>取中間值</td><td class="amount">NT$2,000/hr</td><td class="amount">NT$1,060,000</td></tr>
+</table>
+
+<div class="note">
+  此為系統的市場重建成本（replacement cost），用於評估系統價值與報價基準。
+</div>
+
+<div class="page-break"></div>
+
+<!-- 3. 每月營運成本 -->
+<h2>三、每月營運成本</h2>
+
+<h3>A. AI 串接費用（Google Gemini API）</h3>
+
+<table>
+  <tr><th>功能</th><th class="amount">月呼叫量</th><th class="amount">月費估算</th></tr>
+  <tr><td>任務萃取（Gemini 2.5 Flash）</td><td class="amount">15,000 - 20,000 次</td><td class="amount">NT$570</td></tr>
+  <tr><td>影像判讀（Flash Vision：清潔/安防/空拍）</td><td class="amount">3,000 - 5,000 次</td><td class="amount">NT$90</td></tr>
+  <tr><td>分類 / 摘要 / 去重</td><td class="amount">~5,000 次</td><td class="amount">NT$150</td></tr>
+  <tr class="total"><td>AI 小計（含 1.5 倍安全餘量）</td><td></td><td class="amount">NT$800 - 2,500</td></tr>
+</table>
+
+<div class="note">
+  Gemini Flash 定價極低（輸入 $0.15/百萬 token、輸出 $0.60/百萬 token），AI 是整個成本結構裡最便宜的一塊。即使用量翻 3 倍，月費仍在 NT$5,000 以內。
+</div>
+
+<h3>B. LINE 推播互動費用</h3>
+
+<p><strong>免費的部分（不計訊息量）：</strong></p>
+<ul>
+  <li>Reply Message — 住戶操作 Rich Menu 後 Bot 回覆，完全免費</li>
+  <li>LIFF 網頁互動 — 填表、查詢都在網頁端，不計訊息</li>
+</ul>
+
+<p><strong>付費的部分（Push Message 主動推播）：</strong></p>
+<table>
+  <tr><th>推播類型</th><th class="amount">月推播量</th></tr>
+  <tr><td>訪客 QR 推播（預約確認＋到場通知）</td><td class="amount">3,000 - 5,000 則</td></tr>
+  <tr><td>評分邀請推播</td><td class="amount">2,000 - 3,000 則</td></tr>
+  <tr><td>社區公告廣播（公告 × 住戶人數）</td><td class="amount">3,000 - 8,000 則</td></tr>
+  <tr><td>其他（包裹、繳費提醒）</td><td class="amount">1,000 - 2,000 則</td></tr>
+  <tr class="total"><td>每月推播量</td><td class="amount">9,000 - 18,000 則</td></tr>
+</table>
+
+<table>
+  <tr><th>LINE 方案</th><th class="amount">月費</th><th class="amount">免費額度</th><th class="amount">超出加購</th><th class="amount">月費總估</th></tr>
+  <tr><td>高用量方案</td><td class="amount">NT$4,000</td><td class="amount">15,000 則</td><td class="amount">NT$0.15/則</td><td class="amount">NT$4,000 - 4,500</td></tr>
+</table>
+
+<div class="note">
+  <strong>成本壓低關鍵：</strong>系統設計上盡量用 Reply（免費）取代 Push（付費），住戶主動操作的流程走 LIFF 網頁，公告可改「LIFF 網頁閱讀 + 一則推播提醒」降低廣播量。
+</div>
+
+<h3>C. 基礎設施費用（Railway 雲端）</h3>
+
+<table>
+  <tr><th>服務</th><th class="amount">月費</th></tr>
+  <tr><td>Bot 服務</td><td class="amount">NT$150</td></tr>
+  <tr><td>Worker 排程服務</td><td class="amount">NT$150</td></tr>
+  <tr><td>Web 服務</td><td class="amount">NT$150</td></tr>
+  <tr><td>PostgreSQL 資料庫</td><td class="amount">NT$150 - 300</td></tr>
+  <tr><td>Redis 快取</td><td class="amount">NT$150</td></tr>
+  <tr><td>33 案場流量加大（×2-3 倍）</td><td class="amount">—</td></tr>
+  <tr class="total"><td>基礎設施小計</td><td class="amount">NT$1,500 - 3,000</td></tr>
+</table>
+
+<h3>D. 其他</h3>
+<table>
+  <tr><th>項目</th><th class="amount">月費</th></tr>
+  <tr><td>自訂域名</td><td class="amount">~NT$50</td></tr>
+  <tr><td>GitHub 私有 Repo</td><td class="amount">NT$0</td></tr>
+  <tr class="total"><td>其他小計</td><td class="amount">~NT$50</td></tr>
+</table>
+
+<hr class="section-divider">
+
+<h3>每月營運成本總表</h3>
+
+<table>
+  <tr><th>項目</th><th class="amount">低估</th><th class="amount">高估</th></tr>
+  <tr><td>AI（Gemini API）</td><td class="amount">NT$800</td><td class="amount">NT$2,500</td></tr>
+  <tr><td>LINE 推播</td><td class="amount">NT$4,000</td><td class="amount">NT$4,500</td></tr>
+  <tr><td>Railway 基礎設施</td><td class="amount">NT$1,500</td><td class="amount">NT$3,000</td></tr>
+  <tr><td>其他</td><td class="amount">NT$50</td><td class="amount">NT$200</td></tr>
+  <tr class="total"><td>月營運成本</td><td class="amount">NT$6,350</td><td class="amount">NT$10,200</td></tr>
+  <tr class="total"><td>年營運成本</td><td class="amount">NT$76,200</td><td class="amount">NT$122,400</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- 4. 報價方案 -->
+<h2>四、報價方案建議</h2>
+
+<h3>方案 A：按案場月費制（推薦）</h3>
+
+<table>
+  <tr><th>等級</th><th>內容</th><th class="amount">月費/案場</th><th class="amount">33 案場月收</th><th class="amount">33 案場年收</th></tr>
+  <tr>
+    <td><strong>基礎版</strong><br>僅 TG 員工管理</td>
+    <td>任務萃取＋考勤打卡＋請假加班＋主管審批</td>
+    <td class="amount">NT$3,000</td>
+    <td class="amount">NT$99,000</td>
+    <td class="amount">NT$1,188,000</td>
+  </tr>
+  <tr class="highlight">
+    <td><strong>完整版</strong><br>TG + LINE</td>
+    <td>基礎版＋住戶端＋訪客預約＋評分＋AI 影像</td>
+    <td class="amount">NT$5,000</td>
+    <td class="amount">NT$165,000</td>
+    <td class="amount">NT$1,980,000</td>
+  </tr>
+  <tr>
+    <td><strong>旗艦版</strong><br>含未來功能</td>
+    <td>完整版＋空拍機＋排班薪資＋API 串接 ERP</td>
+    <td class="amount">NT$8,000</td>
+    <td class="amount">NT$264,000</td>
+    <td class="amount">NT$3,168,000</td>
+  </tr>
+</table>
+
+<h3>方案 B：包套制（大客戶談判用）</h3>
+
+<table>
+  <tr><th>項目</th><th class="amount">金額</th></tr>
+  <tr><td>導入設定費（一次性）</td><td class="amount">NT$500,000 - 800,000</td></tr>
+  <tr><td>每月維運費</td><td class="amount">NT$60,000 - 80,000</td></tr>
+  <tr class="total"><td>首年總成本</td><td class="amount">NT$1,220,000 - 1,760,000</td></tr>
+  <tr class="total"><td>第二年起（年費）</td><td class="amount">NT$720,000 - 960,000</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- 5. 利潤分析 -->
+<h2>五、利潤分析</h2>
+
+<p>以<strong>完整版（NT$5,000/案場 × 33 案場）</strong>計算：</p>
+
+<div class="profit-box">
+  <div class="big">95%</div>
+  <div class="label">月毛利率（不含人力維護）</div>
+</div>
+
+<div class="two-col">
+  <div class="stat-card">
+    <div class="num">NT$165,000</div>
+    <div class="desc">月收入</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">NT$8,000</div>
+    <div class="desc">月營運成本（中位數）</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">NT$157,000</div>
+    <div class="desc">月毛利</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">6.7 個月</div>
+    <div class="desc">開發成本回收期</div>
+  </div>
+</div>
+
+<h3>含人力維護的淨利分析</h3>
+
+<table>
+  <tr><th>維護情境</th><th class="amount">維護成本/月</th><th class="amount">月淨利</th><th class="amount">淨利率</th></tr>
+  <tr class="highlight"><td>自行維護（兼職 20hr/月）</td><td class="amount">NT$0</td><td class="amount">NT$157,000</td><td class="amount">95%</td></tr>
+  <tr><td>外聘工程師（兼職 20hr/月）</td><td class="amount">NT$40,000 - 60,000</td><td class="amount">NT$97,000 - 117,000</td><td class="amount">59% - 71%</td></tr>
+  <tr><td>聘全職工程師</td><td class="amount">NT$70,000 - 90,000</td><td class="amount">NT$67,000 - 87,000</td><td class="amount">41% - 53%</td></tr>
+</table>
+
+<!-- 6. 風險 -->
+<h2>六、風險與注意事項</h2>
+
+<div class="warn">
+  <strong>1. LINE 費用隨量暴增</strong><br>
+  住戶超過 5,000 人且公告頻繁時，每月推播可能衝到 50,000 則，LINE 費用升至 NT$9,000+。<br>
+  <strong>對策：</strong>公告改「LIFF 網頁閱讀 + 一則推播提醒」，可壓低 80% 廣播量。
+</div>
+
+<div class="warn">
+  <strong>2. Gemini 免費額度可能取消</strong><br>
+  目前部分 API Key 用免費 tier，正式商用建議全部轉付費 tier。<br>
+  <strong>影響：</strong>AI 費用從 NT$800 升至 ~NT$2,500/月，對利潤影響極低（<1%）。
+</div>
+
+<div class="warn">
+  <strong>3. 多社區資料隔離</strong><br>
+  目前系統沒有 community_id 隔離，33 案場上線前需開發資料隔離功能。<br>
+  <strong>額外開發成本：</strong>~40-60hr（一次性）。
+</div>
+
+<div class="warn">
+  <strong>4. LINE 帳號策略</strong><br>
+  33 案場共用一個 LINE 帳號：訊息費省但管理混亂。每案場獨立帳號：月費 ×33。<br>
+  <strong>建議：</strong>先共用降低成本，後續按客戶需求拆分，拆分成本由客戶承擔。
+</div>
+
+<!-- 7. 結論 -->
+<h2>七、結論</h2>
+
+<table>
+  <tr><th>指標</th><th class="amount">數值</th></tr>
+  <tr><td>系統開發價值</td><td class="amount">~NT$1,060,000</td></tr>
+  <tr><td>每月營運成本</td><td class="amount">NT$6,350 - 10,200</td></tr>
+  <tr><td>建議月收（完整版 33 案場）</td><td class="amount">NT$165,000</td></tr>
+  <tr><td>月毛利</td><td class="amount">NT$157,000</td></tr>
+  <tr class="highlight"><td>毛利率</td><td class="amount">95%</td></tr>
+  <tr class="highlight"><td>開發成本回收期</td><td class="amount">~7 個月</td></tr>
+  <tr><td>第一年總收入</td><td class="amount">NT$1,980,000</td></tr>
+  <tr><td>第一年總成本（營運 + 開發攤提）</td><td class="amount">~NT$1,160,000</td></tr>
+  <tr class="highlight"><td>第一年淨利</td><td class="amount">~NT$820,000</td></tr>
+</table>
+
+<div class="note">
+  <strong>核心優勢：</strong>AI + LINE + 雲端三大成本加起來每月不到 NT$10,000，但提供的價值遠超傳統物業管理軟體。毛利結構極健康，具備規模化複製到其他物業公司的潛力。
+</div>
+
+<footer>
+  <p>JYC 怡盛物業智慧管理系統 · 財務分析報告 · 2026-04-15</p>
+  <p>本文件僅供內部評估使用 · CONFIDENTIAL</p>
+</footer>
+
+</body>
+</html>
