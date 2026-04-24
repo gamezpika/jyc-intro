@@ -188,48 +188,7 @@
     line-height: 1;
   }
 
-  /* 三入口 */
-  .portal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  @media (max-width: 960px) { .portal-grid { grid-template-columns: 1fr; } }
-  .portal {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 20px; overflow: hidden;
-    display: flex; flex-direction: column;
-    box-shadow: 0 4px 16px rgba(15,23,42,0.04);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .portal:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(15,23,42,0.1); }
-  .portal-head { padding: 24px 28px; border-bottom: 1px solid var(--border-soft); }
-  .portal-icon { font-size: 36px; margin-bottom: 10px; }
-  .portal-role {
-    display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 6px;
-    letter-spacing: 1px; font-weight: 700; margin-bottom: 8px;
-  }
-  .portal-head h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
-  .portal-head .target { font-size: 13px; color: var(--muted); }
-  .portal.tg { border-top: 3px solid var(--cyan); }
-  .portal.tg .portal-role { background: rgba(8,145,178,0.1); color: var(--cyan); border: 1px solid rgba(8,145,178,0.25); }
-  .portal.line { border-top: 3px solid var(--green); }
-  .portal.line .portal-role { background: rgba(5,150,105,0.1); color: var(--green); border: 1px solid rgba(5,150,105,0.25); }
-  .portal.web { border-top: 3px solid var(--purple); }
-  .portal.web .portal-role { background: rgba(124,58,237,0.1); color: var(--purple); border: 1px solid rgba(124,58,237,0.25); }
-  .portal-body { padding: 24px 28px; flex: 1; }
-  .portal-body h4 {
-    font-size: 12px; letter-spacing: 1.5px; color: var(--muted);
-    text-transform: uppercase; font-weight: 700;
-    margin: 18px 0 10px; padding-bottom: 6px; border-bottom: 1px dashed var(--border);
-  }
-  .portal-body h4:first-child { margin-top: 0; }
-  .portal-body ul { list-style: none; }
-  .portal-body li { padding: 5px 0; font-size: 14px; color: var(--text-sub); }
-  .portal-body li::before { content: "› "; color: var(--purple); font-weight: 700; margin-right: 4px; }
-  .portal-body p { font-size: 14px; color: var(--text-sub); margin-bottom: 8px; }
-  .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px; }
-  .service-grid div {
-    padding: 9px 12px; background: rgba(5,150,105,0.06);
-    border: 1px solid rgba(5,150,105,0.2); border-radius: 10px;
-    font-size: 13px; text-align: center; color: var(--text-sub); font-weight: 500;
-  }
+  /* Web 後台模組群組（原本在 portal 裡用，現在放三角下方） */
   .module-group {
     padding: 14px 16px; background: rgba(124,58,237,0.04);
     border: 1px solid rgba(124,58,237,0.18); border-radius: 12px; margin-bottom: 10px;
@@ -382,6 +341,17 @@
   .ref-card a:hover { color: var(--cyan); text-decoration: underline; }
   .ref-card p { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
 
+  /* Web 後台完整模組區（三角下方） */
+  .web-modules {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; align-items: start;
+  }
+  @media (max-width: 760px) { .web-modules { grid-template-columns: 1fr; } }
+  .role-board {
+    padding: 14px 16px; background: rgba(5,150,105,0.04);
+    border: 1px solid rgba(5,150,105,0.22); border-radius: 12px;
+  }
+
   /* 實機展示 CTA */
   .demo-cta {
     background: linear-gradient(135deg, #faf5ff 0%, #ecfeff 60%, #fdf2f8 100%);
@@ -425,8 +395,7 @@
 <nav>
   <div class="brand">JYC · 怡盛智慧物業 · 架構與實機展示</div>
   <div class="links">
-    <a href="#layers">三層架構</a>
-    <a href="#portals">三入口</a>
+    <a href="#triangle">三方循環</a>
     <a href="jyc-demos.html" target="_blank">實機展示 ↗</a>
     <a href="#richmenu">LINE 選單</a>
     <a href="#scenarios">使用情境</a>
@@ -443,13 +412,13 @@
   <div class="hint">👆 點擊頁面中任一功能項目，直接跳轉到後台對應頁面</div>
 </section>
 
-<!-- ═══════════════════════ 三角循環 -->
-<section id="layers">
+<!-- ═══════════════════════ 三方循環 × 三入口（整合版） -->
+<section id="triangle">
   <div class="container">
     <div class="section-title">
-      <span class="tag">Three-Entity Cycle</span>
-      <h2>物業公司 × 案場 × 住戶 · 三角循環</h2>
-      <p>三方互相依賴、互相賦能，系統把流程串成完整閉環</p>
+      <span class="tag">Three-Role Cycle × Three Portals</span>
+      <h2>三方 × 三入口 · 一體循環</h2>
+      <p>管理者用 Web 後台、員工用 Telegram、住戶用 LINE — 三方互相串接形成閉環</p>
     </div>
 
     <div class="triangle-wrap">
@@ -466,199 +435,136 @@
           </marker>
         </defs>
 
-        <!-- 物業公司 → 案場：派員管理（左弧） -->
+        <!-- 管理者 → 員工：派工管理（左弧） -->
         <path d="M 440 180 Q 230 360 140 560"
               stroke="#7c3aed" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6" marker-end="url(#ar-purple)" opacity="0.85"/>
-        <rect x="170" y="330" width="120" height="34" rx="17" fill="white" stroke="#7c3aed" stroke-width="2"/>
-        <text x="230" y="353" fill="#7c3aed" font-size="15" font-weight="700" text-anchor="middle">🏢→🏘️ 派員管理</text>
+        <rect x="160" y="330" width="140" height="34" rx="17" fill="white" stroke="#7c3aed" stroke-width="2"/>
+        <text x="230" y="353" fill="#7c3aed" font-size="15" font-weight="700" text-anchor="middle">🖥️→🤖 派工管理</text>
 
-        <!-- 案場 → 住戶：提供服務（下弧） -->
+        <!-- 員工 → 住戶：提供服務（下弧） -->
         <path d="M 300 650 Q 520 710 740 650"
               stroke="#0891b2" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6" marker-end="url(#ar-cyan)" opacity="0.85"/>
-        <rect x="460" y="665" width="120" height="34" rx="17" fill="white" stroke="#0891b2" stroke-width="2"/>
-        <text x="520" y="688" fill="#0891b2" font-size="15" font-weight="700" text-anchor="middle">🏘️→👥 提供服務</text>
+        <rect x="450" y="665" width="140" height="34" rx="17" fill="white" stroke="#0891b2" stroke-width="2"/>
+        <text x="520" y="688" fill="#0891b2" font-size="15" font-weight="700" text-anchor="middle">🤖→📱 提供服務</text>
 
-        <!-- 住戶 → 物業公司：需求回饋（右弧） -->
+        <!-- 住戶 → 管理者：反饋評分（右弧） -->
         <path d="M 900 560 Q 810 360 600 180"
               stroke="#db2777" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6" marker-end="url(#ar-pink)" opacity="0.85"/>
-        <rect x="750" y="330" width="130" height="34" rx="17" fill="white" stroke="#db2777" stroke-width="2"/>
-        <text x="815" y="353" fill="#db2777" font-size="15" font-weight="700" text-anchor="middle">👥→🏢 需求回饋</text>
+        <rect x="745" y="330" width="140" height="34" rx="17" fill="white" stroke="#db2777" stroke-width="2"/>
+        <text x="815" y="353" fill="#db2777" font-size="15" font-weight="700" text-anchor="middle">📱→🖥️ 反饋評分</text>
       </svg>
 
-      <!-- TOP · 物業公司 -->
+      <!-- TOP · 管理者 + Web 後台 -->
       <div class="tri-node top">
-        <div class="n-icon">🏢</div>
-        <div class="n-role">物業公司</div>
-        <h3>JYC 怡盛物業</h3>
-        <p>統籌員工、跨案場調度、總部決策</p>
-        <div class="n-chips">
-          <a href="https://web-production-ea976.up.railway.app/admin/web-accounts" target="_blank">員工</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">調度</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/payroll" target="_blank">薪資</a>
-          <a href="https://web-production-ea976.up.railway.app/executive/" target="_blank">決策看板</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/recruit" target="_blank">招募</a>
-        </div>
-      </div>
-
-      <!-- BOTTOM-LEFT · 案場 -->
-      <div class="tri-node bottom-left">
-        <div class="n-icon">🏘️</div>
-        <div class="n-role">案場 / 社區</div>
-        <h3>獨立營運單位</h3>
-        <p>門牌、車位、公設、公告、帳單一應俱全</p>
+        <div class="n-icon">🖥️</div>
+        <div class="n-role">管理者 · 總公司</div>
+        <h3>Web 後台</h3>
+        <p>系統管理員、人資、秘書、財務統籌跨案場與全體員工</p>
         <div class="n-chips">
           <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區</a>
-          <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">門牌</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/parking" target="_blank">車位</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">公告</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">帳單</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/web-accounts" target="_blank">員工</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/payroll" target="_blank">薪資</a>
+          <a href="https://web-production-ea976.up.railway.app/executive/" target="_blank">決策</a>
+          <a href="https://web-production-ea976.up.railway.app/stats/" target="_blank">統計</a>
         </div>
       </div>
 
-      <!-- BOTTOM-RIGHT · 住戶 -->
-      <div class="tri-node bottom-right">
-        <div class="n-icon">👥</div>
-        <div class="n-role">住戶</div>
-        <h3>門牌與成員</h3>
-        <p>綁 LINE 後自助訪客 / 報修 / 評分 / 繳費</p>
+      <!-- BOTTOM-LEFT · 員工 + TG Bot -->
+      <div class="tri-node bottom-left">
+        <div class="n-icon">🤖</div>
+        <div class="n-role">員工 · 案場</div>
+        <h3>Telegram Bot</h3>
+        <p>社區經理、秘書、保全、清潔用 TG 打卡、請假、接工單</p>
         <div class="n-chips">
-          <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶與成員</a>
+          <span>打卡</span>
+          <span>請假</span>
+          <span>加班</span>
+          <span>補卡</span>
+          <span>班表</span>
+          <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
+        </div>
+      </div>
+
+      <!-- BOTTOM-RIGHT · 住戶 + LINE -->
+      <div class="tri-node bottom-right">
+        <div class="n-icon">📱</div>
+        <div class="n-role">住戶 · 門牌成員</div>
+        <h3>LINE 官方帳號</h3>
+        <p>加好友三步綁門牌，訪客 / 報修 / 評分 / 繳費自助完成</p>
+        <div class="n-chips">
           <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客</a>
           <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">報修</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/ratings" target="_blank">評分</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設</a>
           <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">繳費</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/ratings" target="_blank">評分</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════ 三個入口 -->
-<section id="portals">
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">Three Portals</span>
-      <h2>三個入口 · 各自專精</h2>
-      <p>對的人用對的工具 — 員工用 TG、住戶用 LINE、管理用 Web</p>
-    </div>
-
-    <div class="portal-grid">
-      <div class="portal tg">
-        <div class="portal-head">
-          <div class="portal-icon">🤖</div>
-          <div class="portal-role">員工端</div>
-          <h3>Telegram Bot</h3>
-          <div class="target">員工加 Bot 好友即可開始</div>
-        </div>
-        <div class="portal-body">
-          <h4>常用功能</h4>
-          <ul>
-            <li>上班 / 下班 打卡（需傳位置）</li>
-            <li>打卡紀錄查詢</li>
-            <li>請假申請</li>
-            <li>加班申請</li>
-            <li>補打卡申請</li>
-            <li>請假額度查詢</li>
-            <li>查我的班表</li>
-            <li>完整功能選單</li>
-          </ul>
-          <h4>特色</h4>
-          <p>所有表單走 Telegram 內建 Mini App（原生體驗）。主管端收到申請通知 → 一鍵核准 / 駁回 → 員工即時收到推播結果。</p>
-          <p>定位打卡自動判斷是否在案場範圍內，超出範圍直接擋下。</p>
-          <h4>適用角色</h4>
-          <p>社區經理、秘書、財務、保全、清潔 — 全體案場人員。</p>
-        </div>
+    <!-- Web 後台完整模組（三角下方補充） -->
+    <div style="max-width: 1080px; margin: 56px auto 0;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--cyan); text-transform: uppercase; display: block; margin-bottom: 8px;">Web 後台完整模組</span>
+        <h3 style="font-size: 22px; font-weight: 800; color: var(--text);">🖥️ 管理端功能清單 · 點擊直通</h3>
+        <p style="color: var(--muted); margin-top: 8px; font-size: 14px;">三大分類共 28 個模組，左上可切換案場即切整套資料</p>
       </div>
 
-      <div class="portal line">
-        <div class="portal-head">
-          <div class="portal-icon">📱</div>
-          <div class="portal-role">住戶端</div>
-          <h3>LINE 官方帳號</h3>
-          <div class="target">加入社區 LINE 即用</div>
-        </div>
-        <div class="portal-body">
-          <h4>首次綁定</h4>
-          <p>加好友 → 系統自動導引進綁定頁 → 三步驟選擇（棟 / 樓 / 戶）→ 姓名自動從 LINE 帶入 → 綁定完成自動回 LINE。</p>
-          <h4>Tab 1 · 社區服務</h4>
-          <div class="service-grid">
-            <div>📅 訪客預約</div><div>🔧 報修</div><div>📦 包裹通知</div>
-            <div>🏊 公設預約</div><div>💰 繳費查詢</div><div>📋 我的紀錄</div>
+      <div class="web-modules">
+        <div class="module-group">
+          <strong>🏠 對外服務</strong>
+          <div class="mod-links">
+            <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區結構</a>
+            <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶與成員</a>
+            <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客預約</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/parking" target="_blank">車位池</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單報修</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">社區公告</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設預約</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">帳單繳費</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹通知</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/suppliers" target="_blank">供應商管理</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約管理</a>
           </div>
-          <h4>Tab 2 · 社區互動</h4>
-          <div class="service-grid">
-            <div>⭐ 服務評分</div><div>📢 社區公告</div><div>📞 聯絡客服</div>
-            <div>🗳️ 議案投票</div><div>✉️ 意見箱</div><div>🏠 我的戶籍</div>
-          </div>
-          <h4>特色</h4>
-          <p>訪客預約自動產生 QR → 住戶一鍵分享給訪客 → 保全掃碼放行後住戶即時收到到場通知。服務評分採匿名機制保護住戶。</p>
         </div>
-      </div>
+        <div class="module-group">
+          <strong>👥 對內管理</strong>
+          <div class="mod-links">
+            <a href="https://web-production-ea976.up.railway.app/admin/web-accounts" target="_blank">員工帳號</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/employees" target="_blank">員工資料</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/schedule" target="_blank">排班表</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/attendance" target="_blank">考勤</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/attendance-report" target="_blank">出勤報表</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/overtimes" target="_blank">加班</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/makeups" target="_blank">補打卡</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/payroll" target="_blank">薪資</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/rules" target="_blank">考勤規則</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/recruit" target="_blank">招募</a>
+            <a href="https://web-production-ea976.up.railway.app/executive/" target="_blank">決策看板</a>
+            <a href="https://web-production-ea976.up.railway.app/stats/" target="_blank">統計</a>
+          </div>
+        </div>
+        <div class="module-group">
+          <strong>⚙️ 系統</strong>
+          <div class="mod-links">
+            <a href="https://web-production-ea976.up.railway.app/settings/" target="_blank">指令設定</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/locations" target="_blank">打卡地點</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/amenity-templates" target="_blank">公設模板</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/land-price" target="_blank">公告地價</a>
+          </div>
+        </div>
 
-      <div class="portal web">
-        <div class="portal-head">
-          <div class="portal-icon">🖥️</div>
-          <div class="portal-role">管理端</div>
-          <h3>Web 後台</h3>
-          <div class="target"><a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank" style="color:var(--purple);text-decoration:none;font-weight:600;">🔑 點此開啟後台 →</a></div>
-        </div>
-        <div class="portal-body">
-          <h4>模組分類（三大群組，點擊直通）</h4>
-          <div class="module-group">
-            <strong>🏠 對外服務</strong>
-            <div class="mod-links">
-              <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區結構</a>
-              <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶與成員</a>
-              <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客預約</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/parking" target="_blank">車位池</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單報修</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">社區公告</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設預約</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">帳單繳費</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹通知</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/suppliers" target="_blank">供應商管理</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約管理</a>
-            </div>
-          </div>
-          <div class="module-group">
-            <strong>👥 對內管理</strong>
-            <div class="mod-links">
-              <a href="https://web-production-ea976.up.railway.app/admin/web-accounts" target="_blank">員工帳號</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/employees" target="_blank">員工資料</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/schedule" target="_blank">排班表</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/attendance" target="_blank">考勤</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/attendance-report" target="_blank">出勤報表</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/overtimes" target="_blank">加班</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/makeups" target="_blank">補打卡</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/payroll" target="_blank">薪資</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/rules" target="_blank">考勤規則</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/recruit" target="_blank">招募</a>
-              <a href="https://web-production-ea976.up.railway.app/executive/" target="_blank">決策看板</a>
-              <a href="https://web-production-ea976.up.railway.app/stats/" target="_blank">統計</a>
-            </div>
-          </div>
-          <div class="module-group">
-            <strong>⚙️ 系統</strong>
-            <div class="mod-links">
-              <a href="https://web-production-ea976.up.railway.app/settings/" target="_blank">指令設定</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/locations" target="_blank">打卡地點</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/amenity-templates" target="_blank">公設模板</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/land-price" target="_blank">公告地價</a>
-            </div>
-          </div>
-          <h4>角色權限</h4>
+        <div class="role-board">
+          <strong style="color: var(--text); font-size: 14px; display: block; margin-bottom: 10px;">🔐 角色權限</strong>
           <div class="role-list">
             <div><strong>系統管理員</strong>全域管理、所有案場、所有設定</div>
             <div><strong>維護者</strong>可改營運設定，不能動系統</div>
             <div><strong>員工</strong>只看自己的資料</div>
           </div>
-          <h4>特色</h4>
-          <p>左上社區切換器一按即切整套資料，多案場資料完全隔離；完整稽核軌跡；支援 CSV 匯出；富文本公告編輯；多附件上傳。</p>
         </div>
       </div>
     </div>
