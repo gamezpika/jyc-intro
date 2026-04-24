@@ -302,6 +302,48 @@
     .flow-arrow { transform: rotate(90deg); padding: 4px 0; }
   }
 
+  /* 三欄功能詳表（三角下方，對應三節點） */
+  .tri-details {
+    max-width: 1080px; margin: 56px auto 0;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px;
+  }
+  @media (max-width: 960px) { .tri-details { grid-template-columns: 1fr; } }
+  .tri-detail {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 20px 22px;
+    box-shadow: 0 4px 16px rgba(15,23,42,0.04);
+  }
+  .tri-detail.purple { border-top: 3px solid var(--purple); background: linear-gradient(180deg, #faf5ff 0%, #ffffff 40%); }
+  .tri-detail.cyan { border-top: 3px solid var(--cyan); background: linear-gradient(180deg, #ecfeff 0%, #ffffff 40%); }
+  .tri-detail.green { border-top: 3px solid var(--green); background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 40%); }
+  .td-head {
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 12px; border-bottom: 1px dashed var(--border);
+    margin-bottom: 12px;
+  }
+  .td-icon { font-size: 26px; line-height: 1; }
+  .td-title { font-size: 14px; color: var(--text-sub); }
+  .td-title strong { color: var(--text); font-size: 15px; }
+  .td-group { margin-bottom: 14px; }
+  .td-group:last-child { margin-bottom: 0; }
+  .td-group h5 {
+    font-size: 11.5px; letter-spacing: 1.2px; color: var(--muted);
+    font-weight: 700; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .td-links { display: flex; flex-wrap: wrap; gap: 5px; }
+  .td-links a, .td-links span {
+    padding: 4px 10px; font-size: 12.5px; border-radius: 7px;
+    background: white; border: 1px solid var(--border);
+    color: var(--text-sub); text-decoration: none; font-weight: 500;
+    transition: all 0.15s;
+  }
+  .td-links a { cursor: pointer; }
+  .tri-detail.purple .td-links a:hover { background: var(--purple); color: white; border-color: var(--purple); transform: translateY(-1px); }
+  .tri-detail.cyan .td-links a:hover { background: var(--cyan); color: white; border-color: var(--cyan); transform: translateY(-1px); }
+  .tri-detail.green .td-links a:hover { background: var(--green); color: white; border-color: var(--green); transform: translateY(-1px); }
+  .td-note { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
   /* 實機展示 CTA */
   .demo-cta {
     background: linear-gradient(135deg, #faf5ff 0%, #ecfeff 60%, #fdf2f8 100%);
@@ -429,10 +471,11 @@
         <h3>Telegram Bot</h3>
         <p>打卡、請假、接工單全在 TG 完成</p>
         <div class="n-chips">
-          <span>打卡</span>
-          <span>請假</span>
-          <span>加班</span>
-          <span>班表</span>
+          <a href="https://web-production-ea976.up.railway.app/admin/attendance" target="_blank">打卡</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/overtimes" target="_blank">加班</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/makeups" target="_blank">補卡</a>
+          <a href="https://web-production-ea976.up.railway.app/admin/schedule" target="_blank">班表</a>
           <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
         </div>
       </div>
@@ -449,6 +492,122 @@
           <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設</a>
           <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">繳費</a>
           <a href="https://web-production-ea976.up.railway.app/admin/ratings" target="_blank">評分</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 三欄完整功能詳表（對應三角三節點） -->
+    <div class="tri-details">
+      <!-- 管理者 -->
+      <div class="tri-detail purple">
+        <div class="td-head">
+          <span class="td-icon">🖥️</span>
+          <div class="td-title"><strong>管理者</strong> · Web 後台</div>
+        </div>
+        <div class="td-group">
+          <h5>🏠 對外服務</h5>
+          <div class="td-links">
+            <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區結構</a>
+            <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶與成員</a>
+            <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客預約</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/parking" target="_blank">車位池</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">公告</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">帳單</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/suppliers" target="_blank">供應商</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/quote/list" target="_blank">報價</a>
+          </div>
+        </div>
+        <div class="td-group">
+          <h5>👥 對內管理</h5>
+          <div class="td-links">
+            <a href="https://web-production-ea976.up.railway.app/admin/web-accounts" target="_blank">員工帳號</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/employees" target="_blank">員工資料</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/schedule" target="_blank">排班</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/attendance" target="_blank">考勤</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/attendance-report" target="_blank">出勤報表</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/overtimes" target="_blank">加班</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/makeups" target="_blank">補卡</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/payroll" target="_blank">薪資</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/rules" target="_blank">考勤規則</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/recruit" target="_blank">招募</a>
+            <a href="https://web-production-ea976.up.railway.app/executive/" target="_blank">決策</a>
+            <a href="https://web-production-ea976.up.railway.app/stats/" target="_blank">統計</a>
+          </div>
+        </div>
+        <div class="td-group">
+          <h5>⚙️ 系統</h5>
+          <div class="td-links">
+            <a href="https://web-production-ea976.up.railway.app/settings/" target="_blank">指令設定</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/locations" target="_blank">打卡地點</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/amenity-templates" target="_blank">公設模板</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/land-price" target="_blank">公告地價</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 員工 -->
+      <div class="tri-detail cyan">
+        <div class="td-head">
+          <span class="td-icon">🤖</span>
+          <div class="td-title"><strong>員工</strong> · Telegram</div>
+        </div>
+        <div class="td-group">
+          <h5>常用功能</h5>
+          <div class="td-links">
+            <a href="https://web-production-ea976.up.railway.app/admin/attendance" target="_blank">打卡</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/overtimes" target="_blank">加班</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/makeups" target="_blank">補卡</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/schedule" target="_blank">班表</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
+          </div>
+        </div>
+        <div class="td-group">
+          <h5>特色</h5>
+          <p class="td-note">Mini App 原生體驗<br>主管 TG 一鍵審批<br>定位打卡地理圍欄</p>
+        </div>
+        <div class="td-group">
+          <h5>適用</h5>
+          <p class="td-note">社區經理、秘書、財務<br>保全、清潔等全體案場人員</p>
+        </div>
+      </div>
+
+      <!-- 住戶 -->
+      <div class="tri-detail green">
+        <div class="td-head">
+          <span class="td-icon">📱</span>
+          <div class="td-title"><strong>住戶</strong> · LINE</div>
+        </div>
+        <div class="td-group">
+          <h5>社區服務</h5>
+          <div class="td-links">
+            <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客預約</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">報修</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">繳費</a>
+            <span>我的紀錄</span>
+          </div>
+        </div>
+        <div class="td-group">
+          <h5>社區互動</h5>
+          <div class="td-links">
+            <a href="https://web-production-ea976.up.railway.app/admin/ratings" target="_blank">評分</a>
+            <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">公告</a>
+            <span>客服</span>
+            <span>投票</span>
+            <span>意見箱</span>
+            <span>戶籍</span>
+          </div>
+        </div>
+        <div class="td-group">
+          <h5>首次綁定</h5>
+          <p class="td-note">加好友 → 三步選（棟/樓/戶）<br>姓名自動帶入 → 完成</p>
         </div>
       </div>
     </div>
