@@ -799,33 +799,33 @@
     </div>
 
     <div class="scenario">
-      <div class="scenario-head"><div class="scenario-num">05</div><h3>📝 維修報價比價（管理者 × 供應商）</h3></div>
+      <div class="scenario-head"><div class="scenario-num">05</div><h3>📝 對案場服務報價 → 簽署 → 合約（物業公司 × 客戶）</h3></div>
       <div class="flow">
         <div class="flow-step web">
-          <div class="who">🖥️ 管理者 · Web</div>
-          <div class="head">1. 發起報價需求</div>
-          <p>選擇維修項目、預算、期望完工日 → 挑選符合資格的供應商 → 建立報價單</p>
+          <div class="who">🖥️ 物業公司 · Web</div>
+          <div class="head">1. 精靈建立報價</div>
+          <p>選客戶 / 服務類別（保全・清潔・電梯…）/ 金額類型（月費・總額・單價）/ 起迄日期 → 產生公開簽署連結</p>
           <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/quote/new" target="_blank">新增報價 →</a>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step vendor">
-          <div class="who">🏭 供應商</div>
-          <div class="head">2. 填寫報價</div>
-          <p>收到專屬連結 → 線上填單價、工期、備註 → 送出後管理者即可看到</p>
+          <div class="who">👤 客戶 · 案場業主</div>
+          <div class="head">2. 線上閱覽簽署</div>
+          <p>管委會或業主收到專屬 URL → 看合約內容（金額 / 條款 / 附件）→ 電子簽名同意，無需下載 App</p>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step web">
-          <div class="who">🖥️ 管理者 · Web</div>
-          <div class="head">3. 比價 → 選中</div>
-          <p>後台並排比較各家報價（單價 / 工期 / 備註）→ 選中最佳方案 → 一鍵轉成合約</p>
-          <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/quote/list" target="_blank">報價列表 →</a>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step web">
-          <div class="who">🖥️ 管理者 · Web</div>
-          <div class="head">4. 合約 → 驗收 → 付款</div>
-          <p>合約管理追蹤進度、驗收後撥款，所有往來文件留存</p>
+          <div class="who">🖥️ 物業公司 · Web</div>
+          <div class="head">3. 自動產生合約</div>
+          <p>客戶簽署後，報價單自動轉成正式合約，所有往來文件與稽核軌跡留存</p>
           <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約管理 →</a>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step web">
+          <div class="who">🖥️ 物業公司 · Web</div>
+          <div class="head">4. 到期提醒 → 續約</div>
+          <p>即將到期合約後台看板提醒，一鍵產生續約合約（繼承金額 / 條款），不再錯過續簽時點</p>
+          <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約看板 →</a>
         </div>
       </div>
     </div>
