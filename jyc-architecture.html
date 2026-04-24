@@ -96,18 +96,47 @@
     margin-bottom: 10px;
   }
 
-  /* 三層 */
-  .layer-stack { max-width: 920px; margin: 0 auto; }
+  /* 三層 · 金字塔造型（上窄下寬） */
+  .layer-stack {
+    max-width: 1000px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
   .layer {
     background: var(--card); border: 1px solid var(--border);
-    border-radius: 20px; padding: 28px 32px; margin-bottom: 14px;
+    border-radius: 20px; padding: 26px 32px;
     box-shadow: 0 4px 16px rgba(15,23,42,0.04);
     transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
   }
   .layer:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(15,23,42,0.08); }
-  .layer.l1 { background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%); border-color: rgba(124,58,237,0.22); border-left: 4px solid var(--purple); }
-  .layer.l2 { background: linear-gradient(135deg, #ecfeff 0%, #ffffff 100%); border-color: rgba(8,145,178,0.22); border-left: 4px solid var(--cyan); }
-  .layer.l3 { background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%); border-color: rgba(219,39,119,0.22); border-left: 4px solid var(--pink); }
+  .layer.l1 {
+    width: 52%;
+    background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+    border-color: rgba(124,58,237,0.3); border-top: 4px solid var(--purple);
+    text-align: center;
+  }
+  .layer.l1 .chips { justify-content: center; }
+  .layer.l2 {
+    width: 76%;
+    background: linear-gradient(135deg, #ecfeff 0%, #ffffff 100%);
+    border-color: rgba(8,145,178,0.3); border-top: 4px solid var(--cyan);
+    text-align: center;
+  }
+  .layer.l2 .chips { justify-content: center; }
+  .layer.l3 {
+    width: 100%;
+    background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%);
+    border-color: rgba(219,39,119,0.3); border-top: 4px solid var(--pink);
+    text-align: center;
+  }
+  .layer.l3 .chips { justify-content: center; }
+  .layer-head { justify-content: center; }
+  @media (max-width: 768px) {
+    .layer.l1, .layer.l2 { width: 100%; }
+    .layer { text-align: left; }
+    .layer-head { justify-content: flex-start; }
+    .layer .chips { justify-content: flex-start !important; }
+  }
   .layer-head { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; }
   .layer-icon { font-size: 44px; line-height: 1; }
   .layer-tag { font-size: 12px; letter-spacing: 2px; color: var(--muted); font-weight: 700; }
