@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JYC 實機影片展示 · 怡盛智慧物業</title>
+<meta name="description" content="JYC 怡盛智慧物業 — 訪客預約、LINE 綁定、員工 TG、評分看板真實操作影片">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple: #7c3aed;
+    --cyan: #0891b2;
+    --pink: #db2777;
+    --green: #059669;
+    --amber: #d97706;
+    --bg: #f7fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --border-soft: #edf2f7;
+    --text: #0f172a;
+    --text-sub: #334155;
+    --muted: #64748b;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(900px at 8% 10%, rgba(165,180,252,0.25), transparent 60%),
+      radial-gradient(700px at 92% 20%, rgba(34,211,238,0.18), transparent 60%),
+      radial-gradient(900px at 50% 90%, rgba(244,114,182,0.14), transparent 60%);
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100; padding: 12px 28px;
+    backdrop-filter: blur(16px); background: rgba(255,255,255,0.78);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+  }
+  .brand {
+    font-weight: 700; font-size: 18px; letter-spacing: 0.5px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  nav .links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  nav .links a { color: var(--muted); text-decoration: none; font-size: 13.5px; transition: color 0.2s; }
+  nav .links a:hover { color: var(--purple); }
+  nav .back-arch {
+    padding: 7px 16px; border-radius: 999px; font-weight: 600; font-size: 13px;
+    background: white; border: 1px solid var(--border); color: var(--text-sub) !important;
+  }
+  nav .back-arch:hover { border-color: var(--purple); color: var(--purple) !important; }
+  nav .open-admin {
+    padding: 7px 16px; border-radius: 999px; font-weight: 600; font-size: 13px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan)); color: white !important;
+  }
+  nav .open-admin:hover { color: white !important; opacity: 0.9; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .hero { padding: 72px 24px 48px; text-align: center; }
+  .hero .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2);
+    font-size: 13px; color: var(--purple); margin-bottom: 24px; font-weight: 600;
+  }
+  .hero h1 { font-size: clamp(28px, 4.5vw, 50px); font-weight: 800; line-height: 1.2; margin-bottom: 16px; color: var(--text); }
+  .hero h1 .grad {
+    background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 50%, var(--pink) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { font-size: 16px; color: var(--muted); max-width: 680px; margin: 0 auto; }
+  .highlight-star {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 999px;
+    background: linear-gradient(90deg, rgba(250,204,21,0.15), rgba(251,146,60,0.12));
+    border: 1px solid rgba(250,204,21,0.4);
+    font-size: 12px; font-weight: 700; color: var(--amber);
+    margin-bottom: 10px;
+  }
+
+  section { padding: 48px 0; }
+  .demo-group { margin-bottom: 56px; }
+  .demo-group h2 {
+    font-size: 22px; font-weight: 700; color: var(--text);
+    text-align: center; margin-bottom: 8px;
+  }
+  .demo-group .sub {
+    text-align: center; color: var(--muted);
+    font-size: 14px; margin-bottom: 24px;
+  }
+
+  .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .video-grid { grid-template-columns: 1fr; } }
+  .video-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 18px rgba(15,23,42,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .video-card:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(15,23,42,0.1); }
+  .video-card video { width: 100%; display: block; background: #f1f5f9; aspect-ratio: 16/9; object-fit: contain; }
+  .video-meta { padding: 20px 24px; }
+  .video-meta .step { font-size: 11px; letter-spacing: 2px; color: var(--cyan); font-weight: 700; margin-bottom: 6px; }
+  .video-meta h3 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
+  .video-meta p { color: var(--text-sub); font-size: 14px; line-height: 1.65; }
+  .video-flow { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .video-flow span {
+    font-size: 12px; padding: 3px 10px; border-radius: 8px;
+    background: #f1f5f9; border: 1px solid var(--border); color: var(--text-sub);
+  }
+
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .feat {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px;
+    box-shadow: 0 2px 12px rgba(15,23,42,0.04);
+    transition: all 0.3s;
+  }
+  .feat:hover { transform: translateY(-2px); border-color: rgba(124,58,237,0.3); box-shadow: 0 12px 28px rgba(15,23,42,0.08); }
+  .feat .emoji { font-size: 30px; margin-bottom: 12px; }
+  .feat h3 { font-size: 16px; margin-bottom: 6px; color: var(--text); }
+  .feat p { font-size: 14px; color: var(--text-sub); }
+  .feat video {
+    width: 100%; border-radius: 10px; margin-top: 12px;
+    background: #f1f5f9; max-height: 420px; object-fit: contain;
+    border: 1px solid var(--border-soft);
+  }
+  .status-pill {
+    display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px;
+    margin-top: 10px; font-weight: 600;
+    background: rgba(5,150,105,0.1); color: var(--green); border: 1px solid rgba(5,150,105,0.3);
+  }
+
+  .back-cta {
+    max-width: 500px; margin: 40px auto 0;
+    padding: 20px 24px; background: white;
+    border: 1px solid var(--border); border-radius: 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    box-shadow: 0 4px 16px rgba(15,23,42,0.05);
+  }
+  .back-cta-text { color: var(--text-sub); font-size: 14px; }
+  .back-cta a {
+    padding: 9px 18px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: white; text-decoration: none; font-weight: 600; font-size: 14px;
+    white-space: nowrap;
+  }
+
+  footer { padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; }
+  footer p { color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">JYC · 實機影片展示</div>
+  <div class="links">
+    <a href="#visitor">訪客預約</a>
+    <a href="#bind">LINE 綁定</a>
+    <a href="#staff">員工 TG</a>
+    <a href="#rating">評分看板</a>
+    <a href="jyc-architecture.html" class="back-arch">← 回系統架構</a>
+    <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank" class="open-admin">🔑 開啟後台</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <span class="badge">⭐ 實機操作影片</span>
+  <h1>真實操作<br><span class="grad">影片展示</span></h1>
+  <p>訪客預約、LINE 綁定、員工 TG、服務評分四組完整流程，真實螢幕錄影，每段 30~90 秒看完。</p>
+</section>
+
+<div class="container">
+
+  <!-- 訪客預約 -->
+  <section id="visitor" class="demo-group">
+    <h2>🚗 訪客預約全流程</h2>
+    <div class="sub">住戶端 LINE × 管理處後台，雙端即時同步</div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 1 · 住戶端</div>
+          <h3>LINE 訪客預約 → 收到 QR</h3>
+          <p>住戶打開 LINE Rich Menu，點選訪客預約填寫資料送出後，系統自動發送 QR Code 到住戶手機。</p>
+          <div class="video-flow"><span>Rich Menu</span><span>→ 填表</span><span>→ 送出</span><span>→ 收到 QR</span></div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video2.mov" type="video/quicktime">
+          <source src="videos/video2.mov" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 2 · 管理處後台</div>
+          <h3>後台確認 → 核發 QR → 掃碼放行</h3>
+          <p>管理處在 Web 後台看到預約、確認收款後發 QR，警衛手機掃碼即刻放行，住戶收到到場通知。</p>
+          <div class="video-flow"><span>後台查看</span><span>→ 確認收款</span><span>→ 發 QR</span><span>→ 掃碼放行</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINE 綁定 -->
+  <section id="bind" class="demo-group">
+    <h2>🔗 住戶首次使用 · 快速綁定門牌</h2>
+    <div class="sub">加好友自動引導，三步驟完成身分綁定</div>
+    <div class="video-grid" style="grid-template-columns: 1fr; max-width: 680px; margin: 0 auto;">
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video9.MP4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">住戶首次使用流程</div>
+          <h3>LINE 加好友 → 自動引導綁定門牌</h3>
+          <p>住戶加入社區 LINE 官方帳號後，系統自動引導進入綁定頁面。只需三步：選擇棟別、樓層、戶號，即完成身分綁定，自動返回 LINE 開始使用訪客預約、報修、評分等所有社區服務。</p>
+          <div class="video-flow"><span>加好友</span><span>→ 自動引導</span><span>→ 選門牌</span><span>→ 綁定完成</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 員工 TG -->
+  <section id="staff" class="demo-group">
+    <h2>👷 員工 TG 端 · 考勤 / 請假 / 審批</h2>
+    <div class="sub">Telegram Mini App 一鍵送出、主管一鍵審批、即時推播</div>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="emoji">⏰</div>
+        <h3>考勤 · 打卡 · 排班</h3>
+        <p>定位打卡 + 班表查詢一站搞定，異地打卡自動擋下。</p>
+        <span class="status-pill">已上線</span>
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="feat">
+        <div class="emoji">💼</div>
+        <h3>請假 · 加班 · 補卡</h3>
+        <p>Mini App 一鍵送出申請，額度自動計算，狀態即時查詢。</p>
+        <span class="status-pill">已上線</span>
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video4.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="feat">
+        <div class="emoji">✅</div>
+        <h3>主管審批流程</h3>
+        <p>主管 TG 收到推播 → Inline 按鈕一鍵核准 / 駁回 → 結果即時推播給員工。</p>
+        <span class="status-pill">已上線</span>
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video5.mov" type="video/quicktime">
+          <source src="videos/video5.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 評分 -->
+  <section id="rating" class="demo-group">
+    <h2>⭐ 住戶匿名評分 × 總公司績效看板</h2>
+    <div class="sub">手機匿名評分 × 跨案場即時彙整，服務品質一目了然</div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video6.mp4" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 1 · 住戶端</div>
+          <h3>住戶 LINE 匿名評分</h3>
+          <p>服務完成後推送評分邀請，住戶一鍵評星 + 留言，匿名保障真實回饋。</p>
+          <div class="video-flow"><span>服務完成</span><span>→ 推送評分</span><span>→ 匿名評星</span><span>→ 送出</span></div>
+        </div>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" playsinline>
+          <source src="videos/video7.mov" type="video/quicktime">
+          <source src="videos/video7.mov" type="video/mp4">
+        </video>
+        <div class="video-meta">
+          <div class="step">PART 2 · 總公司看板</div>
+          <h3>跨案場績效儀表板</h3>
+          <p>全案場評分一覽，人員排行、趨勢圖、異常警示，績效考核有據可循。</p>
+          <div class="video-flow"><span>即時彙整</span><span>→ 人員排行</span><span>→ 趨勢分析</span><span>→ 績效考核</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 回主頁 CTA -->
+  <div class="back-cta">
+    <div class="back-cta-text">看完實機影片？回系統架構看完整說明</div>
+    <a href="jyc-architecture.html">← 回系統架構</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 JYC 怡盛物業管理股份有限公司 · AI 智慧管理系統</p>
+  <p style="margin-top:8px; font-size:12px;">Powered by WorkBot AI · Telegram × LINE × Web 全平台整合</p>
+</footer>
+
+</body>
+</html>

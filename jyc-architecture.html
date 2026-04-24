@@ -382,6 +382,40 @@
   .ref-card a:hover { color: var(--cyan); text-decoration: underline; }
   .ref-card p { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
 
+  /* 實機展示 CTA */
+  .demo-cta {
+    background: linear-gradient(135deg, #faf5ff 0%, #ecfeff 60%, #fdf2f8 100%);
+    border: 1px solid var(--border); border-radius: 24px;
+    padding: 36px 40px;
+    display: flex; gap: 32px; align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 40px rgba(15,23,42,0.06);
+    max-width: 1000px; margin: 0 auto;
+  }
+  .demo-cta-left { flex: 1; min-width: 300px; }
+  .demo-cta-left h2 { font-size: 24px; color: var(--text); margin: 10px 0 8px; font-weight: 800; }
+  .demo-cta-left p { color: var(--text-sub); font-size: 14.5px; line-height: 1.7; }
+  .demo-cta-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .demo-cta-list span {
+    padding: 5px 12px; border-radius: 999px;
+    background: white; border: 1px solid var(--border);
+    font-size: 13px; color: var(--text-sub); font-weight: 500;
+  }
+  .demo-cta-right { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .demo-cta-btn {
+    padding: 22px 36px; border-radius: 18px;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
+    color: white; text-decoration: none;
+    box-shadow: 0 14px 36px rgba(124,58,237,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .demo-cta-btn:hover {
+    transform: translateY(-3px); box-shadow: 0 20px 50px rgba(124,58,237,0.45);
+  }
+  .demo-cta-btn-text { text-align: center; color: white; }
+  .demo-cta-hint { font-size: 11px; color: var(--muted); letter-spacing: 1.5px; }
+
   footer { padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; }
   footer p { color: var(--muted); font-size: 14px; }
 </style>
@@ -393,7 +427,7 @@
   <div class="links">
     <a href="#layers">三層架構</a>
     <a href="#portals">三入口</a>
-    <a href="#demos">實機展示</a>
+    <a href="jyc-demos.html" target="_blank">實機展示 ↗</a>
     <a href="#richmenu">LINE 選單</a>
     <a href="#scenarios">使用情境</a>
     <a href="#relation">整體關係</a>
@@ -631,126 +665,29 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ 實機展示（新增） -->
-<section id="demos" style="background: linear-gradient(180deg, transparent 0%, rgba(165,180,252,0.06) 100%);">
+<!-- ═══════════════════════ 實機展示入口 CTA -->
+<section id="demos">
   <div class="container">
-    <div class="section-title">
-      <span class="highlight-star">⭐ 亮點實機影片</span>
-      <span class="tag">Live Demo</span>
-      <h2>真實操作影片展示</h2>
-      <p>訪客預約、員工請假、服務評分、LINE 綁定，全流程實機錄影</p>
-    </div>
-
-    <!-- 訪客預約 -->
-    <div style="margin-bottom: 48px;">
-      <h3 style="font-size: 20px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 20px;">🚗 訪客預約全流程</h3>
-      <div class="video-grid">
-        <div class="video-card">
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video1.mp4" type="video/mp4">
-          </video>
-          <div class="video-meta">
-            <div class="step">PART 1 · 住戶端</div>
-            <h3>LINE 訪客預約 → 收到 QR</h3>
-            <p>住戶打開 LINE Rich Menu，點選訪客預約填寫資料送出後，系統自動發送 QR Code 到住戶手機。</p>
-            <div class="video-flow"><span>Rich Menu</span><span>→ 填表</span><span>→ 送出</span><span>→ 收到 QR</span></div>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video2.mov" type="video/quicktime">
-            <source src="videos/video2.mov" type="video/mp4">
-          </video>
-          <div class="video-meta">
-            <div class="step">PART 2 · 管理處後台</div>
-            <h3>後台確認 → 核發 QR → 掃碼放行</h3>
-            <p>管理處在 Web 後台看到預約、確認收款後發 QR，警衛手機掃碼即刻放行，住戶收到到場通知。</p>
-            <div class="video-flow"><span>後台查看</span><span>→ 確認收款</span><span>→ 發 QR</span><span>→ 掃碼放行</span></div>
-          </div>
+    <div class="demo-cta">
+      <div class="demo-cta-left">
+        <span class="highlight-star">⭐ 亮點實機影片</span>
+        <h2>想看真實操作畫面？</h2>
+        <p>訪客預約、LINE 綁定、員工 TG、服務評分 — 四組完整流程真實螢幕錄影。<br>另開分頁播放，不會影響本頁閱讀。</p>
+        <div class="demo-cta-list">
+          <span>🚗 訪客預約</span>
+          <span>🔗 LINE 綁定</span>
+          <span>👷 員工 TG</span>
+          <span>⭐ 評分看板</span>
         </div>
       </div>
-    </div>
-
-    <!-- LINE 綁定 -->
-    <div style="margin-bottom: 48px;">
-      <h3 style="font-size: 20px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 20px;">🔗 住戶首次使用 · 快速綁定門牌</h3>
-      <div class="video-grid" style="grid-template-columns: 1fr; max-width: 680px; margin: 0 auto;">
-        <div class="video-card">
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video9.MP4" type="video/mp4">
-          </video>
-          <div class="video-meta">
-            <div class="step">住戶首次使用流程</div>
-            <h3>LINE 加好友 → 自動引導綁定門牌</h3>
-            <p>住戶加入社區 LINE 官方帳號後，系統自動引導進入綁定頁面。只需三步：選擇棟別、樓層、戶號，即完成身分綁定，自動返回 LINE 開始使用訪客預約、報修、評分等所有社區服務。</p>
-            <div class="video-flow"><span>加好友</span><span>→ 自動引導</span><span>→ 選門牌</span><span>→ 綁定完成</span></div>
+      <div class="demo-cta-right">
+        <a href="jyc-demos.html" target="_blank" class="demo-cta-btn">
+          <div class="demo-cta-btn-text">
+            <div style="font-size: 12px; letter-spacing: 2px; opacity: 0.9; margin-bottom: 2px;">OPEN NEW TAB</div>
+            <div style="font-size: 18px; font-weight: 700;">實機影片展示 →</div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 員工 TG 操作 -->
-    <div style="margin-bottom: 48px;">
-      <h3 style="font-size: 20px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 20px;">👷 員工 TG 端 · 考勤 / 請假 / 審批</h3>
-      <div class="feat-grid">
-        <div class="feat">
-          <div class="emoji">⏰</div>
-          <h3>考勤 · 打卡 · 排班</h3>
-          <p>定位打卡 + 班表查詢一站搞定，異地打卡自動擋下。</p>
-          <span class="status-pill live">已上線</span>
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="feat">
-          <div class="emoji">💼</div>
-          <h3>請假 · 加班 · 補卡</h3>
-          <p>Mini App 一鍵送出申請，額度自動計算，狀態即時查詢。</p>
-          <span class="status-pill live">已上線</span>
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="feat">
-          <div class="emoji">✅</div>
-          <h3>主管審批流程</h3>
-          <p>主管 TG 收到推播 → Inline 按鈕一鍵核准 / 駁回 → 結果即時推播給員工。</p>
-          <span class="status-pill live">已上線</span>
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video5.mov" type="video/quicktime">
-            <source src="videos/video5.mov" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-
-    <!-- 評分 -->
-    <div>
-      <h3 style="font-size: 20px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 20px;">⭐ 住戶匿名評分 × 總公司績效看板</h3>
-      <div class="video-grid">
-        <div class="video-card">
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video6.mp4" type="video/mp4">
-          </video>
-          <div class="video-meta">
-            <div class="step">PART 1 · 住戶端</div>
-            <h3>住戶 LINE 匿名評分</h3>
-            <p>服務完成後推送評分邀請，住戶一鍵評星 + 留言，匿名保障真實回饋。</p>
-            <div class="video-flow"><span>服務完成</span><span>→ 推送評分</span><span>→ 匿名評星</span><span>→ 送出</span></div>
-          </div>
-        </div>
-        <div class="video-card">
-          <video controls preload="metadata" playsinline>
-            <source src="videos/video7.mov" type="video/quicktime">
-            <source src="videos/video7.mov" type="video/mp4">
-          </video>
-          <div class="video-meta">
-            <div class="step">PART 2 · 總公司看板</div>
-            <h3>跨案場績效儀表板</h3>
-            <p>全案場評分一覽，人員排行、趨勢圖、異常警示，績效考核有據可循。</p>
-            <div class="video-flow"><span>即時彙整</span><span>→ 人員排行</span><span>→ 趨勢分析</span><span>→ 績效考核</span></div>
-          </div>
-        </div>
+        </a>
+        <div class="demo-cta-hint">新分頁開啟</div>
       </div>
     </div>
   </div>
