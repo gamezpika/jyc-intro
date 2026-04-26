@@ -350,23 +350,32 @@
       </div>
     </div>
 
-    <!-- 報修 -->
+    <!-- 報修 (住戶 LINE + 管理處 Web 雙視角) -->
     <div class="demo-item" id="repair">
       <div class="demo-item-head">
         <h3>🔧 報修</h3>
-        <span class="status-badge todo">⏳ 待補拍</span>
-        <span class="sub">住戶 LINE 報修頁</span>
+        <span class="status-badge ready">已有影片</span>
+        <span class="sub">住戶 LINE 報修 × 管理處 Web 處理</span>
       </div>
-      <div class="video-grid single">
-        <div class="video-card placeholder">
-          <div class="placeholder-box">
-            <div class="ph-emoji">🔧</div>
-            <div class="ph-text">影片待補拍</div>
-            <div class="ph-hint">住戶 LIFF 報修頁 → 填問題描述 + 上傳照片 → 送出</div>
-          </div>
+      <div class="video-grid">
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video12.MP4" type="video/mp4">
+          </video>
           <div class="video-meta">
-            <h4>住戶 LINE 報修</h4>
-            <p>建議錄製：Rich Menu → 報修 → 填表 + 上傳照片 → 送出 → 收到工單編號。</p>
+            <div class="step">PART 1 · 住戶 LINE</div>
+            <h4>提交報修需求</h4>
+            <p>Rich Menu 點報修 → 填問題描述 + 上傳照片 → 送出後收到工單編號。</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video13.MP4" type="video/mp4">
+          </video>
+          <div class="video-meta">
+            <div class="step">PART 2 · 管理處 Web</div>
+            <h4>後台處理工單</h4>
+            <p>管理處在後台看到新工單 → 指派負責人 → 追蹤處理進度 → 完工後通知住戶。</p>
           </div>
         </div>
       </div>
