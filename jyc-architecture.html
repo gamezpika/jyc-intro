@@ -300,6 +300,33 @@
     .bidi-box.mobile-only { display: block; }
   }
 
+  /* 三角形弧線旁的雙向描述（HTML overlay，疊在 SVG 與 cards 之上） */
+  .arc-overlay {
+    position: absolute; z-index: 5; pointer-events: none;
+    font-size: 12px; font-weight: 700; line-height: 1.7;
+    text-shadow: 0 0 4px white, 0 0 8px white, 0 0 12px white, 0 0 4px white;
+  }
+  .arc-overlay .arc-row { white-space: nowrap; }
+  .arc-overlay .arc-arrow { font-weight: 900; font-size: 13px; margin-right: 2px; }
+  .arc-overlay-left {
+    top: 32%; left: 23%;
+    color: var(--purple);
+    transform: rotate(-32deg); transform-origin: left center;
+  }
+  .arc-overlay-right {
+    top: 32%; right: 23%;
+    color: var(--pink); text-align: right;
+    transform: rotate(32deg); transform-origin: right center;
+  }
+  .arc-overlay-bottom {
+    bottom: 4%; left: 50%; transform: translateX(-50%);
+    color: var(--cyan); text-align: center;
+  }
+  /* 手機版隱藏 overlay（改用下方 .bidi-box 顯示） */
+  @media (max-width: 860px) {
+    .arc-overlay { display: none; }
+  }
+
   @media (max-width: 860px) {
     .triangle-wrap { aspect-ratio: auto; max-width: 460px; display: flex; flex-direction: column; gap: 14px; }
     .tri-svg { display: none; }
@@ -609,46 +636,41 @@
           </marker>
         </defs>
 
-        <filter id="lbl-shadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.1"/>
-        </filter>
-
-        <!-- 管理者 ⇄ 員工：派工 / 回報（左弧·雙向） -->
+        <!-- 管理者 ⇄ 員工：左弧·雙向 -->
         <path d="M 440 180 Q 230 360 140 560"
               stroke="#7c3aed" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6"
               marker-start="url(#ar-purple-start)" marker-end="url(#ar-purple)"
               opacity="0.85"/>
-        <rect x="50" y="298" width="240" height="92" rx="12" fill="white" stroke="#7c3aed" stroke-width="2" filter="url(#lbl-shadow)"/>
-        <text x="170" y="321" fill="#7c3aed" font-size="14" font-weight="800" text-anchor="middle">🖥️ Web ⇄ 🤖 TG</text>
-        <line x1="64" y1="333" x2="276" y2="333" stroke="#7c3aed" stroke-width="0.6" opacity="0.25"/>
-        <text x="64" y="357" font-size="12.5" fill="#334155"><tspan font-weight="800" fill="#7c3aed">→</tspan>　Web 派工 · 公告 · 排班</text>
-        <text x="64" y="378" font-size="12.5" fill="#334155"><tspan font-weight="800" fill="#7c3aed">←</tspan>　TG 打卡 · 工單回報 · 請假</text>
 
-        <!-- 員工 ⇄ 住戶：服務 / 互動（下弧·雙向） -->
+        <!-- 員工 ⇄ 住戶：下弧·雙向 -->
         <path d="M 300 650 Q 520 710 740 650"
               stroke="#0891b2" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6"
               marker-start="url(#ar-cyan-start)" marker-end="url(#ar-cyan)"
               opacity="0.85"/>
-        <rect x="380" y="600" width="280" height="92" rx="12" fill="white" stroke="#0891b2" stroke-width="2" filter="url(#lbl-shadow)"/>
-        <text x="520" y="623" fill="#0891b2" font-size="14" font-weight="800" text-anchor="middle">🤖 TG ⇄ 📱 LINE</text>
-        <line x1="394" y1="635" x2="646" y2="635" stroke="#0891b2" stroke-width="0.6" opacity="0.25"/>
-        <text x="394" y="659" font-size="12.5" fill="#334155"><tspan font-weight="800" fill="#0891b2">→</tspan>　員工 TG 結案 · 自動回覆 LINE 住戶</text>
-        <text x="394" y="680" font-size="12.5" fill="#334155"><tspan font-weight="800" fill="#0891b2">←</tspan>　住戶 LINE 評分 · 通知 TG 員工本人</text>
 
-        <!-- 住戶 ⇄ 管理者：通知 / 反饋（右弧·雙向） -->
+        <!-- 住戶 ⇄ 管理者：右弧·雙向 -->
         <path d="M 900 560 Q 810 360 600 180"
               stroke="#db2777" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6"
               marker-start="url(#ar-pink-start)" marker-end="url(#ar-pink)"
               opacity="0.85"/>
-        <rect x="750" y="298" width="240" height="92" rx="12" fill="white" stroke="#db2777" stroke-width="2" filter="url(#lbl-shadow)"/>
-        <text x="870" y="321" fill="#db2777" font-size="14" font-weight="800" text-anchor="middle">🖥️ Web ⇄ 📱 LINE</text>
-        <line x1="764" y1="333" x2="976" y2="333" stroke="#db2777" stroke-width="0.6" opacity="0.25"/>
-        <text x="764" y="357" font-size="12.5" fill="#334155"><tspan font-weight="800" fill="#db2777">→</tspan>　Web 公告 · 帳單 · 包裹通知</text>
-        <text x="764" y="378" font-size="12.5" fill="#334155"><tspan font-weight="800" fill="#db2777">←</tspan>　LINE 報修 · 訪客 · 評分</text>
       </svg>
+
+      <!-- HTML overlay 標籤：直接寫在虛線旁，無框，白色文字陰影確保可讀 -->
+      <div class="arc-overlay arc-overlay-left">
+        <div class="arc-row"><span class="arc-arrow">→</span> Web 派工 · 公告 · 排班</div>
+        <div class="arc-row"><span class="arc-arrow">←</span> TG 打卡 · 工單回報 · 請假</div>
+      </div>
+      <div class="arc-overlay arc-overlay-right">
+        <div class="arc-row"><span class="arc-arrow">→</span> Web 公告 · 帳單 · 包裹通知</div>
+        <div class="arc-row"><span class="arc-arrow">←</span> LINE 報修 · 訪客 · 評分</div>
+      </div>
+      <div class="arc-overlay arc-overlay-bottom">
+        <div class="arc-row"><span class="arc-arrow">→</span> 員工 TG 結案 · 自動回覆 LINE 住戶</div>
+        <div class="arc-row"><span class="arc-arrow">←</span> 住戶 LINE 評分 · 通知 TG 員工本人</div>
+      </div>
 
       <!-- TOP · 管理者 + Web 後台 -->
       <div class="tri-node top">
