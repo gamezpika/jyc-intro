@@ -212,20 +212,25 @@
   }
   .tg-btn.disabled { opacity: 0.55; cursor: default; }
   .tg-btn.disabled:hover { background: #6b9b5d; transform: none; box-shadow: none; }
-  .n-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-  .n-chip-group { width: 100%; margin-top: 8px; }
-  .n-chip-group:first-child { margin-top: 0; }
-  .n-chip-group-label {
-    font-size: 10.5px; font-weight: 700; color: var(--purple);
-    letter-spacing: 0.8px; margin-bottom: 4px; text-align: center;
-    opacity: 0.8;
+  .n-chips { display: flex; flex-direction: column; gap: 4px; }
+  .n-chip-group {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 4px; padding: 4px 0;
+    border-top: 1px dashed rgba(124,58,237,0.12);
   }
-  .n-chip-row { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+  .n-chip-group:first-child { border-top: none; padding-top: 0; }
+  .n-chip-group-label {
+    font-size: 10px; font-weight: 800; color: var(--purple);
+    letter-spacing: 0.3px; opacity: 0.75;
+    white-space: nowrap; margin-right: 2px;
+  }
+  .n-chip-row { display: contents; }
   .n-chip-row a {
-    padding: 4px 9px; border-radius: 999px; font-size: 11.5px;
-    background: rgba(124,58,237,0.08); color: var(--text-sub);
-    text-decoration: none; transition: all 0.2s;
-    border: 1px solid rgba(124,58,237,0.15);
+    padding: 2.5px 7px; border-radius: 999px; font-size: 10.5px;
+    background: rgba(124,58,237,0.07); color: var(--text-sub);
+    text-decoration: none; transition: all 0.15s;
+    border: 1px solid rgba(124,58,237,0.13);
+    white-space: nowrap; line-height: 1.4;
   }
   .n-chip-row a:hover {
     background: rgba(124,58,237,0.16); color: var(--purple);
