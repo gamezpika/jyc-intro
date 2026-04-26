@@ -221,10 +221,36 @@
   }
   @media (min-width: 1024px) {
     body { padding-left: 220px; }
+    .toc-toggle, .toc-backdrop { display: none !important; }
   }
+  /* 手機版：sidebar 變 drawer，預設藏起來，按鈕喚出 */
   @media (max-width: 1023px) {
-    .toc-sidebar { display: none; }
+    .toc-sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+    }
+    .toc-sidebar.show { transform: translateX(0); }
   }
+  .toc-toggle {
+    position: fixed; bottom: 22px; right: 22px;
+    width: 54px; height: 54px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--cyan));
+    color: white; border: none; cursor: pointer;
+    font-size: 22px; font-weight: 700;
+    box-shadow: 0 8px 24px rgba(124,58,237,0.45);
+    z-index: 60;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .toc-toggle:hover { transform: scale(1.05); }
+  .toc-toggle:active { transform: scale(0.95); }
+  .toc-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 49; opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .toc-backdrop.show { opacity: 1; pointer-events: auto; }
 
   /* 報價→簽署→合約→續約 四步驟流程（移自 architecture USE CASES 案例 05） */
   .quote-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 12px; align-items: stretch; }
@@ -277,6 +303,9 @@
   </div>
 </nav>
 
+<div class="toc-backdrop" id="toc-backdrop"></div>
+<button class="toc-toggle" id="toc-toggle" aria-label="開啟目錄">📑</button>
+
 <aside class="toc-sidebar" id="toc">
   <div class="toc-head">📑 實機影片目錄</div>
   <div class="toc-section">
@@ -327,7 +356,7 @@
     <div class="demo-item" id="clock-in">
       <div class="demo-item-head">
         <h3>🕐 打卡（上班 / 下班）</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">定位打卡 + 班表查詢</span>
       </div>
       <div class="video-grid single">
@@ -348,7 +377,7 @@
     <div class="demo-item" id="leave-flow">
       <div class="demo-item-head">
         <h3>📋 請假 / 加班 / 補卡（員工申請）</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">Mini App 一鍵送出</span>
       </div>
       <div class="video-grid single">
@@ -369,7 +398,7 @@
     <div class="demo-item" id="approval">
       <div class="demo-item-head">
         <h3>✅ 主管審批流程</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">Inline 按鈕一鍵核准</span>
       </div>
       <div class="video-grid single">
@@ -391,7 +420,7 @@
     <div class="demo-item" id="shift">
       <div class="demo-item-head">
         <h3>📅 班表查詢 + 排班需求</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">員工 TG 提需求 × 主管 Web 排班</span>
       </div>
       <div class="video-grid">
@@ -462,7 +491,7 @@
     <div class="demo-item" id="quote">
       <div class="demo-item-head">
         <h3>✨ 新建報價（對案場服務）</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">員工 TG 發起 × 管理 Web 後台簽署管理</span>
       </div>
       <p style="color: var(--muted); font-size: 14px; margin-bottom: 18px;">同一件事，不同角色各用自己最熟悉的工具完成。流程中有「前往後台」按鈕直接跳轉。</p>
@@ -536,7 +565,7 @@
     <div class="demo-item" id="bind">
       <div class="demo-item-head">
         <h3>🔗 首次綁定門牌</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">加好友自動引導</span>
       </div>
       <div class="video-grid single">
@@ -557,7 +586,7 @@
     <div class="demo-item" id="visitor">
       <div class="demo-item-head">
         <h3>🚗 訪客預約全流程</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">住戶端 + 後台端雙視角</span>
       </div>
       <div class="video-grid">
@@ -591,7 +620,7 @@
     <div class="demo-item" id="repair">
       <div class="demo-item-head">
         <h3>🔧 報修</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">住戶 LINE 報修 × 管理處 Web 處理</span>
       </div>
       <div class="video-grid">
@@ -622,7 +651,7 @@
     <div class="demo-item" id="package">
       <div class="demo-item-head">
         <h3>📦 包裹通知與領取</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">登錄 → LINE 通知 → 領取簽收</span>
       </div>
       <div class="video-grid triple">
@@ -663,7 +692,7 @@
     <div class="demo-item" id="amenity">
       <div class="demo-item-head">
         <h3>🏊 公設預約</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">住戶 LINE 預約 × 管理處 Web 管控</span>
       </div>
       <div class="video-grid">
@@ -694,7 +723,7 @@
     <div class="demo-item" id="payment">
       <div class="demo-item-head">
         <h3>💰 繳費查詢與管理</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">開立 → LINE 通知 → 線上繳費 → 後台核對</span>
       </div>
       <div class="video-grid">
@@ -747,7 +776,7 @@
     <div class="demo-item" id="announcement">
       <div class="demo-item-head">
         <h3>📢 社區公告</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">後台發布 × 住戶 LINE 收看</span>
       </div>
       <div class="video-grid">
@@ -778,7 +807,7 @@
     <div class="demo-item" id="rating">
       <div class="demo-item-head">
         <h3>⭐ 服務評分</h3>
-        <span class="status-badge ready">已有影片</span>
+        
         <span class="sub">住戶匿名評分 × 總公司看板</span>
       </div>
       <div class="video-grid">
@@ -823,8 +852,13 @@
 <script>
 (function(){
   var sections = document.querySelectorAll('.demo-item[id]');
+  var sidebar = document.getElementById('toc');
+  var backdrop = document.getElementById('toc-backdrop');
+  var toggle = document.getElementById('toc-toggle');
   var links = document.querySelectorAll('#toc a');
   if (!sections.length || !links.length) return;
+
+  // active section 高亮
   var linkMap = {};
   links.forEach(function(a){ linkMap[a.getAttribute('href').slice(1)] = a; });
   var observer = new IntersectionObserver(function(entries){
@@ -843,6 +877,13 @@
     });
   }, { rootMargin: '-80px 0px -55% 0px' });
   sections.forEach(function(s){ observer.observe(s); });
+
+  // 手機 drawer 開關
+  function open(){ sidebar.classList.add('show'); backdrop.classList.add('show'); }
+  function close(){ sidebar.classList.remove('show'); backdrop.classList.remove('show'); }
+  if (toggle) toggle.addEventListener('click', open);
+  if (backdrop) backdrop.addEventListener('click', close);
+  links.forEach(function(a){ a.addEventListener('click', close); });
 })();
 </script>
 
