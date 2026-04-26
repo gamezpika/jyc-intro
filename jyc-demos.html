@@ -506,23 +506,32 @@
       </div>
     </div>
 
-    <!-- 公告 -->
+    <!-- 公告 (管理處發布 + 住戶 LINE 看雙視角) -->
     <div class="demo-item" id="announcement">
       <div class="demo-item-head">
         <h3>📢 社區公告</h3>
-        <span class="status-badge todo">⏳ 待補拍</span>
-        <span class="sub">住戶 LINE 收推播 + LIFF 看完整</span>
+        <span class="status-badge ready">已有影片</span>
+        <span class="sub">後台發布 × 住戶 LINE 收看</span>
       </div>
-      <div class="video-grid single">
-        <div class="video-card placeholder">
-          <div class="placeholder-box">
-            <div class="ph-emoji">📢</div>
-            <div class="ph-text">影片待補拍</div>
-            <div class="ph-hint">後台發布公告 → LINE 推播摘要 → LIFF 看圖文 + 附件</div>
-          </div>
+      <div class="video-grid">
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video23.MP4" type="video/mp4">
+          </video>
           <div class="video-meta">
-            <h4>公告發送與閱讀</h4>
-            <p>建議錄製：後台 Quill 編輯 → 發布 → 住戶 LINE 收推播 → 點進看完整公告。</p>
+            <div class="step">PART 1 · 管理處 Web</div>
+            <h4>後台發布公告</h4>
+            <p>富文本編輯（粗體 / 顏色 / 連結 / 插圖）+ 附件上傳，設定發布時間、置頂、歸屬社區。</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video24.MP4" type="video/mp4">
+          </video>
+          <div class="video-meta">
+            <div class="step">PART 2 · 住戶 LINE</div>
+            <h4>收推播 + 看完整內容</h4>
+            <p>LINE 推播公告摘要 → 點進 LIFF 看完整圖文 + 附件下載，重要公告置頂展示。</p>
           </div>
         </div>
       </div>
