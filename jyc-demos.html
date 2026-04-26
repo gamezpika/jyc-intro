@@ -84,6 +84,35 @@
   .role-group-head h2 { font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; color: var(--text); }
   .role-group-head p { color: var(--muted); margin-top: 8px; font-size: 14.5px; }
 
+  /* 子分類分隔器（Plan A） */
+  .subcat-divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 8px 24px 24px;
+    padding-top: 8px;
+  }
+  .subcat-divider::before,
+  .subcat-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+  .subcat-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 18px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .role-group.tg .subcat-label {
+    color: var(--cyan);
+    border-color: rgba(8,145,178,0.3);
+    background: rgba(8,145,178,0.06);
+  }
+  .role-group.line .subcat-label {
+    color: var(--green);
+    border-color: rgba(5,150,105,0.3);
+    background: rgba(5,150,105,0.06);
+  }
+
   /* 單一功能區段 */
   .demo-item { margin-bottom: 40px; padding: 0 24px; scroll-margin-top: 80px; }
   .demo-item-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
@@ -202,6 +231,8 @@
       <p>打卡 / 請假 / 加班 / 補卡 / 班表 / 工單 / 主管審批</p>
     </div>
 
+    <div class="subcat-divider"><span class="subcat-label">📋 出勤管理</span></div>
+
     <!-- 打卡 -->
     <div class="demo-item" id="clock-in">
       <div class="demo-item-head">
@@ -296,6 +327,8 @@
         </div>
       </div>
     </div>
+
+    <div class="subcat-divider"><span class="subcat-label">💼 業務操作</span></div>
 
     <!-- 工單 + AI 影像輔助 -->
     <div class="demo-item" id="ticket">
@@ -409,6 +442,8 @@
       <p>綁定 / 訪客 / 報修 / 包裹 / 公設 / 繳費 / 公告 / 評分</p>
     </div>
 
+    <div class="subcat-divider"><span class="subcat-label">🔗 入會與訪客</span></div>
+
     <!-- LINE 綁定 -->
     <div class="demo-item" id="bind">
       <div class="demo-item-head">
@@ -461,6 +496,8 @@
         </div>
       </div>
     </div>
+
+    <div class="subcat-divider"><span class="subcat-label">🛠 社區服務</span></div>
 
     <!-- 報修 (住戶 LINE + 管理處 Web 雙視角) -->
     <div class="demo-item" id="repair">
@@ -615,6 +652,8 @@
         </div>
       </div>
     </div>
+
+    <div class="subcat-divider"><span class="subcat-label">💬 互動</span></div>
 
     <!-- 公告 (管理處發布 + 住戶 LINE 看雙視角) -->
     <div class="demo-item" id="announcement">

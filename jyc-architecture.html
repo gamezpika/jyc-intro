@@ -213,6 +213,24 @@
   .tg-btn.disabled { opacity: 0.55; cursor: default; }
   .tg-btn.disabled:hover { background: #6b9b5d; transform: none; box-shadow: none; }
   .n-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .n-chip-group { width: 100%; margin-top: 8px; }
+  .n-chip-group:first-child { margin-top: 0; }
+  .n-chip-group-label {
+    font-size: 10.5px; font-weight: 700; color: var(--purple);
+    letter-spacing: 0.8px; margin-bottom: 4px; text-align: center;
+    opacity: 0.8;
+  }
+  .n-chip-row { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+  .n-chip-row a {
+    padding: 4px 9px; border-radius: 999px; font-size: 11.5px;
+    background: rgba(124,58,237,0.08); color: var(--text-sub);
+    text-decoration: none; transition: all 0.2s;
+    border: 1px solid rgba(124,58,237,0.15);
+  }
+  .n-chip-row a:hover {
+    background: rgba(124,58,237,0.16); color: var(--purple);
+    transform: translateY(-1px);
+  }
   .n-chips a {
     font-size: 12px; padding: 4px 10px; border-radius: 999px;
     background: #f1f5f9; border: 1px solid var(--border);
@@ -499,7 +517,6 @@
   <span class="badge">系統架構 + 實機展示 · Demo 一頁通覽</span>
   <h1>一套系統<br><span class="grad">貫穿物業公司、案場、住戶</span></h1>
   <p>JYC 怡盛物業智慧管理系統由三層架構組成，搭配三個專精入口：Telegram 給員工、LINE 給住戶、Web 後台給管理者。本頁含完整架構說明 + 實機影片展示。</p>
-  <div class="hint">👆 點擊頁面中任一功能項目，直接跳轉到後台對應頁面</div>
 </section>
 
 <!-- ═══════════════════════ 三方循環 × 三入口（整合版） -->
@@ -554,28 +571,58 @@
         <h3>Web 後台</h3>
         <p>統籌員工、跨案場、報價採購、決策</p>
         <div class="n-chips">
-          <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/calendar" target="_blank">行事曆</a>
-          <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶與成員</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/employees" target="_blank">員工</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/schedule" target="_blank">排班</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/attendance" target="_blank">出勤</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/payroll" target="_blank">薪資</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">公告</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設預約</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">帳單</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/ratings" target="_blank">評分</a>
-          <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客預約</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/suppliers" target="_blank">廠商</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/supplier-access" target="_blank">廠商進出</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/parking" target="_blank">車位</a>
-          <a href="https://web-production-ea976.up.railway.app/admin/quote/list" target="_blank">報價</a>
-          <a href="https://web-production-ea976.up.railway.app/recruit/" target="_blank">招募</a>
-          <a href="https://web-production-ea976.up.railway.app/executive/" target="_blank">決策</a>
-          <a href="https://web-production-ea976.up.railway.app/settings/" target="_blank">設定</a>
+          <div class="n-chip-group">
+            <div class="n-chip-group-label">🏘 社區/住戶</div>
+            <div class="n-chip-row">
+              <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/calendar" target="_blank">行事曆</a>
+              <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶與成員</a>
+            </div>
+          </div>
+          <div class="n-chip-group">
+            <div class="n-chip-group-label">👥 人事</div>
+            <div class="n-chip-row">
+              <a href="https://web-production-ea976.up.railway.app/admin/employees" target="_blank">員工</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/schedule" target="_blank">排班</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/attendance" target="_blank">出勤</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/payroll" target="_blank">薪資</a>
+            </div>
+          </div>
+          <div class="n-chip-group">
+            <div class="n-chip-group-label">🛠 服務</div>
+            <div class="n-chip-row">
+              <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">公告</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設預約</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">帳單</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/ratings" target="_blank">評分</a>
+            </div>
+          </div>
+          <div class="n-chip-group">
+            <div class="n-chip-group-label">🚪 訪客廠商</div>
+            <div class="n-chip-row">
+              <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客預約</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/suppliers" target="_blank">廠商</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/supplier-access" target="_blank">廠商進出</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/parking" target="_blank">車位</a>
+            </div>
+          </div>
+          <div class="n-chip-group">
+            <div class="n-chip-group-label">📊 報價・招募・決策</div>
+            <div class="n-chip-row">
+              <a href="https://web-production-ea976.up.railway.app/admin/quote/list" target="_blank">報價</a>
+              <a href="https://web-production-ea976.up.railway.app/recruit/" target="_blank">招募</a>
+              <a href="https://web-production-ea976.up.railway.app/executive/" target="_blank">決策</a>
+            </div>
+          </div>
+          <div class="n-chip-group">
+            <div class="n-chip-group-label">⚙ 系統</div>
+            <div class="n-chip-row">
+              <a href="https://web-production-ea976.up.railway.app/settings/" target="_blank">設定</a>
+            </div>
+          </div>
         </div>
       </div>
 
