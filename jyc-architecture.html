@@ -212,25 +212,26 @@
   }
   .tg-btn.disabled { opacity: 0.55; cursor: default; }
   .tg-btn.disabled:hover { background: #6b9b5d; transform: none; box-shadow: none; }
-  .n-chips { display: flex; flex-direction: column; gap: 4px; }
+  .n-chips { display: flex; flex-direction: column; gap: 3px; }
   .n-chip-group {
-    display: flex; flex-wrap: wrap; align-items: center;
-    gap: 4px; padding: 4px 0;
+    display: flex; flex-wrap: nowrap; align-items: center;
+    gap: 3px; padding: 3px 0;
     border-top: 1px dashed rgba(124,58,237,0.12);
+    overflow: hidden;
   }
   .n-chip-group:first-child { border-top: none; padding-top: 0; }
   .n-chip-group-label {
-    font-size: 10px; font-weight: 800; color: var(--purple);
-    letter-spacing: 0.3px; opacity: 0.75;
-    white-space: nowrap; margin-right: 2px;
+    font-size: 9.5px; font-weight: 800; color: var(--purple);
+    letter-spacing: 0.2px; opacity: 0.75;
+    white-space: nowrap; margin-right: 2px; flex-shrink: 0;
   }
   .n-chip-row { display: contents; }
   .n-chip-row a {
-    padding: 2.5px 7px; border-radius: 999px; font-size: 10.5px;
+    padding: 2px 6px; border-radius: 999px; font-size: 10px;
     background: rgba(124,58,237,0.07); color: var(--text-sub);
     text-decoration: none; transition: all 0.15s;
     border: 1px solid rgba(124,58,237,0.13);
-    white-space: nowrap; line-height: 1.4;
+    white-space: nowrap; line-height: 1.4; flex-shrink: 0;
   }
   .n-chip-row a:hover {
     background: rgba(124,58,237,0.16); color: var(--purple);
@@ -245,6 +246,55 @@
     background: linear-gradient(90deg, var(--purple), var(--cyan));
     color: white; border-color: transparent; transform: translateY(-1px);
   }
+
+  /* 三向雙向關係說明卡 */
+  .bidi-box {
+    margin-top: 48px;
+    background: linear-gradient(135deg, #faf5ff 0%, #ecfeff 50%, #fdf2f8 100%);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 28px 32px;
+    box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+  }
+  .bidi-head { text-align: center; margin-bottom: 22px; }
+  .bidi-icon { font-size: 30px; display: block; margin-bottom: 8px; }
+  .bidi-head h3 {
+    font-size: 19px; font-weight: 800; color: var(--text);
+    margin-bottom: 6px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .bidi-head p { font-size: 13.5px; color: var(--muted); }
+  .bidi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  }
+  @media (max-width: 860px) { .bidi-grid { grid-template-columns: 1fr; } }
+  .bidi-card {
+    background: white; border-radius: 14px; padding: 16px 18px;
+    border-top: 3px solid;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.05);
+  }
+  .bidi-card.purple { border-top-color: var(--purple); }
+  .bidi-card.cyan { border-top-color: var(--cyan); }
+  .bidi-card.pink { border-top-color: var(--pink); }
+  .bidi-pair {
+    font-size: 16px; font-weight: 800; color: var(--text);
+    margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+  }
+  .bidi-pair span { color: var(--muted); font-size: 18px; }
+  .bidi-flow {
+    font-size: 13px; color: var(--text-sub); line-height: 1.6;
+    margin-bottom: 8px; padding-left: 22px; position: relative;
+  }
+  .bidi-flow:last-child { margin-bottom: 0; }
+  .bidi-flow b { color: var(--text); font-weight: 700; }
+  .bidi-dir {
+    position: absolute; left: 0; top: 0;
+    font-weight: 800; font-size: 14px;
+  }
+  .bidi-card.purple .bidi-dir { color: var(--purple); }
+  .bidi-card.cyan .bidi-dir { color: var(--cyan); }
+  .bidi-card.pink .bidi-dir { color: var(--pink); }
 
   @media (max-width: 860px) {
     .triangle-wrap { aspect-ratio: auto; max-width: 460px; display: flex; flex-direction: column; gap: 14px; }
@@ -538,34 +588,49 @@
           <marker id="ar-purple" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto">
             <path d="M0,0 L0,10 L10,5 z" fill="#7c3aed"/>
           </marker>
+          <marker id="ar-purple-start" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto-start-reverse">
+            <path d="M0,0 L0,10 L10,5 z" fill="#7c3aed"/>
+          </marker>
           <marker id="ar-cyan" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto">
+            <path d="M0,0 L0,10 L10,5 z" fill="#0891b2"/>
+          </marker>
+          <marker id="ar-cyan-start" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto-start-reverse">
             <path d="M0,0 L0,10 L10,5 z" fill="#0891b2"/>
           </marker>
           <marker id="ar-pink" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto">
             <path d="M0,0 L0,10 L10,5 z" fill="#db2777"/>
           </marker>
+          <marker id="ar-pink-start" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto-start-reverse">
+            <path d="M0,0 L0,10 L10,5 z" fill="#db2777"/>
+          </marker>
         </defs>
 
-        <!-- 管理者 → 員工：派工管理（左弧） -->
+        <!-- 管理者 ⇄ 員工：派工 / 回報（左弧·雙向） -->
         <path d="M 440 180 Q 230 360 140 560"
               stroke="#7c3aed" stroke-width="3.5" fill="none"
-              stroke-dasharray="10 6" marker-end="url(#ar-purple)" opacity="0.85"/>
-        <rect x="160" y="330" width="140" height="34" rx="17" fill="white" stroke="#7c3aed" stroke-width="2"/>
-        <text x="230" y="353" fill="#7c3aed" font-size="15" font-weight="700" text-anchor="middle">🖥️→🤖 派工管理</text>
+              stroke-dasharray="10 6"
+              marker-start="url(#ar-purple-start)" marker-end="url(#ar-purple)"
+              opacity="0.85"/>
+        <rect x="150" y="330" width="160" height="34" rx="17" fill="white" stroke="#7c3aed" stroke-width="2"/>
+        <text x="230" y="353" fill="#7c3aed" font-size="14" font-weight="700" text-anchor="middle">🖥️ ⇄ 🤖 派工 / 回報</text>
 
-        <!-- 員工 → 住戶：提供服務（下弧） -->
+        <!-- 員工 ⇄ 住戶：服務 / 互動（下弧·雙向） -->
         <path d="M 300 650 Q 520 710 740 650"
               stroke="#0891b2" stroke-width="3.5" fill="none"
-              stroke-dasharray="10 6" marker-end="url(#ar-cyan)" opacity="0.85"/>
-        <rect x="450" y="665" width="140" height="34" rx="17" fill="white" stroke="#0891b2" stroke-width="2"/>
-        <text x="520" y="688" fill="#0891b2" font-size="15" font-weight="700" text-anchor="middle">🤖→📱 提供服務</text>
+              stroke-dasharray="10 6"
+              marker-start="url(#ar-cyan-start)" marker-end="url(#ar-cyan)"
+              opacity="0.85"/>
+        <rect x="440" y="665" width="160" height="34" rx="17" fill="white" stroke="#0891b2" stroke-width="2"/>
+        <text x="520" y="688" fill="#0891b2" font-size="14" font-weight="700" text-anchor="middle">🤖 ⇄ 📱 服務 / 互動</text>
 
-        <!-- 住戶 → 管理者：反饋評分（右弧） -->
+        <!-- 住戶 ⇄ 管理者：通知 / 反饋（右弧·雙向） -->
         <path d="M 900 560 Q 810 360 600 180"
               stroke="#db2777" stroke-width="3.5" fill="none"
-              stroke-dasharray="10 6" marker-end="url(#ar-pink)" opacity="0.85"/>
-        <rect x="745" y="330" width="140" height="34" rx="17" fill="white" stroke="#db2777" stroke-width="2"/>
-        <text x="815" y="353" fill="#db2777" font-size="15" font-weight="700" text-anchor="middle">📱→🖥️ 反饋評分</text>
+              stroke-dasharray="10 6"
+              marker-start="url(#ar-pink-start)" marker-end="url(#ar-pink)"
+              opacity="0.85"/>
+        <rect x="735" y="330" width="160" height="34" rx="17" fill="white" stroke="#db2777" stroke-width="2"/>
+        <text x="815" y="353" fill="#db2777" font-size="14" font-weight="700" text-anchor="middle">🖥️ ⇄ 📱 通知 / 反饋</text>
       </svg>
 
       <!-- TOP · 管理者 + Web 後台 -->
@@ -580,7 +645,7 @@
             <div class="n-chip-row">
               <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區</a>
               <a href="https://web-production-ea976.up.railway.app/admin/calendar" target="_blank">行事曆</a>
-              <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶與成員</a>
+              <a href="https://web-production-ea976.up.railway.app/households/" target="_blank">戶/員</a>
             </div>
           </div>
           <div class="n-chip-group">
@@ -598,7 +663,7 @@
             <div class="n-chip-row">
               <a href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單</a>
               <a href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">公告</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設預約</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/amenities" target="_blank">公設</a>
               <a href="https://web-production-ea976.up.railway.app/admin/packages" target="_blank">包裹</a>
               <a href="https://web-production-ea976.up.railway.app/admin/bills" target="_blank">帳單</a>
               <a href="https://web-production-ea976.up.railway.app/admin/ratings" target="_blank">評分</a>
@@ -607,9 +672,9 @@
           <div class="n-chip-group">
             <div class="n-chip-group-label">🚪 訪客廠商</div>
             <div class="n-chip-row">
-              <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客預約</a>
+              <a href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">訪客</a>
               <a href="https://web-production-ea976.up.railway.app/admin/suppliers" target="_blank">廠商</a>
-              <a href="https://web-production-ea976.up.railway.app/admin/supplier-access" target="_blank">廠商進出</a>
+              <a href="https://web-production-ea976.up.railway.app/admin/supplier-access" target="_blank">進出</a>
               <a href="https://web-production-ea976.up.railway.app/admin/parking" target="_blank">車位</a>
             </div>
           </div>
@@ -691,6 +756,32 @@
               <span class="rm-area disabled" data-pos="5"><span class="rm-tooltip">資料</span></span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 雙向關係說明卡 -->
+    <div class="bidi-box">
+      <div class="bidi-head">
+        <span class="bidi-icon">🔄</span>
+        <h3>三向即時同步 — 不只單向操作，是互相串接的閉環</h3>
+        <p>任何一端動作，其他兩端立即收到對應通知或資料。沒有重複輸入、沒有資訊落差。</p>
+      </div>
+      <div class="bidi-grid">
+        <div class="bidi-card purple">
+          <div class="bidi-pair">🖥️ Web <span>⇄</span> 🤖 TG</div>
+          <div class="bidi-flow"><span class="bidi-dir to">→</span><b>Web 派工</b>、公告、排班 → 自動推播給員工 TG</div>
+          <div class="bidi-flow"><span class="bidi-dir from">←</span><b>員工 TG 打卡</b>、工單回報、請假申請 → 即時寫入 Web 後台</div>
+        </div>
+        <div class="bidi-card pink">
+          <div class="bidi-pair">🖥️ Web <span>⇄</span> 📱 LINE</div>
+          <div class="bidi-flow"><span class="bidi-dir to">→</span><b>Web 公告</b>、帳單、包裹到貨 → 推播到住戶 LINE</div>
+          <div class="bidi-flow"><span class="bidi-dir from">←</span><b>住戶 LINE 報修</b>、訪客預約、評分 → 即時進入 Web 工單</div>
+        </div>
+        <div class="bidi-card cyan">
+          <div class="bidi-pair">🤖 TG <span>⇄</span> 📱 LINE</div>
+          <div class="bidi-flow"><span class="bidi-dir to">→</span><b>員工 TG 完成工單</b> → 自動回覆住戶 LINE 結案通知</div>
+          <div class="bidi-flow"><span class="bidi-dir from">←</span><b>住戶 LINE 評分</b> → 推播 TG 給該員工本人 + 主管</div>
         </div>
       </div>
     </div>
