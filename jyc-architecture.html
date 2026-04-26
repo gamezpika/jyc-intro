@@ -99,7 +99,7 @@
   /* 三角循環圖 */
   .triangle-wrap {
     position: relative; max-width: 1040px; margin: 0 auto;
-    aspect-ratio: 1040 / 720;
+    aspect-ratio: 1040 / 1000;
   }
   .tri-svg {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -309,17 +309,17 @@
   .arc-overlay .arc-row { white-space: nowrap; }
   .arc-overlay .arc-arrow { font-weight: 900; font-size: 13px; margin-right: 2px; }
   .arc-overlay-left {
-    top: 32%; left: 23%;
+    top: 42%; left: 19%;
     color: var(--purple);
-    transform: rotate(-32deg); transform-origin: left center;
+    transform: rotate(-26deg); transform-origin: left center;
   }
   .arc-overlay-right {
-    top: 32%; right: 23%;
+    top: 42%; right: 19%;
     color: var(--pink); text-align: right;
-    transform: rotate(32deg); transform-origin: right center;
+    transform: rotate(26deg); transform-origin: right center;
   }
   .arc-overlay-bottom {
-    bottom: 4%; left: 50%; transform: translateX(-50%);
+    bottom: 3%; left: 50%; transform: translateX(-50%);
     color: var(--cyan); text-align: center;
   }
   /* 手機版隱藏 overlay（改用下方 .bidi-box 顯示） */
@@ -614,7 +614,7 @@
     </div>
 
     <div class="triangle-wrap">
-      <svg class="tri-svg" viewBox="0 0 1040 720" preserveAspectRatio="xMidYMid meet">
+      <svg class="tri-svg" viewBox="0 0 1040 1000" preserveAspectRatio="xMidYMid meet">
         <defs>
           <marker id="ar-purple" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto">
             <path d="M0,0 L0,10 L10,5 z" fill="#7c3aed"/>
@@ -636,22 +636,22 @@
           </marker>
         </defs>
 
-        <!-- 管理者 ⇄ 員工：左弧·雙向 -->
-        <path d="M 440 180 Q 230 360 140 560"
+        <!-- 管理者 ⇄ 員工：左弧·雙向（拉長） -->
+        <path d="M 440 200 Q 200 500 140 820"
               stroke="#7c3aed" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6"
               marker-start="url(#ar-purple-start)" marker-end="url(#ar-purple)"
               opacity="0.85"/>
 
         <!-- 員工 ⇄ 住戶：下弧·雙向 -->
-        <path d="M 300 650 Q 520 710 740 650"
+        <path d="M 290 920 Q 520 985 750 920"
               stroke="#0891b2" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6"
               marker-start="url(#ar-cyan-start)" marker-end="url(#ar-cyan)"
               opacity="0.85"/>
 
-        <!-- 住戶 ⇄ 管理者：右弧·雙向 -->
-        <path d="M 900 560 Q 810 360 600 180"
+        <!-- 住戶 ⇄ 管理者：右弧·雙向（拉長） -->
+        <path d="M 900 820 Q 840 500 600 200"
               stroke="#db2777" stroke-width="3.5" fill="none"
               stroke-dasharray="10 6"
               marker-start="url(#ar-pink-start)" marker-end="url(#ar-pink)"
