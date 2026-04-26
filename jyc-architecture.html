@@ -300,31 +300,20 @@
     .bidi-box.mobile-only { display: block; }
   }
 
-  /* 三角形弧線旁的雙向描述（HTML overlay，疊在 SVG 與 cards 之上） */
-  .arc-overlay {
-    position: absolute; z-index: 5; pointer-events: none;
-    font-size: 12px; font-weight: 700; line-height: 1.7;
-    text-shadow: 0 0 4px white, 0 0 8px white, 0 0 12px white, 0 0 4px white;
+  /* 文字標籤層 SVG：疊在 cards 上方，textPath 讓文字沿弧線走 */
+  .tri-svg-labels {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    z-index: 5; pointer-events: none;
   }
-  .arc-overlay .arc-row { white-space: nowrap; }
-  .arc-overlay .arc-arrow { font-weight: 900; font-size: 13px; margin-right: 2px; }
-  .arc-overlay-left {
-    top: 42%; left: 19%;
-    color: var(--purple);
-    transform: rotate(-26deg); transform-origin: left center;
+  .arc-label-text {
+    /* 雙重 stroke 製造白色 halo，確保任何背景下可讀 */
+    paint-order: stroke fill;
+    stroke: white; stroke-width: 5px;
+    stroke-linejoin: round;
   }
-  .arc-overlay-right {
-    top: 42%; right: 19%;
-    color: var(--pink); text-align: right;
-    transform: rotate(26deg); transform-origin: right center;
-  }
-  .arc-overlay-bottom {
-    bottom: 3%; left: 50%; transform: translateX(-50%);
-    color: var(--cyan); text-align: center;
-  }
-  /* 手機版隱藏 overlay（改用下方 .bidi-box 顯示） */
+  /* 手機版隱藏 SVG label 層（改用下方 .bidi-box 顯示） */
   @media (max-width: 860px) {
-    .arc-overlay { display: none; }
+    .tri-svg-labels { display: none; }
   }
 
   @media (max-width: 860px) {
@@ -658,19 +647,40 @@
               opacity="0.85"/>
       </svg>
 
-      <!-- HTML overlay 標籤：直接寫在虛線旁，無框，白色文字陰影確保可讀 -->
-      <div class="arc-overlay arc-overlay-left">
-        <div class="arc-row"><span class="arc-arrow">→</span> Web 派工 · 公告 · 排班</div>
-        <div class="arc-row"><span class="arc-arrow">←</span> TG 打卡 · 工單回報 · 請假</div>
-      </div>
-      <div class="arc-overlay arc-overlay-right">
-        <div class="arc-row"><span class="arc-arrow">→</span> Web 公告 · 帳單 · 包裹通知</div>
-        <div class="arc-row"><span class="arc-arrow">←</span> LINE 報修 · 訪客 · 評分</div>
-      </div>
-      <div class="arc-overlay arc-overlay-bottom">
-        <div class="arc-row"><span class="arc-arrow">→</span> 員工 TG 結案 · 自動回覆 LINE 住戶</div>
-        <div class="arc-row"><span class="arc-arrow">←</span> 住戶 LINE 評分 · 通知 TG 員工本人</div>
-      </div>
+      <!-- 文字標籤層（疊在 cards 上方）：用 textPath 讓文字真正貼著弧線方向走 -->
+      <svg class="tri-svg-labels" viewBox="0 0 1040 1000" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <!-- 與弧線同樣的 path（textPath 用） -->
+          <path id="tp-left" d="M 440 200 Q 200 500 140 820" fill="none"/>
+          <path id="tp-bottom" d="M 290 920 Q 520 985 750 920" fill="none"/>
+          <!-- 右弧反向（讓文字從 Web 往 LINE 方向讀，跟左弧對稱） -->
+          <path id="tp-right" d="M 600 200 Q 840 500 900 820" fill="none"/>
+        </defs>
+
+        <!-- 左弧文字（紫） dy 負數=弧線上方 / 正數=下方 -->
+        <text class="arc-label-text" dy="-10" font-size="18" font-weight="800" fill="#7c3aed">
+          <textPath href="#tp-left" startOffset="50%" text-anchor="middle">→ Web 派工 · 公告 · 排班</textPath>
+        </text>
+        <text class="arc-label-text" dy="22" font-size="18" font-weight="800" fill="#7c3aed">
+          <textPath href="#tp-left" startOffset="50%" text-anchor="middle">← TG 打卡 · 工單回報 · 請假</textPath>
+        </text>
+
+        <!-- 下弧文字（青） -->
+        <text class="arc-label-text" dy="-10" font-size="18" font-weight="800" fill="#0891b2">
+          <textPath href="#tp-bottom" startOffset="50%" text-anchor="middle">→ 員工 TG 結案 · 自動回覆 LINE 住戶</textPath>
+        </text>
+        <text class="arc-label-text" dy="22" font-size="18" font-weight="800" fill="#0891b2">
+          <textPath href="#tp-bottom" startOffset="50%" text-anchor="middle">← 住戶 LINE 評分 · 通知 TG 員工本人</textPath>
+        </text>
+
+        <!-- 右弧文字（粉） -->
+        <text class="arc-label-text" dy="-10" font-size="18" font-weight="800" fill="#db2777">
+          <textPath href="#tp-right" startOffset="50%" text-anchor="middle">→ Web 公告 · 帳單 · 包裹通知</textPath>
+        </text>
+        <text class="arc-label-text" dy="22" font-size="18" font-weight="800" fill="#db2777">
+          <textPath href="#tp-right" startOffset="50%" text-anchor="middle">← LINE 報修 · 訪客 · 評分</textPath>
+        </text>
+      </svg>
 
       <!-- TOP · 管理者 + Web 後台 -->
       <div class="tri-node top">
