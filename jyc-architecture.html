@@ -224,6 +224,41 @@
   }
   .richmenu-card:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(15,23,42,0.1); }
   .richmenu-card img { width: 100%; border-radius: 12px; border: 1px solid var(--border-soft); display: block; }
+  /* Rich Menu 互動式 imagemap */
+  .rm-img-wrap { position: relative; }
+  .rm-area {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 12px;
+    text-decoration: none;
+    width: 30%; height: 39%;
+  }
+  .rm-area[data-pos="0"] { top: 14%; left: 3.5%; }
+  .rm-area[data-pos="1"] { top: 14%; left: 35%; }
+  .rm-area[data-pos="2"] { top: 14%; left: 66.5%; }
+  .rm-area[data-pos="3"] { top: 56%; left: 3.5%; }
+  .rm-area[data-pos="4"] { top: 56%; left: 35%; }
+  .rm-area[data-pos="5"] { top: 56%; left: 66.5%; }
+  .rm-area:hover {
+    background: rgba(124,58,237,0.22);
+    box-shadow: 0 0 0 3px var(--purple);
+  }
+  .rm-tooltip {
+    position: absolute;
+    bottom: -32px; left: 50%; transform: translateX(-50%);
+    background: var(--purple); color: white;
+    padding: 5px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; white-space: nowrap;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s;
+    box-shadow: 0 6px 16px rgba(124,58,237,0.4);
+    z-index: 5;
+  }
+  .rm-area:hover .rm-tooltip { opacity: 1; }
+  .rm-area.disabled { cursor: default; }
+  .rm-area.disabled:hover { background: rgba(100,116,139,0.18); box-shadow: 0 0 0 2px var(--muted); }
+  .rm-area.disabled .rm-tooltip { background: var(--muted); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
   .richmenu-card .tab-label {
     display: inline-block; margin-bottom: 14px;
     padding: 5px 14px; border-radius: 999px;
@@ -506,18 +541,35 @@
         <a href="jyc-demos.html" target="_blank" class="tri-cta-btn">查看完整實機影片頁 →</a>
       </div>
 
-      <div class="richmenu-wrap" style="margin-top: 32px;">
-        <div class="richmenu-card t1">
+      <div style="text-align: center; margin: 32px 0 16px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--text);">👆 LINE Rich Menu × 實機案例綁定</h3>
+        <p style="color: var(--muted); font-size: 13.5px; margin-top: 4px;">這就是住戶打開 LINE 看到的選單，點圖上任一格 → 直接看對應實機操作影片</p>
+      </div>
+
+      <div class="richmenu-wrap">
+        <div class="richmenu-card interactive t1">
           <span class="tab-label">📱 TAB 1 · 社區服務</span>
-          <h3>日常服務六宮格</h3>
-          <p>訪客預約、報修、包裹、公設、繳費、我的紀錄</p>
-          <img src="images/richmenu1.png" alt="Rich Menu 社區服務">
+          <div class="rm-img-wrap">
+            <img src="images/richmenu1.png" alt="Rich Menu 社區服務">
+            <a class="rm-area" data-pos="0" href="jyc-demos.html#visitor" target="_blank"><span class="rm-tooltip">訪客預約 ↗</span></a>
+            <a class="rm-area" data-pos="1" href="jyc-demos.html#repair" target="_blank"><span class="rm-tooltip">報修 ↗</span></a>
+            <a class="rm-area" data-pos="2" href="jyc-demos.html#package" target="_blank"><span class="rm-tooltip">包裹 ↗</span></a>
+            <a class="rm-area" data-pos="3" href="jyc-demos.html#amenity" target="_blank"><span class="rm-tooltip">公設預約 ↗</span></a>
+            <a class="rm-area" data-pos="4" href="jyc-demos.html#payment" target="_blank"><span class="rm-tooltip">繳費查詢 ↗</span></a>
+            <span class="rm-area disabled" data-pos="5"><span class="rm-tooltip">我的紀錄（彙整頁）</span></span>
+          </div>
         </div>
-        <div class="richmenu-card t2">
+        <div class="richmenu-card interactive t2">
           <span class="tab-label">📱 TAB 2 · 社區互動</span>
-          <h3>互動參與六宮格</h3>
-          <p>服務評分、社區公告、聯絡大廳、住戶大會、專屬服務、我的資料</p>
-          <img src="images/richmenu2.png?v=20260426" alt="Rich Menu 社區互動">
+          <div class="rm-img-wrap">
+            <img src="images/richmenu2.png?v=20260426" alt="Rich Menu 社區互動">
+            <a class="rm-area" data-pos="0" href="jyc-demos.html#rating" target="_blank"><span class="rm-tooltip">服務評分 ↗</span></a>
+            <a class="rm-area" data-pos="1" href="jyc-demos.html#announcement" target="_blank"><span class="rm-tooltip">公告 / 行事曆 ↗</span></a>
+            <span class="rm-area disabled" data-pos="2"><span class="rm-tooltip">聯絡大廳（規劃中）</span></span>
+            <span class="rm-area disabled" data-pos="3"><span class="rm-tooltip">住戶大會（規劃中）</span></span>
+            <span class="rm-area disabled" data-pos="4"><span class="rm-tooltip">專屬服務（規劃中）</span></span>
+            <span class="rm-area disabled" data-pos="5"><span class="rm-tooltip">我的資料（個人頁）</span></span>
+          </div>
         </div>
       </div>
 
