@@ -60,7 +60,7 @@
 
   .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-  .hero { padding: 80px 24px 56px; text-align: center; }
+  .hero { padding: 80px 24px 32px; text-align: center; }
   .hero .badge {
     display: inline-block; padding: 6px 14px; border-radius: 999px;
     background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2);
@@ -72,6 +72,22 @@
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
   .hero p { font-size: 17px; color: var(--muted); max-width: 700px; margin: 0 auto 28px; }
+  .hero-portals {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 10px; margin: 0 auto 14px; max-width: 760px;
+  }
+  .hero-portal {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 18px; border-radius: 999px;
+    font-size: 14.5px; font-weight: 600;
+    border: 1.5px solid; background: white;
+  }
+  .hero-portal .hp-icon { font-size: 18px; }
+  .hero-portal.cyan   { color: var(--cyan);   border-color: rgba(8,145,178,0.4);   background: linear-gradient(180deg, #ecfeff 0%, #ffffff 100%); }
+  .hero-portal.pink   { color: var(--pink);   border-color: rgba(219,39,119,0.4);  background: linear-gradient(180deg, #fdf2f8 0%, #ffffff 100%); }
+  .hero-portal.purple { color: var(--purple); border-color: rgba(124,58,237,0.4);  background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%); }
+  .hero-portal b { font-weight: 800; }
+  .hero-sub { font-size: 14px; color: var(--muted); margin: 0; }
   .hero .hint {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 10px 18px; border-radius: 999px;
@@ -142,7 +158,7 @@
   .tri-node p { font-size: 13px; color: var(--text-sub); margin-bottom: 12px; line-height: 1.55; }
   .tri-node .n-meta { font-size: 11.5px; color: var(--muted); display: inline-block; margin-top: 4px; }
   /* 住戶節點整合 Rich Menu — 節點變寬 + Tab 切換 */
-  .tri-node.has-rm { width: 33%; max-width: 360px; }
+  .tri-node.has-rm { width: 33%; max-width: 360px; min-height: 540px; }
   .n-bind-btn {
     display: inline-block; padding: 5px 14px; margin: 4px 0 12px;
     background: rgba(5,150,105,0.1); color: var(--green) !important;
@@ -221,9 +237,10 @@
   }
   .n-chip-group:first-child { border-top: none; padding-top: 0; }
   .n-chip-group-label {
-    font-size: 9.5px; font-weight: 800; color: var(--purple);
-    letter-spacing: 0.2px; opacity: 0.75;
+    font-size: 10.5px; font-weight: 800; color: var(--purple);
+    letter-spacing: 0.2px; opacity: 0.78;
     white-space: nowrap; margin-right: 2px; flex-shrink: 0;
+    font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
   }
   .n-chip-row { display: contents; }
   .n-chip-row a {
@@ -571,7 +588,12 @@
 <section class="hero">
   <span class="badge">系統架構 + 實機展示 · Demo 一頁通覽</span>
   <h1>一套系統<br><span class="grad">貫穿物業公司、案場、住戶</span></h1>
-  <p>JYC 怡盛物業智慧管理系統由三層架構組成，搭配三個專精入口：Telegram 給員工、LINE 給住戶、Web 後台給管理者。本頁含完整架構說明 + 實機影片展示。</p>
+  <div class="hero-portals">
+    <span class="hero-portal cyan"><span class="hp-icon">🤖</span><b>Telegram</b>　給員工</span>
+    <span class="hero-portal pink"><span class="hp-icon">📱</span><b>LINE</b>　給住戶</span>
+    <span class="hero-portal purple"><span class="hp-icon">🖥️</span><b>Web 後台</b>　給管理者</span>
+  </div>
+  <p class="hero-sub">本頁含完整架構說明 + 實機影片展示</p>
 </section>
 
 <!-- ═══════════════════════ 三方循環 × 三入口（整合版） -->
@@ -637,7 +659,7 @@
         <p>統籌員工、跨案場、報價採購、決策</p>
         <div class="n-chips">
           <div class="n-chip-group">
-            <div class="n-chip-group-label">🏘 社區/住戶</div>
+            <div class="n-chip-group-label">🏘 社區・住戶</div>
             <div class="n-chip-row">
               <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank">社區</a>
               <a href="https://web-production-ea976.up.railway.app/admin/calendar" target="_blank">行事曆</a>
