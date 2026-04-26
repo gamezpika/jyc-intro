@@ -60,7 +60,7 @@
 
   .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-  .hero { padding: 80px 24px 12px; text-align: center; }
+  .hero { padding: 80px 24px 4px; text-align: center; }
   .hero .badge {
     display: inline-block; padding: 6px 14px; border-radius: 999px;
     background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2);
@@ -81,8 +81,9 @@
   }
 
   section { padding: 64px 0; }
-  section#triangle { padding-top: 28px; }
+  section#triangle { padding-top: 8px; }
   .section-title { text-align: center; margin-bottom: 40px; }
+  section#triangle .section-title { margin-bottom: 18px; }
   .section-title .tag {
     font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--cyan);
     text-transform: uppercase; margin-bottom: 10px; display: block;
@@ -223,14 +224,14 @@
   }
   .n-chip-group:first-child { border-top: none; padding-top: 0; }
   .n-chip-group-label {
-    font-size: 10.5px; font-weight: 800; color: var(--purple);
-    letter-spacing: 0.2px; opacity: 0.78;
-    white-space: nowrap; margin-right: 2px; flex-shrink: 0;
+    font-size: 12px; font-weight: 800; color: var(--purple);
+    letter-spacing: 0.2px;
+    white-space: nowrap; margin-right: 4px; flex-shrink: 0;
     font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
   }
   .n-chip-row { display: contents; }
   .n-chip-row a {
-    padding: 2px 6px; border-radius: 999px; font-size: 10px;
+    padding: 3px 8px; border-radius: 999px; font-size: 12px;
     background: rgba(124,58,237,0.07); color: var(--text-sub);
     text-decoration: none; transition: all 0.15s;
     border: 1px solid rgba(124,58,237,0.13);
@@ -586,7 +587,6 @@
     <!-- 三向同步說明（移到三角形上方） -->
     <div class="bidi-box">
       <div class="bidi-head">
-        <span class="bidi-icon">🔄</span>
         <h3>三向即時同步 — 不只單向操作，是互相串接的閉環</h3>
         <p>任何一端動作，其他兩端立即收到對應通知或資料。沒有重複輸入、沒有資訊落差。</p>
       </div>
