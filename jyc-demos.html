@@ -98,6 +98,8 @@
   .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   @media (max-width: 860px) { .video-grid { grid-template-columns: 1fr; } }
   .video-grid.single { grid-template-columns: 1fr; max-width: 680px; margin: 0 auto; }
+  .video-grid.triple { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 1024px) { .video-grid.triple { grid-template-columns: 1fr; } }
 
   .video-card {
     background: var(--card); border: 1px solid var(--border);
@@ -381,23 +383,42 @@
       </div>
     </div>
 
-    <!-- 包裹 -->
+    <!-- 包裹 (三段：登錄 → 通知 → 領取) -->
     <div class="demo-item" id="package">
       <div class="demo-item-head">
         <h3>📦 包裹通知與領取</h3>
-        <span class="status-badge todo">⏳ 待補拍</span>
-        <span class="sub">住戶 LINE 收通知 + 後台登錄</span>
+        <span class="status-badge ready">已有影片</span>
+        <span class="sub">登錄 → LINE 通知 → 領取簽收</span>
       </div>
-      <div class="video-grid single">
-        <div class="video-card placeholder">
-          <div class="placeholder-box">
-            <div class="ph-emoji">📦</div>
-            <div class="ph-text">影片待補拍</div>
-            <div class="ph-hint">後台登錄包裹 → LINE 推播給住戶 → 住戶簽收</div>
-          </div>
+      <div class="video-grid triple">
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video14.MP4" type="video/mp4">
+          </video>
           <div class="video-meta">
-            <h4>包裹流程</h4>
-            <p>建議錄製：管理處後台登錄包裹 → 住戶 LINE 收推播 → LIFF 我的紀錄看待領清單。</p>
+            <div class="step">PART 1 · 管理處 Web</div>
+            <h4>登錄包裹</h4>
+            <p>櫃台收到包裹 → 後台拍照登錄 → 選收件住戶。</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video15.MP4" type="video/mp4">
+          </video>
+          <div class="video-meta">
+            <div class="step">PART 2 · 住戶 LINE</div>
+            <h4>收到包裹通知</h4>
+            <p>系統自動 LINE 推播給住戶 → LIFF 看待領清單與細節。</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video16.MP4" type="video/mp4">
+          </video>
+          <div class="video-meta">
+            <div class="step">PART 3 · 領取簽收</div>
+            <h4>到櫃台領取</h4>
+            <p>住戶到櫃台 → 管理處後台標記已領 → 紀錄留存。</p>
           </div>
         </div>
       </div>
