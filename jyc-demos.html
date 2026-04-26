@@ -143,6 +143,37 @@
 
   footer { padding: 50px 24px; text-align: center; border-top: 1px solid var(--border); margin-top: 24px; }
   footer p { color: var(--muted); font-size: 14px; }
+
+  /* 報價→簽署→合約→續約 四步驟流程（移自 architecture USE CASES 案例 05） */
+  .quote-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 12px; align-items: stretch; }
+  @media (max-width: 900px) { .quote-flow { grid-template-columns: 1fr; } .qflow-arrow { transform: rotate(90deg); padding: 4px 0; } }
+  .qflow-step {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.04);
+    border-left: 3px solid var(--purple);
+    background: linear-gradient(135deg, #faf5ff 0%, #fafbfc 50%);
+  }
+  .qflow-who { font-size: 11px; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; }
+  .qflow-who.web { color: var(--purple); }
+  .qflow-who.vendor { color: var(--amber); }
+  .qflow-who.dual {
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-size: 12px;
+  }
+  .qflow-step:has(.qflow-who.vendor) { border-left-color: var(--amber); background: linear-gradient(135deg, #fffbeb 0%, #fafbfc 50%); }
+  .qflow-step:has(.qflow-who.dual) { border-left: 3px solid; border-image: linear-gradient(180deg, var(--cyan), var(--purple)) 1; background: linear-gradient(135deg, #ecfeff 0%, #faf5ff 100%); }
+  .qflow-head { font-size: 14px; font-weight: 700; color: var(--text); }
+  .qflow-step p { font-size: 13px; color: var(--text-sub); line-height: 1.6; flex: 1; margin: 0; }
+  .qflow-btn {
+    margin-top: 8px; align-self: flex-start;
+    padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: white; text-decoration: none;
+  }
+  .qflow-btn:hover { transform: translateY(-1px); }
+  .qflow-arrow { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 20px; }
 </style>
 </head>
 <body>
@@ -311,7 +342,39 @@
         <span class="status-badge ready">已有影片</span>
         <span class="sub">員工 TG 發起 × 管理 Web 後台簽署管理</span>
       </div>
-      <div class="video-grid">
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 18px;">同一件事，不同角色各用自己最熟悉的工具完成。流程中有「前往後台」按鈕直接跳轉。</p>
+
+      <!-- 報價→簽署→合約→續約 四步驟流程 -->
+      <div class="quote-flow">
+        <div class="qflow-step">
+          <div class="qflow-who dual">📱 員工 TG <span style="color: var(--muted); font-weight: 600;">／</span> 🖥️ 物業公司 Web</div>
+          <div class="qflow-head">1. 精靈建立報價（雙入口）</div>
+          <p>員工在 TG /menu 點「✨ 新建報價」，或物業公司直接在 Web 後台 → 選客戶 / 服務類別（保全・清潔・電梯…）/ 金額類型（月費・總額・單價）/ 起迄日期 → 產生公開簽署連結</p>
+          <a class="qflow-btn" href="https://web-production-ea976.up.railway.app/admin/quote/new" target="_blank">Web 後台新增 →</a>
+        </div>
+        <div class="qflow-arrow">→</div>
+        <div class="qflow-step">
+          <div class="qflow-who vendor">👤 客戶 · 案場業主</div>
+          <div class="qflow-head">2. 線上閱覽簽署</div>
+          <p>管委會或業主收到專屬 URL → 看合約內容（金額 / 條款 / 附件）→ 電子簽名同意，無需下載 App</p>
+        </div>
+        <div class="qflow-arrow">→</div>
+        <div class="qflow-step">
+          <div class="qflow-who web">🖥️ 物業公司 · Web</div>
+          <div class="qflow-head">3. 自動產生合約</div>
+          <p>客戶簽署後，報價單自動轉成正式合約，所有往來文件與稽核軌跡留存</p>
+          <a class="qflow-btn" href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約管理 →</a>
+        </div>
+        <div class="qflow-arrow">→</div>
+        <div class="qflow-step">
+          <div class="qflow-who web">🖥️ 物業公司 · Web</div>
+          <div class="qflow-head">4. 到期提醒 → 續約</div>
+          <p>即將到期合約後台看板提醒，一鍵產生續約合約（繼承金額 / 條款），不再錯過續簽時點</p>
+          <a class="qflow-btn" href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約看板 →</a>
+        </div>
+      </div>
+
+      <div class="video-grid" style="margin-top: 24px;">
         <div class="video-card">
           <video controls preload="metadata" playsinline>
             <source src="videos/video25.MP4" type="video/mp4">
