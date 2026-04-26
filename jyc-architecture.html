@@ -252,12 +252,9 @@
 
   /* 三向雙向關係說明卡 */
   .bidi-box {
-    margin-top: 48px;
-    background: linear-gradient(135deg, #faf5ff 0%, #ecfeff 50%, #fdf2f8 100%);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 28px 28px 32px;
-    box-shadow: 0 8px 28px rgba(15,23,42,0.06);
+    margin: 0 0 36px;
+    background: transparent;
+    padding: 0;
   }
   .bidi-head { text-align: center; margin-bottom: 22px; }
   .bidi-icon { font-size: 30px; display: block; margin-bottom: 8px; }
@@ -586,6 +583,32 @@
       <p>管理者用 Web 後台、員工用 Telegram、住戶用 LINE — 三方互相串接形成閉環</p>
     </div>
 
+    <!-- 三向同步說明（移到三角形上方） -->
+    <div class="bidi-box">
+      <div class="bidi-head">
+        <span class="bidi-icon">🔄</span>
+        <h3>三向即時同步 — 不只單向操作，是互相串接的閉環</h3>
+        <p>任何一端動作，其他兩端立即收到對應通知或資料。沒有重複輸入、沒有資訊落差。</p>
+      </div>
+      <div class="bidi-grid">
+        <div class="bidi-card purple">
+          <div class="bidi-pair">🖥️ Web <span>⇄</span> 🤖 TG</div>
+          <div class="bidi-flow"><span class="bidi-dir to">→</span>Web 派工 / 公告 / 排班 → TG 推播員工</div>
+          <div class="bidi-flow"><span class="bidi-dir from">←</span>員工 TG 打卡 / 回報 / 請假 → 寫入 Web</div>
+        </div>
+        <div class="bidi-card pink">
+          <div class="bidi-pair">🖥️ Web <span>⇄</span> 📱 LINE</div>
+          <div class="bidi-flow"><span class="bidi-dir to">→</span>Web 公告 / 帳單 / 包裹 → LINE 推播住戶</div>
+          <div class="bidi-flow"><span class="bidi-dir from">←</span>住戶 LINE 報修 / 訪客 / 評分 → 進 Web 工單</div>
+        </div>
+        <div class="bidi-card cyan">
+          <div class="bidi-pair">🤖 TG <span>⇄</span> 📱 LINE</div>
+          <div class="bidi-flow"><span class="bidi-dir to">→</span>員工 TG 結案 → LINE 通知住戶</div>
+          <div class="bidi-flow"><span class="bidi-dir from">←</span>住戶 LINE 評分 → TG 通知員工＋主管</div>
+        </div>
+      </div>
+    </div>
+
     <div class="triangle-wrap">
       <svg class="tri-svg" viewBox="0 0 1040 1000" preserveAspectRatio="xMidYMid meet">
         <defs>
@@ -755,32 +778,6 @@
               <span class="rm-area disabled" data-pos="5"><span class="rm-tooltip">資料</span></span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 三向同步說明（永遠顯示） -->
-    <div class="bidi-box">
-      <div class="bidi-head">
-        <span class="bidi-icon">🔄</span>
-        <h3>三向即時同步 — 不只單向操作，是互相串接的閉環</h3>
-        <p>任何一端動作，其他兩端立即收到對應通知或資料。沒有重複輸入、沒有資訊落差。</p>
-      </div>
-      <div class="bidi-grid">
-        <div class="bidi-card purple">
-          <div class="bidi-pair">🖥️ Web <span>⇄</span> 🤖 TG</div>
-          <div class="bidi-flow"><span class="bidi-dir to">→</span>Web 派工 / 公告 / 排班 → TG 推播員工</div>
-          <div class="bidi-flow"><span class="bidi-dir from">←</span>員工 TG 打卡 / 回報 / 請假 → 寫入 Web</div>
-        </div>
-        <div class="bidi-card pink">
-          <div class="bidi-pair">🖥️ Web <span>⇄</span> 📱 LINE</div>
-          <div class="bidi-flow"><span class="bidi-dir to">→</span>Web 公告 / 帳單 / 包裹 → LINE 推播住戶</div>
-          <div class="bidi-flow"><span class="bidi-dir from">←</span>住戶 LINE 報修 / 訪客 / 評分 → 進 Web 工單</div>
-        </div>
-        <div class="bidi-card cyan">
-          <div class="bidi-pair">🤖 TG <span>⇄</span> 📱 LINE</div>
-          <div class="bidi-flow"><span class="bidi-dir to">→</span>員工 TG 結案 → LINE 通知住戶</div>
-          <div class="bidi-flow"><span class="bidi-dir from">←</span>住戶 LINE 評分 → TG 通知員工＋主管</div>
         </div>
       </div>
     </div>
