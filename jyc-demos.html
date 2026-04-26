@@ -173,6 +173,59 @@
   footer { padding: 50px 24px; text-align: center; border-top: 1px solid var(--border); margin-top: 24px; }
   footer p { color: var(--muted); font-size: 14px; }
 
+  /* 左側固定目錄 (TOC) */
+  .toc-sidebar {
+    position: fixed; top: 0; left: 0;
+    width: 220px; height: 100vh;
+    overflow-y: auto;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--border);
+    padding: 18px 14px 40px;
+    z-index: 50;
+  }
+  .toc-head {
+    font-size: 13px; font-weight: 800;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 18px; padding: 0 6px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+  }
+  .toc-sidebar::-webkit-scrollbar { width: 6px; }
+  .toc-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  .toc-section { margin-bottom: 22px; }
+  .toc-group-title {
+    font-size: 12.5px; font-weight: 800; letter-spacing: 0.5px;
+    margin-bottom: 8px; padding: 5px 10px; border-radius: 7px;
+  }
+  .toc-group-title.cyan { color: var(--cyan); background: rgba(8,145,178,0.1); }
+  .toc-group-title.green { color: var(--green); background: rgba(5,150,105,0.1); }
+  .toc-subgroup {
+    font-size: 10.5px; color: var(--muted); font-weight: 700;
+    letter-spacing: 0.8px; margin: 10px 0 3px 6px; text-transform: uppercase;
+  }
+  .toc-sidebar a {
+    display: block; padding: 5px 8px 5px 14px;
+    font-size: 12.5px; color: var(--text-sub); text-decoration: none;
+    border-radius: 6px; border-left: 2px solid transparent;
+    transition: all 0.15s; line-height: 1.5;
+  }
+  .toc-sidebar a:hover {
+    background: rgba(124,58,237,0.06);
+    color: var(--purple); border-left-color: rgba(124,58,237,0.5);
+  }
+  .toc-sidebar a.active {
+    background: rgba(124,58,237,0.1); color: var(--purple);
+    font-weight: 700; border-left-color: var(--purple);
+  }
+  @media (min-width: 1024px) {
+    body { padding-left: 220px; }
+  }
+  @media (max-width: 1023px) {
+    .toc-sidebar { display: none; }
+  }
+
   /* 報價→簽署→合約→續約 四步驟流程（移自 architecture USE CASES 案例 05） */
   .quote-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 12px; align-items: stretch; }
   @media (max-width: 900px) { .quote-flow { grid-template-columns: 1fr; } .qflow-arrow { transform: rotate(90deg); padding: 4px 0; } }
@@ -203,6 +256,14 @@
   }
   .qflow-btn:hover { transform: translateY(-1px); }
   .qflow-arrow { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 20px; }
+  .qflow-step.pending { opacity: 0.65; background: linear-gradient(135deg, #fafbfc 0%, #f3f4f6 100%); border-left-color: var(--muted); }
+  .qflow-tag {
+    display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    background: rgba(217,119,6,0.12); color: var(--amber); border: 1px solid rgba(217,119,6,0.35);
+    -webkit-text-fill-color: var(--amber);
+    text-transform: none;
+  }
 </style>
 </head>
 <body>
@@ -215,6 +276,35 @@
     <a href="jyc-architecture.html" class="back-arch">← 回系統架構</a>
   </div>
 </nav>
+
+<aside class="toc-sidebar" id="toc">
+  <div class="toc-head">📑 實機影片目錄</div>
+  <div class="toc-section">
+    <div class="toc-group-title cyan">🤖 員工 TG</div>
+    <div class="toc-subgroup">📋 出勤管理</div>
+    <a href="#clock-in">🕐 打卡</a>
+    <a href="#leave-flow">📋 請假/加班/補卡</a>
+    <a href="#approval">✅ 主管審批</a>
+    <a href="#shift">📅 班表</a>
+    <div class="toc-subgroup">💼 業務操作</div>
+    <a href="#ticket">🔧 工單 + AI</a>
+    <a href="#quote">✨ 新建報價</a>
+  </div>
+  <div class="toc-section">
+    <div class="toc-group-title green">📱 住戶 LINE</div>
+    <div class="toc-subgroup">🔗 入會與訪客</div>
+    <a href="#bind">🔗 綁定門牌</a>
+    <a href="#visitor">🚗 訪客預約</a>
+    <div class="toc-subgroup">🛠 社區服務</div>
+    <a href="#repair">🔧 報修</a>
+    <a href="#package">📦 包裹</a>
+    <a href="#amenity">🏊 公設預約</a>
+    <a href="#payment">💰 繳費</a>
+    <div class="toc-subgroup">💬 互動</div>
+    <a href="#announcement">📢 公告</a>
+    <a href="#rating">⭐ 評分</a>
+  </div>
+</aside>
 
 <section class="hero">
   <span class="badge">⭐ 實機操作影片</span>
@@ -392,18 +482,16 @@
           <p>管委會或業主收到專屬 URL → 看合約內容（金額 / 條款 / 附件）→ 電子簽名同意，無需下載 App</p>
         </div>
         <div class="qflow-arrow">→</div>
-        <div class="qflow-step">
-          <div class="qflow-who web">🖥️ 物業公司 · Web</div>
+        <div class="qflow-step pending">
+          <div class="qflow-who web">🖥️ 物業公司 · Web <span class="qflow-tag">開發中</span></div>
           <div class="qflow-head">3. 自動產生合約</div>
           <p>客戶簽署後，報價單自動轉成正式合約，所有往來文件與稽核軌跡留存</p>
-          <a class="qflow-btn" href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約管理 →</a>
         </div>
         <div class="qflow-arrow">→</div>
-        <div class="qflow-step">
-          <div class="qflow-who web">🖥️ 物業公司 · Web</div>
+        <div class="qflow-step pending">
+          <div class="qflow-who web">🖥️ 物業公司 · Web <span class="qflow-tag">開發中</span></div>
           <div class="qflow-head">4. 到期提醒 → 續約</div>
           <p>即將到期合約後台看板提醒，一鍵產生續約合約（繼承金額 / 條款），不再錯過續簽時點</p>
-          <a class="qflow-btn" href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約看板 →</a>
         </div>
       </div>
 
@@ -731,6 +819,32 @@
   <p>© 2026 JYC 怡盛物業管理股份有限公司 · AI 智慧管理系統</p>
   <p style="margin-top:8px; font-size:12px;">Powered by WorkBot AI · Telegram × LINE × Web 全平台整合</p>
 </footer>
+
+<script>
+(function(){
+  var sections = document.querySelectorAll('.demo-item[id]');
+  var links = document.querySelectorAll('#toc a');
+  if (!sections.length || !links.length) return;
+  var linkMap = {};
+  links.forEach(function(a){ linkMap[a.getAttribute('href').slice(1)] = a; });
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        links.forEach(function(l){ l.classList.remove('active'); });
+        var link = linkMap[e.target.id];
+        if (link) {
+          link.classList.add('active');
+          var rect = link.getBoundingClientRect();
+          if (rect.top < 80 || rect.bottom > window.innerHeight - 40) {
+            link.scrollIntoView({block:'nearest', behavior:'smooth'});
+          }
+        }
+      }
+    });
+  }, { rootMargin: '-80px 0px -55% 0px' });
+  sections.forEach(function(s){ observer.observe(s); });
+})();
+</script>
 
 </body>
 </html>
