@@ -118,16 +118,19 @@
     top: 0; left: 50%; transform: translateX(-50%);
     border-color: var(--purple);
     background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
+    /* Web 卡片放寬，避免 chips 被切掉 */
+    max-width: 400px;
   }
   .tri-node.top:hover { transform: translateX(-50%) translateY(-4px); }
+  /* TG 跟 LINE 改用 top 對齊（同一水平），不再 bottom:0 */
   .tri-node.bottom-left {
-    bottom: 0; left: 0;
+    top: 45%; left: 0;
     border-color: var(--cyan);
     background: linear-gradient(180deg, #ecfeff 0%, #ffffff 100%);
   }
   .tri-node.bottom-left:hover { transform: translateY(-4px); }
   .tri-node.bottom-right {
-    bottom: 0; right: 0;
+    top: 45%; right: 0;
     border-color: var(--pink);
     background: linear-gradient(180deg, #fdf2f8 0%, #ffffff 100%);
   }
@@ -217,7 +220,6 @@
     display: flex; flex-wrap: nowrap; align-items: center;
     gap: 3px; padding: 3px 0;
     border-top: 1px dashed rgba(124,58,237,0.12);
-    overflow: hidden;
   }
   .n-chip-group:first-child { border-top: none; padding-top: 0; }
   .n-chip-group-label {
@@ -308,12 +310,12 @@
   .arc-pill-left {
     top: 38%; left: 25%;
     border-color: var(--purple); color: var(--purple);
-    transform: translateX(-50%);
+    transform: translateX(-50%) rotate(-30deg);
   }
   .arc-pill-right {
     top: 38%; right: 25%;
     border-color: var(--pink); color: var(--pink);
-    transform: translateX(50%);
+    transform: translateX(50%) rotate(30deg);
   }
   .arc-pill-bottom {
     bottom: 5%; left: 50%;
