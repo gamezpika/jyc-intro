@@ -118,19 +118,17 @@
     top: 0; left: 50%; transform: translateX(-50%);
     border-color: var(--purple);
     background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
-    /* Web 卡片放寬，避免 chips 被切掉 */
-    max-width: 400px;
+    width: 46%; max-width: 480px;
   }
   .tri-node.top:hover { transform: translateX(-50%) translateY(-4px); }
-  /* TG 跟 LINE 改用 top 對齊（同一水平），不再 bottom:0 */
   .tri-node.bottom-left {
-    top: 45%; left: 0;
+    bottom: 0; left: 0;
     border-color: var(--cyan);
     background: linear-gradient(180deg, #ecfeff 0%, #ffffff 100%);
   }
   .tri-node.bottom-left:hover { transform: translateY(-4px); }
   .tri-node.bottom-right {
-    top: 45%; right: 0;
+    bottom: 0; right: 0;
     border-color: var(--pink);
     background: linear-gradient(180deg, #fdf2f8 0%, #ffffff 100%);
   }
@@ -298,34 +296,6 @@
   .bidi-card.cyan .bidi-dir { color: var(--cyan); }
   .bidi-card.pink .bidi-dir { color: var(--pink); }
 
-  /* 弧線中段短 pill 標籤（HTML overlay，z-index 高於卡片） */
-  .arc-pill {
-    position: absolute; z-index: 5; pointer-events: none;
-    padding: 6px 14px; border-radius: 999px;
-    background: white; border: 2px solid;
-    font-size: 13px; font-weight: 700;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(15,23,42,0.08);
-  }
-  .arc-pill-left {
-    top: 38%; left: 25%;
-    border-color: var(--purple); color: var(--purple);
-    transform: translateX(-50%) rotate(-30deg);
-  }
-  .arc-pill-right {
-    top: 38%; right: 25%;
-    border-color: var(--pink); color: var(--pink);
-    transform: translateX(50%) rotate(30deg);
-  }
-  .arc-pill-bottom {
-    bottom: 5%; left: 50%;
-    border-color: var(--cyan); color: var(--cyan);
-    transform: translateX(-50%);
-  }
-  /* 手機版隱藏 pill（改用下方 bidi-box） */
-  @media (max-width: 860px) {
-    .arc-pill { display: none; }
-  }
 
   @media (max-width: 860px) {
     .triangle-wrap { aspect-ratio: auto; max-width: 460px; display: flex; flex-direction: column; gap: 14px; }
@@ -658,10 +628,6 @@
               opacity="0.85"/>
       </svg>
 
-      <!-- 弧線中段短 pill 標籤（HTML overlay，疊在卡片上方） -->
-      <div class="arc-pill arc-pill-left">🖥️ ⇄ 🤖 派工 / 回報</div>
-      <div class="arc-pill arc-pill-right">🖥️ ⇄ 📱 通知 / 反饋</div>
-      <div class="arc-pill arc-pill-bottom">🤖 ⇄ 📱 服務 / 互動</div>
 
       <!-- TOP · 管理者 + Web 後台 -->
       <div class="tri-node top">
