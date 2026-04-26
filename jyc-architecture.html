@@ -212,7 +212,10 @@
 
   /* Rich Menu */
   .richmenu-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
-  @media (max-width: 760px) { .richmenu-wrap { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) {
+    .richmenu-wrap { grid-template-columns: 1fr; }
+    .richmenu-card p { white-space: normal; font-size: 13px; }
+  }
   .richmenu-card {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 18px; padding: 24px; text-align: center;
@@ -229,7 +232,10 @@
   .richmenu-card.t1 .tab-label { background: rgba(124,58,237,0.1); color: var(--purple); border: 1px solid rgba(124,58,237,0.25); }
   .richmenu-card.t2 .tab-label { background: rgba(8,145,178,0.1); color: var(--cyan); border: 1px solid rgba(8,145,178,0.25); }
   .richmenu-card h3 { font-size: 17px; color: var(--text); margin-bottom: 4px; }
-  .richmenu-card p { color: var(--muted); font-size: 13.5px; margin-bottom: 16px; }
+  .richmenu-card p {
+    color: var(--muted); font-size: 12.5px; margin-bottom: 16px;
+    white-space: nowrap; overflow: hidden;
+  }
 
   /* 功能特性卡（通用） */
   .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
