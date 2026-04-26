@@ -266,24 +266,40 @@
       </div>
     </div>
 
-    <!-- 工單 -->
+    <!-- 工單 + AI 影像輔助 -->
     <div class="demo-item" id="ticket">
       <div class="demo-item-head">
-        <h3>🔧 工單接收與處理</h3>
-        <span class="status-badge todo">⏳ 待補拍</span>
-        <span class="sub">員工 TG 收工單 → 拍照回報</span>
+        <h3>🔧 工單與 AI 影像輔助</h3>
+        <span class="status-badge ready">部分已有影片</span>
+        <span class="sub">空拍巡檢 + 清潔智慧回報（開發中）</span>
       </div>
-      <div class="video-grid single">
-        <div class="video-card placeholder">
-          <div class="placeholder-box">
-            <div class="ph-emoji">🔧</div>
-            <div class="ph-text">影片待補拍</div>
-            <div class="ph-hint">員工 TG 收派工通知 → 點工單看細節 → 拍完工照片回報</div>
-          </div>
+      <div class="video-grid">
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video8.MP4" type="video/mp4">
+          </video>
           <div class="video-meta">
-            <h4>員工接工單流程</h4>
-            <p>建議錄製：TG 收到新工單推播 → 點開看內容 → 標完成 → 拍回報照。</p>
+            <div class="step">🚁 空拍機巡檢 · 開發中</div>
+            <h4>AI 影像辨識可疑人物</h4>
+            <p>空拍機拍一張照片回傳 AI，即可初步判斷可疑人物是否需要派人前往。社區大範圍巡檢從靠人變靠 AI。</p>
           </div>
+        </div>
+        <div class="video-card">
+          <video controls preload="metadata" playsinline>
+            <source src="videos/video.mp4" type="video/mp4">
+          </video>
+          <div class="video-meta">
+            <div class="step">🧽 清潔智慧回報 · 開發中</div>
+            <h4>AI 自動判斷清潔狀態</h4>
+            <p>清潔人員隨手拍一張照片回傳，AI 自動判斷環境是否需要清潔、是否有異常，零負擔留存紀錄。</p>
+          </div>
+        </div>
+      </div>
+      <div class="video-card placeholder" style="margin-top: 16px; max-width: 100%;">
+        <div class="placeholder-box" style="aspect-ratio: auto; padding: 20px;">
+          <div class="ph-emoji">📩</div>
+          <div class="ph-text">員工 TG 接工單影片待補拍</div>
+          <div class="ph-hint">建議錄製：TG 收新工單推播 → 點開看內容 → 標完成 → 拍回報照</div>
         </div>
       </div>
     </div>

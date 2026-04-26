@@ -351,39 +351,26 @@
   .tri-detail.green .td-links a:hover { background: var(--green); color: white; border-color: var(--green); transform: translateY(-1px); }
   .td-note { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
 
-  /* 實機展示 CTA */
-  .demo-cta {
+  /* 三角下方整合區（實機 CTA + Rich Menu） */
+  .tri-extras { max-width: 1080px; margin: 56px auto 0; }
+  .tri-cta {
     background: linear-gradient(135deg, #faf5ff 0%, #ecfeff 60%, #fdf2f8 100%);
-    border: 1px solid var(--border); border-radius: 24px;
-    padding: 36px 40px;
-    display: flex; gap: 32px; align-items: center; justify-content: space-between;
+    border: 1px solid var(--border); border-radius: 18px;
+    padding: 22px 28px;
+    display: flex; gap: 24px; align-items: center; justify-content: space-between;
     flex-wrap: wrap;
-    box-shadow: 0 10px 40px rgba(15,23,42,0.06);
-    max-width: 1000px; margin: 0 auto;
+    box-shadow: 0 6px 20px rgba(15,23,42,0.05);
   }
-  .demo-cta-left { flex: 1; min-width: 300px; }
-  .demo-cta-left h2 { font-size: 24px; color: var(--text); margin: 10px 0 8px; font-weight: 800; }
-  .demo-cta-left p { color: var(--text-sub); font-size: 14.5px; line-height: 1.7; }
-  .demo-cta-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-  .demo-cta-list span {
-    padding: 5px 12px; border-radius: 999px;
-    background: white; border: 1px solid var(--border);
-    font-size: 13px; color: var(--text-sub); font-weight: 500;
-  }
-  .demo-cta-right { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .demo-cta-btn {
-    padding: 22px 36px; border-radius: 18px;
+  .tri-cta p { color: var(--text-sub); font-size: 14px; margin: 0; }
+  .tri-cta-btn {
+    padding: 11px 22px; border-radius: 999px;
     background: linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
-    color: white; text-decoration: none;
-    box-shadow: 0 14px 36px rgba(124,58,237,0.35);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: inline-block;
+    color: white; text-decoration: none; font-weight: 600; font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 8px 22px rgba(124,58,237,0.3);
+    transition: transform 0.2s;
   }
-  .demo-cta-btn:hover {
-    transform: translateY(-3px); box-shadow: 0 20px 50px rgba(124,58,237,0.45);
-  }
-  .demo-cta-btn-text { text-align: center; color: white; }
-  .demo-cta-hint { font-size: 11px; color: var(--muted); letter-spacing: 1.5px; }
+  .tri-cta-btn:hover { transform: translateY(-2px); }
 
   footer { padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; }
   footer p { color: var(--muted); font-size: 14px; }
@@ -395,11 +382,8 @@
   <div class="brand">JYC · 怡盛智慧物業 · 架構與實機展示</div>
   <div class="links">
     <a href="#triangle">三方循環</a>
-    <a href="jyc-demos.html" target="_blank">實機展示 ↗</a>
-    <a href="#richmenu">LINE 選單</a>
-    <a href="#scenarios">使用情境</a>
-    <a href="#ai-core">AI 核心</a>
-    <a href="#future">未來擴展</a>
+    <a href="#scenarios">合約報價</a>
+    <a href="jyc-demos.html" target="_blank">實機影片 ↗</a>
     <a href="https://web-production-ea976.up.railway.app/admin/communities" target="_blank" class="open-admin">🔑 開啟後台</a>
   </div>
 </nav>
@@ -511,59 +495,34 @@
       </div>
     </div>
 
-  </div>
-</section>
+    <!-- 實機影片提示 + LINE Rich Menu（整合進三方循環） -->
+    <div class="tri-extras">
 
-<!-- ═══════════════════════ 實機展示入口 CTA -->
-<section id="demos">
-  <div class="container">
-    <div class="demo-cta">
-      <div class="demo-cta-left">
-        <span class="highlight-star">⭐ 亮點實機影片</span>
-        <h2>想看真實操作畫面？</h2>
-        <p>訪客預約、LINE 綁定、員工 TG、服務評分 — 四組完整流程真實螢幕錄影。<br>另開分頁播放，不會影響本頁閱讀。</p>
-        <div class="demo-cta-list">
-          <span>🚗 訪客預約</span>
-          <span>🔗 LINE 綁定</span>
-          <span>👷 員工 TG</span>
-          <span>⭐ 評分看板</span>
+      <div class="tri-cta">
+        <div>
+          <span class="highlight-star">⭐ 每個 chip 都連著實機影片</span>
+          <p style="color: var(--text-sub); font-size: 14px; margin-top: 6px;">點三角任一節點 chip → 新分頁看 TG / LINE / Web 真實操作畫面。</p>
+        </div>
+        <a href="jyc-demos.html" target="_blank" class="tri-cta-btn">查看完整實機影片頁 →</a>
+      </div>
+
+      <div class="richmenu-wrap" style="margin-top: 32px;">
+        <div class="richmenu-card t1">
+          <span class="tab-label">📱 TAB 1 · 社區服務</span>
+          <h3>日常服務六宮格</h3>
+          <p>訪客預約、報修、包裹、公設、繳費、我的紀錄</p>
+          <img src="images/richmenu1.png" alt="Rich Menu 社區服務">
+        </div>
+        <div class="richmenu-card t2">
+          <span class="tab-label">📱 TAB 2 · 社區互動</span>
+          <h3>互動參與六宮格</h3>
+          <p>服務評分、社區公告、聯絡大廳、住戶大會、專屬服務、我的資料</p>
+          <img src="images/richmenu2.png?v=20260426" alt="Rich Menu 社區互動">
         </div>
       </div>
-      <div class="demo-cta-right">
-        <a href="jyc-demos.html" target="_blank" class="demo-cta-btn">
-          <div class="demo-cta-btn-text">
-            <div style="font-size: 12px; letter-spacing: 2px; opacity: 0.9; margin-bottom: 2px;">OPEN NEW TAB</div>
-            <div style="font-size: 18px; font-weight: 700;">實機影片展示 →</div>
-          </div>
-        </a>
-        <div class="demo-cta-hint">新分頁開啟</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════ LINE Rich Menu -->
-<section id="richmenu">
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">LINE Rich Menu</span>
-      <h2>住戶 LINE 一開即用</h2>
-      <p>雙 Tab 切換設計 · 12 項社區服務一頁到齊</p>
     </div>
-    <div class="richmenu-wrap">
-      <div class="richmenu-card t1">
-        <span class="tab-label">TAB 1 · 社區服務</span>
-        <h3>日常服務六宮格</h3>
-        <p>訪客預約、報修、包裹、公設、繳費、我的紀錄</p>
-        <img src="images/richmenu1.png" alt="Rich Menu 社區服務">
-      </div>
-      <div class="richmenu-card t2">
-        <span class="tab-label">TAB 2 · 社區互動</span>
-        <h3>互動參與六宮格</h3>
-        <p>服務評分、社區公告、聯絡大廳、住戶大會、專屬服務、我的資料</p>
-        <img src="images/richmenu2.png?v=20260426" alt="Rich Menu 社區互動">
-      </div>
-    </div>
+
   </div>
 </section>
 
@@ -574,128 +533,6 @@
       <span class="tag">Use Cases</span>
       <h2>三入口協作情境</h2>
       <p>同一件事，不同角色各用自己最熟悉的工具完成。流程中有「前往後台」按鈕直接跳轉。</p>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-head"><div class="scenario-num">01</div><h3>🚗 住戶預約訪客（私人 / 商業）</h3></div>
-      <div class="flow">
-        <div class="flow-step line">
-          <div class="who">📱 住戶 · LINE</div>
-          <div class="head">1. 填訪客資訊</div>
-          <p>Rich Menu 點「訪客預約」→ 填訪客姓名、時段、車位（系統自動配空格）→ 送出</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step web">
-          <div class="who">🖥️ 管理處 · Web</div>
-          <div class="head">2. 商業訪客核發</div>
-          <p>商業訪客需確認收款 → 後台按「核發 QR」；私人訪客系統自動發送</p>
-          <a class="open-btn" href="https://web-production-ea976.up.railway.app/appointments/" target="_blank">前往訪客預約 →</a>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step line">
-          <div class="who">📱 住戶 · LINE</div>
-          <div class="head">3. 收到 QR</div>
-          <p>LINE 推播 QR 通行碼 → 一鍵分享給訪客（Flex Message 格式）</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step web">
-          <div class="who">🖥️ 保全 · Web</div>
-          <div class="head">4. 掃碼放行</div>
-          <p>手機相機掃 QR 自動開掃碼頁 → 確認放行 → 住戶 LINE 即時收到「訪客已到場」</p>
-          <a class="open-btn" href="https://web-production-ea976.up.railway.app/appointments/scan" target="_blank">掃碼放行頁 →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-head"><div class="scenario-num">02</div><h3>🔧 住戶報修流程</h3></div>
-      <div class="flow">
-        <div class="flow-step line">
-          <div class="who">📱 住戶 · LINE</div>
-          <div class="head">1. 提交報修</div>
-          <p>報修頁填問題描述 + 附上照片（AI 自動判讀異常類型）</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step tg">
-          <div class="who">🤖 主管 · TG</div>
-          <div class="head">2. 收到通知並指派</div>
-          <p>TG 推播新工單 → 指派給負責員工（保全 / 清潔 / 工務）</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step web">
-          <div class="who">🖥️ 員工 · 後台</div>
-          <div class="head">3. 處理並回報</div>
-          <p>員工 TG 或後台看工單 → 現場處理 → 拍照回報 → 完結工單</p>
-          <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/repairs" target="_blank">工單管理 →</a>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step line">
-          <div class="who">📱 住戶 · LINE</div>
-          <div class="head">4. 收到完成通知</div>
-          <p>LINE 推播「已修復」+ 服務評分連結（可匿名留意見）</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-head"><div class="scenario-num">03</div><h3>📝 員工請假全流程</h3></div>
-      <div class="flow">
-        <div class="flow-step tg">
-          <div class="who">🤖 員工 · TG</div>
-          <div class="head">1. 送出申請</div>
-          <p>TG 開 Mini App 表單 → 選假別與期間 → 系統自動檢查額度 → 送出</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step tg">
-          <div class="who">🤖 主管 · TG</div>
-          <div class="head">2. 一鍵審批</div>
-          <p>TG 推播申請通知 → 按鈕「✅ 核准 / ❌ 駁回」一按結束</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step tg">
-          <div class="who">🤖 員工 · TG</div>
-          <div class="head">3. 收到結果</div>
-          <p>TG 推播審批結果；核准自動扣請假額度</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step web">
-          <div class="who">🖥️ 人資 · Web</div>
-          <div class="head">4. 完整紀錄</div>
-          <p>Web 後台查閱所有請假紀錄、CSV 匯出、月報出勤表一次到位</p>
-          <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/leaves" target="_blank">請假管理 →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-head"><div class="scenario-num">04</div><h3>📢 社區公告發布</h3></div>
-      <div class="flow">
-        <div class="flow-step web">
-          <div class="who">🖥️ 秘書 · Web</div>
-          <div class="head">1. 建立公告</div>
-          <p>富文本編輯（粗體 / 顏色 / 連結 / 插圖）+ 附件上傳</p>
-          <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/announcements/new" target="_blank">新增公告 →</a>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step web">
-          <div class="who">🖥️ 秘書 · Web</div>
-          <div class="head">2. 排程發布</div>
-          <p>設定發布時間、過期時間、置頂、歸屬社區（多案場隔離）</p>
-          <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/announcements" target="_blank">公告管理 →</a>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step line">
-          <div class="who">📱 住戶 · LINE</div>
-          <div class="head">3. 收到通知</div>
-          <p>LINE 推播摘要 → 點進看完整公告（含圖文與附件）</p>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step line">
-          <div class="who">📱 住戶 · LINE</div>
-          <div class="head">4. 持續曝光</div>
-          <p>重要公告置頂展示；行事曆同步呈現；過期自動隱藏</p>
-        </div>
-      </div>
     </div>
 
     <div class="scenario">
@@ -727,79 +564,6 @@
           <p>即將到期合約後台看板提醒，一鍵產生續約合約（繼承金額 / 條款），不再錯過續簽時點</p>
           <a class="open-btn" href="https://web-production-ea976.up.railway.app/admin/contracts" target="_blank">合約看板 →</a>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ AI 核心能力 · 已上線 -->
-<section id="ai-core" style="background: linear-gradient(180deg, transparent 0%, rgba(5,150,105,0.04) 100%);">
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">AI Core Capabilities</span>
-      <h2>✨ AI 核心能力 · 已上線</h2>
-      <p>Bot 駐群 × AI 萃取 × 自動推播，把物業管理的日常自動化</p>
-    </div>
-
-    <div class="feat-grid">
-      <div class="feat">
-        <div class="emoji">🤖</div>
-        <h3>TG 群組 AI 管家</h3>
-        <p>Bot 駐群自動記錄所有訊息，AI 即時辨識待辦、提醒、關鍵事項，不漏接群組指令。</p>
-        <span class="status-pill live" style="background: rgba(5,150,105,0.1); color: var(--green); border: 1px solid rgba(5,150,105,0.3);">已上線</span>
-      </div>
-      <div class="feat">
-        <div class="emoji">📝</div>
-        <h3>決議 → 任務自動化</h3>
-        <p>AI 解析會議決議 / 群組指派 → 自動建任務 → 分派負責人 → 到期提醒 / 進度追蹤。</p>
-        <span class="status-pill live" style="background: rgba(5,150,105,0.1); color: var(--green); border: 1px solid rgba(5,150,105,0.3);">已上線</span>
-      </div>
-      <div class="feat">
-        <div class="emoji">📣</div>
-        <h3>公告 LINE 推播</h3>
-        <p>管委會後台發布公告 → LINE 自動推送摘要給住戶 → 點 LIFF 看完整圖文與附件。</p>
-        <span class="status-pill live" style="background: rgba(5,150,105,0.1); color: var(--green); border: 1px solid rgba(5,150,105,0.3);">已上線</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ 未來擴展 -->
-<section id="future">
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">Roadmap</span>
-      <h2>未來擴展 · 不只是物業管理</h2>
-      <p>AI × 空拍 × 影像辨識，重新定義智慧社區</p>
-    </div>
-
-    <p style="color: var(--muted); margin-bottom: 20px; text-align: center;">🚁 AI 智慧巡檢 · 清潔回報 — 拍張照片就能回報現場狀況，AI 自動判讀</p>
-    <div class="feat-grid">
-      <div class="feat">
-        <span class="highlight-star">⭐ 亮點功能</span>
-        <div class="emoji">🚁</div>
-        <h3>空拍機巡檢</h3>
-        <p>空拍機拍一張照片回傳 AI，即可初步判斷可疑人物是否需要派人前往。</p>
-        <span class="status-pill plan">開發中</span>
-        <video controls preload="metadata" playsinline>
-          <source src="videos/video8.MP4" type="video/mp4">
-        </video>
-      </div>
-      <div class="feat">
-        <span class="highlight-star">⭐ 亮點功能</span>
-        <div class="emoji">🧽</div>
-        <h3>清潔智慧回報</h3>
-        <p>清潔人員隨手拍一張照片回傳，AI 自動判斷環境是否需要清潔、是否有異常，零負擔留存紀錄。</p>
-        <span class="status-pill plan">開發中</span>
-        <video controls preload="metadata" playsinline>
-          <source src="videos/video.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="feat">
-        <div class="emoji">🔧</div>
-        <h3>環境 · 設備異況</h3>
-        <p>社區環境、機電設備狀況整合回報平台。</p>
-        <span class="status-pill future">未來規劃</span>
       </div>
     </div>
   </div>
