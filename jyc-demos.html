@@ -114,7 +114,7 @@
   }
 
   /* 單一功能區段 */
-  .demo-item { margin-bottom: 40px; padding: 0 24px; scroll-margin-top: 80px; }
+  .demo-item { margin-bottom: 40px; padding: 0 24px; scroll-margin-top: 100px; }
   .demo-item-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
   .demo-item-head h3 { font-size: 19px; font-weight: 700; color: var(--text); }
   .demo-item-head .sub { color: var(--muted); font-size: 13px; }
@@ -944,6 +944,16 @@
   if (toggle) toggle.addEventListener('click', open);
   if (backdrop) backdrop.addEventListener('click', close);
   links.forEach(function(a){ a.addEventListener('click', close); });
+
+  // 從外部頁帶 hash 進來時，圖片載入會把目標 section 推下去 → load 後重新捲一次
+  function jumpToHash(){
+    var h = location.hash;
+    if (!h || h.length < 2) return;
+    var t = document.getElementById(h.slice(1));
+    if (t) t.scrollIntoView({block:'start'});
+  }
+  window.addEventListener('load', function(){ setTimeout(jumpToHash, 50); });
+  window.addEventListener('hashchange', jumpToHash);
 })();
 </script>
 
