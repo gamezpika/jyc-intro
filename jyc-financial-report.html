@@ -320,37 +320,54 @@
   /* =============== TIMELINE =============== */
   .timeline {
     position: relative;
-    padding: 20px 0;
-  }
-  .timeline::before {
-    content: ""; position: absolute;
-    top: 50px; left: 4%; right: 4%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 50%, var(--green) 100%);
-    border-radius: 999px;
+    padding: 8px 0;
   }
   .timeline-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    display: grid; grid-template-columns: 1fr; gap: 16px;
     position: relative; z-index: 1;
+    max-width: 580px; margin: 0 auto;
   }
+  .timeline[data-stage="a"] .tl-step:not(.a),
+  .timeline[data-stage="b"] .tl-step:not(.b),
+  .timeline[data-stage="c"] .tl-step:not(.c) { display: none; }
+
+  /* 上方 3 階段進度指示 (pill 樣式) */
+  .stage-bar {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    padding: 6px;
+    border-radius: 999px;
+    margin: 0 auto 28px;
+    max-width: 580px;
+  }
+  .stage-pill {
+    flex: 1; padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 700;
+    color: var(--gray-500);
+    text-align: center;
+    transition: all 0.2s;
+    background: transparent;
+    cursor: pointer; border: none;
+  }
+  .stage-pill .threshold {
+    display: block;
+    font-size: 10.5px; font-weight: 600;
+    color: var(--gray-300); margin-top: 2px; letter-spacing: 0.5px;
+  }
+  .stage-pill.active.a { background: linear-gradient(90deg, #8b5cf6, #a78bfa); color: white; box-shadow: 0 4px 12px rgba(139,92,246,0.3); }
+  .stage-pill.active.b { background: linear-gradient(90deg, #06b6d4, #22d3ee); color: white; box-shadow: 0 4px 12px rgba(6,182,212,0.3); }
+  .stage-pill.active.c { background: linear-gradient(90deg, #10b981, #34d399); color: white; box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+  .stage-pill.active .threshold { color: rgba(255,255,255,0.8); }
+  .stage-pill .arrow { color: var(--gray-300); padding: 0 2px; }
   .tl-step { text-align: center; }
-  .tl-dot {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: white;
-    border: 4px solid var(--purple);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; font-weight: 800; color: var(--purple);
-    margin: 12px auto 0;
-    box-shadow: 0 4px 12px rgba(139,92,246,0.25);
-  }
-  .tl-step.b .tl-dot { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 4px 12px rgba(6,182,212,0.25); }
-  .tl-step.c .tl-dot { border-color: var(--green); color: var(--green); box-shadow: 0 4px 12px rgba(16,185,129,0.25); }
+  .tl-dot { display: none; }
   .tl-card {
     background: white; border-radius: 14px;
     border-top: 4px solid var(--purple);
-    padding: 22px 20px;
-    margin-top: 18px;
-    box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+    padding: 26px 28px;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
     text-align: left;
   }
   .tl-step.b .tl-card { border-top-color: var(--cyan); }
@@ -752,14 +769,22 @@
   </div>
   <p class="section-sub">案場一次全量上線風險高（員工抗性、客訴爆量、調整來不及）。建議三階段循序推進、邊做邊優化、節奏可控。</p>
 
-  <div class="timeline">
+  <div class="stage-bar" id="stageBar">
+    <button class="stage-pill a" data-stage="a">A · 試點<span class="threshold">1-3 案場</span></button>
+    <span class="arrow">›</span>
+    <button class="stage-pill b" data-stage="b">B · 推廣<span class="threshold">4-15 案場</span></button>
+    <span class="arrow">›</span>
+    <button class="stage-pill c" data-stage="c">C · 全量<span class="threshold">16+ 案場</span></button>
+  </div>
+
+  <div class="timeline" data-stage="c">
     <div class="timeline-grid">
 
-      <div class="tl-step">
+      <div class="tl-step a">
         <div class="tl-dot">A</div>
         <div class="tl-card">
           <span class="tl-tag">PILOT 試點</span>
-          <div class="tl-title">1-3 案場</div>
+          <div class="tl-title"><span data-bind="N">3</span> 案場 · 試點期</div>
           <div class="tl-period">📅 約 3 個月</div>
           <ul class="tl-list">
             <li>挑願意配合的社區</li>
@@ -778,7 +803,7 @@
         <div class="tl-dot">B</div>
         <div class="tl-card">
           <span class="tl-tag">ROLLOUT 推廣</span>
-          <div class="tl-title">10-15 案場</div>
+          <div class="tl-title"><span data-bind="N">12</span> 案場 · 推廣期</div>
           <div class="tl-period">📅 約 6-9 個月</div>
           <ul class="tl-list">
             <li>分 2-3 批次導入</li>
@@ -797,7 +822,7 @@
         <div class="tl-dot">C</div>
         <div class="tl-card">
           <span class="tl-tag">FULL 全量</span>
-          <div class="tl-title"><span data-bind="N">33</span> 案場全量</div>
+          <div class="tl-title"><span data-bind="N">33</span> 案場 · 全量期</div>
           <div class="tl-period">📅 約 12-15 個月</div>
           <ul class="tl-list">
             <li>覆蓋怡盛全部社區</li>
@@ -1065,6 +1090,14 @@
     document.querySelectorAll('[data-bind="b-annual"]').forEach(el => el.textContent = scaleRangeWan(N, B_ANNUAL));
     document.querySelectorAll('[data-bind="b-firstyear"]').forEach(el => el.textContent = scaleRangeWan(N, B_FIRSTYEAR));
 
+    // 分階段導入：依 N 切換階段卡 + 更新 stage bar pill 高亮
+    const stage = N <= 3 ? 'a' : (N <= 15 ? 'b' : 'c');
+    const timeline = document.querySelector('.timeline');
+    if (timeline) timeline.setAttribute('data-stage', stage);
+    document.querySelectorAll('.stage-pill').forEach(pill => {
+      pill.classList.toggle('active', pill.dataset.stage === stage);
+    });
+
     const input = document.getElementById('site-input');
     const slider = document.getElementById('site-slider');
     if (input && document.activeElement !== input) input.value = N;
@@ -1089,6 +1122,12 @@
 
     document.querySelectorAll('.adjuster-presets button').forEach(btn => {
       btn.addEventListener('click', () => update(parseInt(btn.dataset.preset)));
+    });
+
+    // 點 stage pill 直接跳到該階段代表值
+    const stageDefaults = { a: 3, b: 12, c: 33 };
+    document.querySelectorAll('.stage-pill').forEach(pill => {
+      pill.addEventListener('click', () => update(stageDefaults[pill.dataset.stage]));
     });
 
     update(33);
