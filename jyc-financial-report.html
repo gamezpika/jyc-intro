@@ -701,7 +701,7 @@
     <div class="cost-bar-card" style="background:#fff7ed;border-color:#fed7aa">
       <h3>基礎設施 · 高估</h3>
       <div class="cost-total">NT$ 1.35 萬<span style="font-size:14px;color:var(--gray-500);font-weight:500">/月</span></div>
-      <div class="cost-total-label">33 案場全量、AI 重度使用</div>
+      <div class="cost-total-label">全量上線、AI 重度使用</div>
       <div class="cost-stack">
         <div style="background:#10b981;width:37%"></div>
         <div style="background:#8b5cf6;width:33%"></div>
@@ -750,7 +750,7 @@
     <div class="section-num">02</div>
     <h2>分階段導入方案</h2>
   </div>
-  <p class="section-sub">33 案場一次上線風險高。建議三階段循序推進、邊做邊優化、節奏可控。</p>
+  <p class="section-sub">案場一次全量上線風險高（員工抗性、客訴爆量、調整來不及）。建議三階段循序推進、邊做邊優化、節奏可控。</p>
 
   <div class="timeline">
     <div class="timeline-grid">
@@ -797,7 +797,7 @@
         <div class="tl-dot">C</div>
         <div class="tl-card">
           <span class="tl-tag">FULL 全量</span>
-          <div class="tl-title">33 案場全量</div>
+          <div class="tl-title"><span data-bind="N">33</span> 案場全量</div>
           <div class="tl-period">📅 約 12-15 個月</div>
           <ul class="tl-list">
             <li>覆蓋怡盛全部社區</li>
@@ -827,7 +827,7 @@
       <span class="arrow">→</span>
       <div class="step">🤖 第 3 波 · AI 影像</div>
     </div>
-    <p><strong>優點：</strong>33 案場員工先看到 ROI，後續推 LINE 阻力小。<strong>缺點：</strong>33 案場一次動，初期客訴與培訓壓力大、需要更強的 onboarding 團隊。</p>
+    <p><strong>優點：</strong>所有案場員工先看到 ROI，後續推 LINE 阻力小。<strong>缺點：</strong>案場一次全動，初期客訴與培訓壓力大、需要更強的 onboarding 團隊。</p>
   </div>
 </section>
 
@@ -868,14 +868,14 @@
       <div class="price-tagline">大客戶談判用，預算可預測、一次到位</div>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li>導入設定費 NT$ 80-120 萬（一次性）</li>
+        <li>導入設定費 <span data-bind="b-setup">NT$ 80-120 萬</span>（一次性）</li>
         <li>含完整培訓、SOP 落地、AI 排班調校</li>
-        <li>每月維運費 NT$ 8-10 萬（33 案場全包）</li>
-        <li>第二年起年費 NT$ 96-120 萬</li>
+        <li>每月維運費 <span data-bind="b-monthly">NT$ 8-10 萬</span>（<span data-bind="N">33</span> 案場全包）</li>
+        <li>第二年起年費 <span data-bind="b-annual">NT$ 96-120 萬</span></li>
         <li>適合有編列預算的大客戶</li>
       </ul>
       <div class="price-foot">
-        <div class="num">NT$ 176-240 萬<small>/首年</small></div>
+        <div class="num"><span data-bind="b-firstyear">NT$ 176-240 萬</span><small>/首年</small></div>
         <div class="desc">總成本含導入設定費</div>
       </div>
     </div>
@@ -1005,6 +1005,31 @@
     return `NT$ ${sign}${display} 萬`;
   }
 
+  // 顯示「萬」單位的小數字（< 100 才用 .X，>= 10 取整數）
+  function fmtWan(val) {
+    if (val >= 100) return Math.round(val).toLocaleString();
+    if (val >= 10) return Math.round(val).toString();
+    if (val >= 1) {
+      if (val % 1 < 0.05 || val % 1 > 0.95) return Math.round(val).toString();
+      return val.toFixed(1);
+    }
+    return val.toFixed(2);
+  }
+
+  // 方案 B 包套制基準（33 案場時的金額，依 N 等比例縮放）
+  const B_REF_N = 33;
+  const B_SETUP = [80, 120];      // 萬
+  const B_MONTHLY = [8, 10];       // 萬
+  const B_ANNUAL = [96, 120];      // 萬 = 月維運 × 12
+  const B_FIRSTYEAR = [176, 240];  // 萬 = setup + annual
+
+  function scaleRangeWan(N, base) {
+    const ratio = N / B_REF_N;
+    const low = base[0] * ratio;
+    const high = base[1] * ratio;
+    return `NT$ ${fmtWan(low)}-${fmtWan(high)} 萬`;
+  }
+
   function update(N) {
     N = Math.max(1, Math.min(200, parseInt(N) || 1));
     const monthly = N * FEE;
@@ -1033,6 +1058,12 @@
     document.querySelectorAll('[data-bind="year1-note"]').forEach(el => {
       el.textContent = year1Profit < 0 ? `需 ${BREAKEVEN}+ 案場才回收開發` : '完整版報價';
     });
+
+    // 方案 B 包套制金額隨 N 等比例縮放
+    document.querySelectorAll('[data-bind="b-setup"]').forEach(el => el.textContent = scaleRangeWan(N, B_SETUP));
+    document.querySelectorAll('[data-bind="b-monthly"]').forEach(el => el.textContent = scaleRangeWan(N, B_MONTHLY));
+    document.querySelectorAll('[data-bind="b-annual"]').forEach(el => el.textContent = scaleRangeWan(N, B_ANNUAL));
+    document.querySelectorAll('[data-bind="b-firstyear"]').forEach(el => el.textContent = scaleRangeWan(N, B_FIRSTYEAR));
 
     const input = document.getElementById('site-input');
     const slider = document.getElementById('site-slider');
