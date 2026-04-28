@@ -120,6 +120,18 @@
   .red { color: #f87171 !important; }
   .red-soft { color: #fca5a5 !important; }
 
+  /* 成本來源註明 */
+  .cost-source {
+    margin-top: 14px; padding: 12px 16px;
+    background: var(--gray-50); border-radius: 10px;
+    font-size: 11.5px; color: var(--gray-500); line-height: 1.7;
+    border: 1px solid var(--gray-100);
+  }
+  .cost-source strong { color: var(--gray-700); }
+  .cost-source a { color: var(--purple); text-decoration: none; }
+  .cost-source a:hover { text-decoration: underline; }
+  .cost-source .sep { color: var(--gray-300); margin: 0 6px; }
+
   /* =============== MODULES (功能總覽) =============== */
   .modules {
     margin: 0 0 56px;
@@ -172,15 +184,17 @@
   .role-block.green .role-pill { background: #d1fae5; color: #047857; }
   .role-meta { font-size: 12.5px; color: var(--gray-500); margin-left: auto; }
   .modules-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    align-items: stretch;
   }
   .m-card {
     background: var(--gray-50);
     border-radius: 10px;
-    padding: 11px 13px;
+    padding: 14px 16px;
     font-size: 12.5px; color: var(--gray-700); line-height: 1.5;
     border: 1px solid var(--gray-100);
-    display: flex; align-items: flex-start; gap: 8px;
+    display: flex; align-items: flex-start; gap: 10px;
+    min-height: 76px;
   }
   .m-card .m-icon { font-size: 16px; flex-shrink: 0; line-height: 1; padding-top: 1px; }
   .m-card .m-text { flex: 1; min-width: 0; }
@@ -499,12 +513,31 @@
     display: flex; align-items: flex-start; gap: 8px;
     font-size: 13px; color: var(--gray-700); margin-bottom: 8px;
     line-height: 1.5;
+    word-break: keep-all; overflow-wrap: break-word;
   }
   .price-features li::before {
     content: "✓"; color: var(--green); font-weight: 800;
     flex-shrink: 0; margin-top: 1px;
   }
   .price-card.recommend .price-features li::before { color: var(--purple); }
+  .price-features li [data-bind] { white-space: nowrap; font-weight: 700; }
+  /* B 方案 key-value 列：標題小灰、金額黑大 */
+  .price-features li.kv {
+    display: flex; flex-direction: column; gap: 2px;
+    margin-bottom: 6px;
+  }
+  .price-features li.kv::before { display: none; }
+  .price-features li.kv .kv-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 8px;
+  }
+  .price-features li.kv .kv-k {
+    font-size: 12px; color: var(--gray-500); flex-shrink: 0;
+  }
+  .price-features li.kv .kv-v {
+    font-size: 14px; font-weight: 800; color: var(--ink);
+    white-space: nowrap;
+  }
   .price-foot {
     background: var(--gray-50); border-radius: 12px;
     padding: 14px 16px; text-align: center;
@@ -684,70 +717,28 @@
       <span class="role-icon-large">🖥️</span>
       <span class="role-name">管理者</span>
       <span class="role-pill">Web 後台</span>
-      <span class="role-meta">跨案場統籌、員工/住戶/服務全管</span>
+      <span class="role-meta">跨案場統籌</span>
     </div>
     <div class="modules-grid">
       <div class="m-card">
         <span class="m-icon">🏘️</span>
         <div class="m-text">
-          <div class="m-name">多社區架構</div>
-          <div class="m-desc">community_id 全表、切換器、新建 Wizard 4 步驟</div>
+          <div class="m-name">多社區管理</div>
+          <div class="m-desc">跨案場切換、社區自助新增</div>
         </div>
       </div>
       <div class="m-card featured">
         <span class="m-icon">🤖</span>
         <div class="m-text">
-          <div class="m-name">AI 排班引擎<span class="wip-badge">🚧 進行中</span></div>
-          <div class="m-desc">自動月排班、規則校正、機動派遣矩陣（Phase 3）</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">📋</span>
-        <div class="m-text">
-          <div class="m-name">員工總表 14 欄</div>
-          <div class="m-desc">員編 / 居住 / 排班特性 / 機動，對齊客戶 Excel</div>
+          <div class="m-name">AI 自動排班<span class="wip-badge">🚧 進行中</span></div>
+          <div class="m-desc">一鍵產月班表、避開規則衝突</div>
         </div>
       </div>
       <div class="m-card">
         <span class="m-icon">💰</span>
         <div class="m-text">
-          <div class="m-name">薪資公式引擎</div>
-          <div class="m-desc">加班費率、勞健保級距、薪資單試算/發放/匯出</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">📊</span>
-        <div class="m-text">
-          <div class="m-name">決策看板</div>
-          <div class="m-desc">員工績效加權（工單×0.6 + 評分×0.4）</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">📑</span>
-        <div class="m-text">
-          <div class="m-name">報價合約</div>
-          <div class="m-desc">精靈建報價、客戶簽署、自動產合約、續約看板</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">🅿️</span>
-        <div class="m-text">
-          <div class="m-name">車位池管理</div>
-          <div class="m-desc">訪客/住戶分類、衝突檢查、no-show 自動釋出</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">📅</span>
-        <div class="m-text">
-          <div class="m-name">行事曆系統</div>
-          <div class="m-desc">Quill 富文本、附件、對內外 scope、iCal 訂閱</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">🧑</span>
-        <div class="m-text">
-          <div class="m-name">招募管理</div>
-          <div class="m-desc">candidate 狀態、見習轉正、面試評分</div>
+          <div class="m-name">員工 / 出勤 / 薪資</div>
+          <div class="m-desc">完整人事流程，自動算薪資勞健保</div>
         </div>
       </div>
     </div>
@@ -757,50 +748,29 @@
     <div class="role-head">
       <span class="role-icon-large">🤖</span>
       <span class="role-name">員工</span>
-      <span class="role-pill">Telegram Bot</span>
-      <span class="role-meta">AI 任務萃取、行動裝置接工單</span>
+      <span class="role-pill">Telegram</span>
+      <span class="role-meta">手機接工單</span>
     </div>
     <div class="modules-grid">
       <div class="m-card">
         <span class="m-icon">🔧</span>
         <div class="m-text">
-          <div class="m-name">AI 工單萃取</div>
-          <div class="m-desc">群組訊息自動轉任務、子任務拆解、結案 NL</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">🛡️</span>
-        <div class="m-text">
-          <div class="m-name">AI 防 hallucinate</div>
-          <div class="m-desc">raw_evidence 必填比對、禁止場景聯想</div>
+          <div class="m-name">AI 工單派工</div>
+          <div class="m-desc">群組訊息自動轉任務、結案回報</div>
         </div>
       </div>
       <div class="m-card">
         <span class="m-icon">📍</span>
         <div class="m-text">
-          <div class="m-name">地理圍欄打卡</div>
-          <div class="m-desc">haversine 距離、容許半徑可設、超出擋下</div>
+          <div class="m-name">手機定位打卡</div>
+          <div class="m-desc">出勤地點驗證、超出範圍擋下</div>
         </div>
       </div>
       <div class="m-card">
         <span class="m-icon">🍃</span>
         <div class="m-text">
-          <div class="m-name">請假/加班/補卡</div>
-          <div class="m-desc">Mini App 申請、主管 inline 審批、額度檢查</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">📅</span>
-        <div class="m-text">
-          <div class="m-name">我的班表</div>
-          <div class="m-desc">Mini App 月份切換、班次顯示、當日推播</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">⭐</span>
-        <div class="m-text">
-          <div class="m-name">收評分通知</div>
-          <div class="m-desc">收到匿名評分即時推播、排行榜可見</div>
+          <div class="m-name">請假加班補卡</div>
+          <div class="m-desc">手機申請、主管秒審批</div>
         </div>
       </div>
     </div>
@@ -811,49 +781,28 @@
       <span class="role-icon-large">📱</span>
       <span class="role-name">住戶</span>
       <span class="role-pill">LINE 官方帳號</span>
-      <span class="role-meta">綁門牌後自助 6+6 格 Rich Menu</span>
+      <span class="role-meta">手機自助</span>
     </div>
     <div class="modules-grid">
       <div class="m-card">
         <span class="m-icon">🚪</span>
         <div class="m-text">
           <div class="m-name">訪客預約</div>
-          <div class="m-desc">LIFF 表單、QR 掃碼放行、商業訪客收款</div>
+          <div class="m-desc">自助申請 + QR 掃碼放行</div>
         </div>
       </div>
       <div class="m-card">
         <span class="m-icon">🔧</span>
         <div class="m-text">
-          <div class="m-name">報修流程</div>
-          <div class="m-desc">LIFF 拍照上傳、TG 橋接員工接單、進度通知</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">📦</span>
-        <div class="m-text">
-          <div class="m-name">公設預約</div>
-          <div class="m-desc">健身房/交誼廳/KTV 等模板，動態查空檔</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">📢</span>
-        <div class="m-text">
-          <div class="m-name">社區公告</div>
-          <div class="m-desc">Quill 富文本、圖片 inline、附件下載、置頂</div>
+          <div class="m-name">報修通報</div>
+          <div class="m-desc">拍照上傳、進度即時追蹤</div>
         </div>
       </div>
       <div class="m-card">
         <span class="m-icon">⭐</span>
         <div class="m-text">
-          <div class="m-name">匿名評分</div>
-          <div class="m-desc">服務類別/員工，5 星 + 意見、24h 防刷</div>
-        </div>
-      </div>
-      <div class="m-card">
-        <span class="m-icon">🏠</span>
-        <div class="m-text">
-          <div class="m-name">戶籍綁定</div>
-          <div class="m-desc">預建門牌三層下拉、自動帶 LINE 名、可換戶</div>
+          <div class="m-name">服務評分</div>
+          <div class="m-desc">匿名打分服務類別 + 員工</div>
         </div>
       </div>
     </div>
@@ -866,7 +815,7 @@
     <div class="section-num">01</div>
     <h2>每月運營與維護成本</h2>
   </div>
-  <p class="section-sub">基礎設施每月固定支出 NT$ 5,710 - 13,510（含 AI 排班 token 與多社區運算成本），加上維運人力選項。</p>
+  <p class="section-sub">基礎設施每月 NT$ 5,710 - 13,510，加上維運人力選擇。</p>
 
   <div class="cost-grid">
     <div class="cost-bar-card">
@@ -910,7 +859,18 @@
     </div>
   </div>
 
-  <h3 style="font-size:15px;color:var(--gray-700);margin-top:8px;letter-spacing:1px;">維運人力 · 三選一</h3>
+  <div class="cost-source">
+    <strong>※ 數字依據官方公開定價：</strong>
+    <a href="https://tw.linebiz.com/service/account-solutions/line-official-account/" target="_blank">LINE 官方帳號方案</a>
+    <span class="sep">·</span>
+    <a href="https://ai.google.dev/pricing" target="_blank">Google Gemini API</a>
+    <span class="sep">·</span>
+    <a href="https://railway.com/pricing" target="_blank">Railway 雲端</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/pricing" target="_blank">GitHub Team</a>
+  </div>
+
+  <h3 style="font-size:15px;color:var(--gray-700);margin-top:24px;letter-spacing:1px;">維運人力 · 三選一</h3>
   <div class="hr-grid">
     <div class="hr-card recommend">
       <div class="hr-icon">🛠️</div>
@@ -1067,10 +1027,25 @@
       <div class="price-tagline">大客戶談判用，預算可預測、一次到位</div>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li>導入設定費 <span data-bind="b-setup">NT$ 80-120 萬</span>（一次性）</li>
-        <li>含完整培訓、SOP 落地、AI 排班調校</li>
-        <li>每月維運費 <span data-bind="b-monthly">NT$ 8-10 萬</span>（<span data-bind="N">33</span> 案場全包）</li>
-        <li>第二年起年費 <span data-bind="b-annual">NT$ 96-120 萬</span></li>
+        <li class="kv">
+          <div class="kv-row">
+            <span class="kv-k">一次性導入費</span>
+            <span class="kv-v" data-bind="b-setup">NT$ 80-120 萬</span>
+          </div>
+        </li>
+        <li class="kv">
+          <div class="kv-row">
+            <span class="kv-k">每月維運費</span>
+            <span class="kv-v" data-bind="b-monthly">NT$ 8-10 萬</span>
+          </div>
+        </li>
+        <li class="kv">
+          <div class="kv-row">
+            <span class="kv-k">第二年起年費</span>
+            <span class="kv-v" data-bind="b-annual">NT$ 96-120 萬</span>
+          </div>
+        </li>
+        <li>含培訓、流程落地、排班調校</li>
         <li>適合有編列預算的大客戶</li>
       </ul>
       <div class="price-foot">
