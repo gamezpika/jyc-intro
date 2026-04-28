@@ -10,6 +10,7 @@
     .page-break { page-break-before: always; }
     @page { margin: 12mm 10mm; size: A4; }
     .hero { box-shadow: none !important; }
+    .adjuster { display: none !important; }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -33,6 +34,91 @@
     background: #fff;
     padding: 0 20px 40px;
   }
+
+  /* =============== ADJUSTER =============== */
+  .adjuster {
+    position: sticky; top: 12px; z-index: 100;
+    margin: 16px 0 -8px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    border-radius: 14px;
+    color: white;
+    box-shadow: 0 12px 30px -10px rgba(30,27,75,0.5);
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .adjuster-label {
+    font-size: 12px; color: #c4b5fd; letter-spacing: 1px;
+    font-weight: 700; text-transform: uppercase;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .adjuster-control {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .adjuster button {
+    width: 32px; height: 32px; border: none; border-radius: 8px;
+    background: rgba(255,255,255,0.1); color: white;
+    font-size: 18px; font-weight: 700; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .adjuster button:hover { background: rgba(255,255,255,0.2); }
+  .adjuster button:active { transform: scale(0.95); }
+  .adjuster input[type="number"] {
+    width: 64px; height: 36px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px; color: white;
+    font-size: 18px; font-weight: 800; text-align: center;
+    font-family: "SF Mono", monospace;
+    outline: none;
+  }
+  .adjuster input[type="number"]:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(6,182,212,0.25);
+  }
+  .adjuster input[type="number"]::-webkit-inner-spin-button,
+  .adjuster input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; margin: 0;
+  }
+  .adjuster .unit-text { font-size: 14px; color: #cbd5e1; }
+  .adjuster input[type="range"] {
+    flex: 1; min-width: 140px;
+    -webkit-appearance: none; appearance: none;
+    height: 6px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
+    outline: none;
+  }
+  .adjuster input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: white;
+    border: 3px solid var(--cyan);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(6,182,212,0.4);
+  }
+  .adjuster input[type="range"]::-moz-range-thumb {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: white;
+    border: 3px solid var(--cyan);
+    cursor: pointer;
+  }
+  .adjuster-presets {
+    display: flex; gap: 6px;
+  }
+  .adjuster-presets button {
+    width: auto; padding: 0 12px; height: 30px;
+    font-size: 12px; font-weight: 700;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .adjuster-presets button.active {
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    border-color: transparent;
+  }
+
+  /* 警告：N 太小無法回收 */
+  .red { color: #f87171 !important; }
+  .red-soft { color: #fca5a5 !important; }
 
   /* =============== HERO =============== */
   .hero {
@@ -435,27 +521,47 @@
 </head>
 <body>
 
+<!-- ============================== ADJUSTER ============================== -->
+<div class="adjuster" id="adjuster">
+  <div class="adjuster-label">📐 案場規模</div>
+  <div class="adjuster-control">
+    <button onclick="adjustSites(-1)" title="減 1">−</button>
+    <input type="number" id="site-input" min="1" max="200" value="33" />
+    <span class="unit-text">個案場</span>
+    <button onclick="adjustSites(+1)" title="加 1">+</button>
+  </div>
+  <input type="range" id="site-slider" min="1" max="100" value="33" />
+  <div class="adjuster-presets">
+    <button data-preset="5">5</button>
+    <button data-preset="10">10</button>
+    <button data-preset="20">20</button>
+    <button data-preset="33" class="active">33</button>
+    <button data-preset="50">50</button>
+    <button data-preset="100">100</button>
+  </div>
+</div>
+
 <!-- ============================== HERO ============================== -->
 <div class="hero">
   <div class="badge">CONFIDENTIAL · 內部評估</div>
   <h1>JYC 怡盛智慧管理系統</h1>
   <div class="sub">運營成本 × 分階段導入 × 報價策略</div>
-  <div class="meta">2026 年 4 月 28 日 · 33 案場高端住宅 · 月費制 + 分階段</div>
+  <div class="meta">2026 年 4 月 28 日 · <span data-bind="N">33</span> 案場高端住宅 · 月費制 + 分階段</div>
 
   <div class="kpi-row">
     <div class="kpi">
       <div class="label">案場規模</div>
-      <div class="value">33</div>
+      <div class="value" data-bind="N">33</div>
       <div class="unit">高端住宅社區</div>
     </div>
     <div class="kpi">
       <div class="label">建議月收</div>
-      <div class="value">NT$ 165K</div>
-      <div class="unit">完整版 × 33 案場</div>
+      <div class="value" data-bind="monthly-k">NT$ 165K</div>
+      <div class="unit">完整版 × <span data-bind="N">33</span> 案場</div>
     </div>
     <div class="kpi">
       <div class="label">毛利率</div>
-      <div class="value">96%</div>
+      <div class="value" data-bind="margin">96%</div>
       <div class="unit">不含人力維運</div>
     </div>
   </div>
@@ -649,8 +755,8 @@
         <li>升降級彈性高、退場成本低</li>
       </ul>
       <div class="price-foot">
-        <div class="num">NT$ 165K<small>/月</small></div>
-        <div class="desc">完整版 × 33 案場</div>
+        <div class="num"><span data-bind="monthly-k">NT$ 165K</span><small>/月</small></div>
+        <div class="desc">完整版 × <span data-bind="N">33</span> 案場</div>
       </div>
     </div>
 
@@ -747,18 +853,18 @@
       </div>
       <div class="dash-stat cyan">
         <div class="label">建議月收</div>
-        <div class="num">NT$ 165K</div>
-        <div class="sub">完整版 × 33 案場</div>
+        <div class="num" data-bind="monthly-k">NT$ 165K</div>
+        <div class="sub">完整版 × <span data-bind="N">33</span> 案場</div>
       </div>
       <div class="dash-stat cyan">
         <div class="label">毛利率</div>
-        <div class="num">96%</div>
-        <div class="sub">不含人力維運</div>
+        <div class="num" data-bind="margin">96%</div>
+        <div class="sub" data-bind="margin-note">不含人力維運</div>
       </div>
       <div class="dash-stat gold">
         <div class="label">第一年淨利</div>
-        <div class="num">NT$ 836K</div>
-        <div class="sub">完整版報價</div>
+        <div class="num" data-bind="year1-profit">NT$ 836K</div>
+        <div class="sub" data-bind="year1-note">完整版報價</div>
       </div>
       <div class="dash-stat gold">
         <div class="label">導入時程</div>
@@ -777,6 +883,80 @@
   <p>JYC 怡盛物業智慧管理系統 · 運營與報價方案 · 2026-04-28</p>
   <p>本文件僅供內部評估使用 · CONFIDENTIAL</p>
 </footer>
+
+<script>
+  const FEE = 5000;
+  const OPS_MID = 7010;
+  const ANNUAL_OPS_MID = OPS_MID * 12;
+  const DEV_COST = 1060000;
+  const BREAKEVEN = Math.ceil((ANNUAL_OPS_MID + DEV_COST) / (FEE * 12));
+
+  function fmtK(n) {
+    const sign = n < 0 ? '-' : '';
+    const abs = Math.abs(n);
+    if (abs >= 1000000) return `NT$ ${sign}${(abs / 1000000).toFixed(2)}M`;
+    if (abs >= 1000) return `NT$ ${sign}${Math.round(abs / 1000)}K`;
+    return `NT$ ${sign}${abs}`;
+  }
+
+  function update(N) {
+    N = Math.max(1, Math.min(200, parseInt(N) || 1));
+    const monthly = N * FEE;
+    const annual = monthly * 12;
+    const monthlyProfit = monthly - OPS_MID;
+    const marginPct = monthly > 0 ? Math.round(monthlyProfit / monthly * 100) : 0;
+    const year1Profit = annual - ANNUAL_OPS_MID - DEV_COST;
+
+    document.querySelectorAll('[data-bind="N"]').forEach(el => el.textContent = N);
+    document.querySelectorAll('[data-bind="monthly-k"]').forEach(el => el.textContent = fmtK(monthly));
+
+    document.querySelectorAll('[data-bind="margin"]').forEach(el => {
+      el.textContent = marginPct + '%';
+      el.classList.toggle('red', marginPct < 0);
+    });
+
+    document.querySelectorAll('[data-bind="margin-note"]').forEach(el => {
+      el.textContent = marginPct < 0 ? '⚠️ 案場太少不敷成本' : '不含人力維運';
+    });
+
+    document.querySelectorAll('[data-bind="year1-profit"]').forEach(el => {
+      el.textContent = fmtK(year1Profit);
+      el.classList.toggle('red', year1Profit < 0);
+    });
+
+    document.querySelectorAll('[data-bind="year1-note"]').forEach(el => {
+      el.textContent = year1Profit < 0 ? `需 ${BREAKEVEN}+ 案場才回收` : '完整版報價';
+    });
+
+    const input = document.getElementById('site-input');
+    const slider = document.getElementById('site-slider');
+    if (input && document.activeElement !== input) input.value = N;
+    if (slider && N <= 100) slider.value = N;
+
+    document.querySelectorAll('.adjuster-presets button').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.preset) === N);
+    });
+  }
+
+  function adjustSites(delta) {
+    const cur = parseInt(document.getElementById('site-input').value) || 33;
+    update(cur + delta);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('site-input');
+    const slider = document.getElementById('site-slider');
+
+    input.addEventListener('input', () => update(input.value));
+    slider.addEventListener('input', () => update(slider.value));
+
+    document.querySelectorAll('.adjuster-presets button').forEach(btn => {
+      btn.addEventListener('click', () => update(parseInt(btn.dataset.preset)));
+    });
+
+    update(33);
+  });
+</script>
 
 </body>
 </html>
