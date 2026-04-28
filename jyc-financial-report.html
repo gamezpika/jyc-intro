@@ -120,53 +120,91 @@
   .red { color: #f87171 !important; }
   .red-soft { color: #fca5a5 !important; }
 
-  /* =============== HIGHLIGHTS =============== */
-  .highlights {
+  /* =============== MODULES (功能總覽) =============== */
+  .modules {
     margin: 0 0 56px;
     padding: 28px 30px;
     border-radius: 18px;
     background: linear-gradient(135deg, #faf5ff 0%, #f0fdff 50%, #f0fdf4 100%);
     border: 1px solid #e9d5ff;
   }
-  .highlights-head {
+  .modules-head {
     display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
     margin-bottom: 18px;
   }
-  .hl-tag {
-    background: linear-gradient(90deg, var(--purple), var(--pink));
+  .modules-tag {
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
     color: white;
     padding: 4px 12px; border-radius: 6px;
     font-size: 11px; font-weight: 800; letter-spacing: 1px;
   }
-  .highlights-head h3 {
+  .modules-head h3 {
     font-size: 17px; font-weight: 800; color: var(--ink);
     margin: 0;
   }
-  .highlights-head .meta {
+  .modules-head .meta {
     font-size: 13px; color: var(--gray-500); margin-left: auto;
   }
-  .highlights-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-  }
-  .hl-card {
+
+  .role-block {
     background: white;
-    border-radius: 12px;
-    padding: 14px 16px;
-    display: flex; align-items: flex-start; gap: 12px;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    border-left: 4px solid var(--purple);
+    box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  }
+  .role-block.cyan { border-left-color: var(--cyan); }
+  .role-block.green { border-left-color: var(--green); }
+  .role-block:last-child { margin-bottom: 0; }
+  .role-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .role-icon-large { font-size: 22px; }
+  .role-name { font-size: 15px; font-weight: 800; color: var(--ink); }
+  .role-pill {
+    background: #ede9fe; color: var(--purple-dark);
+    padding: 2px 10px; border-radius: 999px;
+    font-size: 11.5px; font-weight: 700;
+  }
+  .role-block.cyan .role-pill { background: #cffafe; color: #0e7490; }
+  .role-block.green .role-pill { background: #d1fae5; color: #047857; }
+  .role-meta { font-size: 12.5px; color: var(--gray-500); margin-left: auto; }
+  .modules-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  }
+  .m-card {
+    background: var(--gray-50);
+    border-radius: 10px;
+    padding: 11px 13px;
+    font-size: 12.5px; color: var(--gray-700); line-height: 1.5;
     border: 1px solid var(--gray-100);
+    display: flex; align-items: flex-start; gap: 8px;
   }
-  .hl-icon {
-    width: 36px; height: 36px; border-radius: 9px;
-    background: linear-gradient(135deg, var(--purple), var(--cyan));
+  .m-card .m-icon { font-size: 16px; flex-shrink: 0; line-height: 1; padding-top: 1px; }
+  .m-card .m-text { flex: 1; min-width: 0; }
+  .m-card .m-name { font-weight: 800; color: var(--ink); font-size: 13px; }
+  .m-card .m-desc { color: var(--gray-500); font-size: 11.5px; line-height: 1.45; margin-top: 2px; }
+  .m-card.featured {
+    background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+    border-color: #fbbf24;
+    box-shadow: 0 4px 14px rgba(245,158,11,0.18);
+  }
+  .m-card.featured .m-name { color: #92400e; }
+  .m-card.featured .m-desc { color: #b45309; }
+  .wip-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #f59e0b, #ef4444);
     color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
+    padding: 1px 7px; border-radius: 5px;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
+    margin-left: 5px; vertical-align: 2px;
   }
-  .hl-card .info { flex: 1; min-width: 0; }
-  .hl-card .name { font-size: 14px; font-weight: 800; color: var(--ink); margin-bottom: 2px; }
-  .hl-card .desc { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+
   @media (max-width: 720px) {
-    .highlights-grid { grid-template-columns: 1fr; }
+    .modules-grid { grid-template-columns: 1fr; }
+    .role-meta { margin-left: 0; width: 100%; }
   }
 
   /* =============== HERO =============== */
@@ -633,54 +671,190 @@
   </div>
 </div>
 
-<!-- ============================== HIGHLIGHTS · 本版新增亮點 ============================== -->
-<div class="highlights">
-  <div class="highlights-head">
-    <span class="hl-tag">2026-04 NEW</span>
-    <h3>本版新增功能亮點</h3>
-    <span class="meta">4/15 → 4/28 兩週內，工時 +470 hr</span>
+<!-- ============================== MODULES · 整體功能總覽 ============================== -->
+<div class="modules">
+  <div class="modules-head">
+    <span class="modules-tag">FUNCTIONS</span>
+    <h3>整體功能模組總覽</h3>
+    <span class="meta">三種角色 × 三個入口 × 共用後端</span>
   </div>
-  <div class="highlights-grid">
-    <div class="hl-card">
-      <div class="hl-icon">🤖</div>
-      <div class="info">
-        <div class="name">AI 排班引擎</div>
-        <div class="desc">自動月排班、規則校正、機動派遣矩陣（Phase 3）</div>
+
+  <div class="role-block">
+    <div class="role-head">
+      <span class="role-icon-large">🖥️</span>
+      <span class="role-name">管理者</span>
+      <span class="role-pill">Web 後台</span>
+      <span class="role-meta">跨案場統籌、員工/住戶/服務全管</span>
+    </div>
+    <div class="modules-grid">
+      <div class="m-card">
+        <span class="m-icon">🏘️</span>
+        <div class="m-text">
+          <div class="m-name">多社區架構</div>
+          <div class="m-desc">community_id 全表、切換器、新建 Wizard 4 步驟</div>
+        </div>
+      </div>
+      <div class="m-card featured">
+        <span class="m-icon">🤖</span>
+        <div class="m-text">
+          <div class="m-name">AI 排班引擎<span class="wip-badge">🚧 進行中</span></div>
+          <div class="m-desc">自動月排班、規則校正、機動派遣矩陣（Phase 3）</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">📋</span>
+        <div class="m-text">
+          <div class="m-name">員工總表 14 欄</div>
+          <div class="m-desc">員編 / 居住 / 排班特性 / 機動，對齊客戶 Excel</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">💰</span>
+        <div class="m-text">
+          <div class="m-name">薪資公式引擎</div>
+          <div class="m-desc">加班費率、勞健保級距、薪資單試算/發放/匯出</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">📊</span>
+        <div class="m-text">
+          <div class="m-name">決策看板</div>
+          <div class="m-desc">員工績效加權（工單×0.6 + 評分×0.4）</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">📑</span>
+        <div class="m-text">
+          <div class="m-name">報價合約</div>
+          <div class="m-desc">精靈建報價、客戶簽署、自動產合約、續約看板</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">🅿️</span>
+        <div class="m-text">
+          <div class="m-name">車位池管理</div>
+          <div class="m-desc">訪客/住戶分類、衝突檢查、no-show 自動釋出</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">📅</span>
+        <div class="m-text">
+          <div class="m-name">行事曆系統</div>
+          <div class="m-desc">Quill 富文本、附件、對內外 scope、iCal 訂閱</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">🧑</span>
+        <div class="m-text">
+          <div class="m-name">招募管理</div>
+          <div class="m-desc">candidate 狀態、見習轉正、面試評分</div>
+        </div>
       </div>
     </div>
-    <div class="hl-card">
-      <div class="hl-icon">🏘️</div>
-      <div class="info">
-        <div class="name">多社區架構</div>
-        <div class="desc">community_id 全表支援、切換器、新建 Wizard 4 步驟</div>
+  </div>
+
+  <div class="role-block cyan">
+    <div class="role-head">
+      <span class="role-icon-large">🤖</span>
+      <span class="role-name">員工</span>
+      <span class="role-pill">Telegram Bot</span>
+      <span class="role-meta">AI 任務萃取、行動裝置接工單</span>
+    </div>
+    <div class="modules-grid">
+      <div class="m-card">
+        <span class="m-icon">🔧</span>
+        <div class="m-text">
+          <div class="m-name">AI 工單萃取</div>
+          <div class="m-desc">群組訊息自動轉任務、子任務拆解、結案 NL</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">🛡️</span>
+        <div class="m-text">
+          <div class="m-name">AI 防 hallucinate</div>
+          <div class="m-desc">raw_evidence 必填比對、禁止場景聯想</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">📍</span>
+        <div class="m-text">
+          <div class="m-name">地理圍欄打卡</div>
+          <div class="m-desc">haversine 距離、容許半徑可設、超出擋下</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">🍃</span>
+        <div class="m-text">
+          <div class="m-name">請假/加班/補卡</div>
+          <div class="m-desc">Mini App 申請、主管 inline 審批、額度檢查</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">📅</span>
+        <div class="m-text">
+          <div class="m-name">我的班表</div>
+          <div class="m-desc">Mini App 月份切換、班次顯示、當日推播</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">⭐</span>
+        <div class="m-text">
+          <div class="m-name">收評分通知</div>
+          <div class="m-desc">收到匿名評分即時推播、排行榜可見</div>
+        </div>
       </div>
     </div>
-    <div class="hl-card">
-      <div class="hl-icon">📋</div>
-      <div class="info">
-        <div class="name">員工總表 14 欄</div>
-        <div class="desc">員編 / 居住 / 排班特性 / 機動標記，對齊客戶 Excel</div>
-      </div>
+  </div>
+
+  <div class="role-block green">
+    <div class="role-head">
+      <span class="role-icon-large">📱</span>
+      <span class="role-name">住戶</span>
+      <span class="role-pill">LINE 官方帳號</span>
+      <span class="role-meta">綁門牌後自助 6+6 格 Rich Menu</span>
     </div>
-    <div class="hl-card">
-      <div class="hl-icon">⭐</div>
-      <div class="info">
-        <div class="name">服務評分系統</div>
-        <div class="desc">LIFF 匿名評分 + 後台統計 + 員工排行榜 🥇🥈🥉</div>
+    <div class="modules-grid">
+      <div class="m-card">
+        <span class="m-icon">🚪</span>
+        <div class="m-text">
+          <div class="m-name">訪客預約</div>
+          <div class="m-desc">LIFF 表單、QR 掃碼放行、商業訪客收款</div>
+        </div>
       </div>
-    </div>
-    <div class="hl-card">
-      <div class="hl-icon">📅</div>
-      <div class="info">
-        <div class="name">行事曆富文本 + 公告</div>
-        <div class="desc">Quill 編輯 + 附件 + 對內外 scope 分流 + 獨立公告功能</div>
+      <div class="m-card">
+        <span class="m-icon">🔧</span>
+        <div class="m-text">
+          <div class="m-name">報修流程</div>
+          <div class="m-desc">LIFF 拍照上傳、TG 橋接員工接單、進度通知</div>
+        </div>
       </div>
-    </div>
-    <div class="hl-card">
-      <div class="hl-icon">🛡️</div>
-      <div class="info">
-        <div class="name">AI 防 hallucinate</div>
-        <div class="desc">raw_evidence 必填比對、禁止場景聯想、避免 AI 捏造任務</div>
+      <div class="m-card">
+        <span class="m-icon">📦</span>
+        <div class="m-text">
+          <div class="m-name">公設預約</div>
+          <div class="m-desc">健身房/交誼廳/KTV 等模板，動態查空檔</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">📢</span>
+        <div class="m-text">
+          <div class="m-name">社區公告</div>
+          <div class="m-desc">Quill 富文本、圖片 inline、附件下載、置頂</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">⭐</span>
+        <div class="m-text">
+          <div class="m-name">匿名評分</div>
+          <div class="m-desc">服務類別/員工，5 星 + 意見、24h 防刷</div>
+        </div>
+      </div>
+      <div class="m-card">
+        <span class="m-icon">🏠</span>
+        <div class="m-text">
+          <div class="m-name">戶籍綁定</div>
+          <div class="m-desc">預建門牌三層下拉、自動帶 LINE 名、可換戶</div>
+        </div>
       </div>
     </div>
   </div>
