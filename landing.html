@@ -303,6 +303,44 @@
     padding: 0 24px 20px; color: var(--muted); font-size: 14px; line-height: 1.7;
   }
 
+  /* 6 features grid */
+  .features-6 {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .feat-6 {
+    padding: 28px 24px; border-radius: 16px;
+    background: var(--card); border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm); transition: all 0.3s;
+  }
+  .feat-6:hover {
+    border-color: rgba(139,92,246,0.4);
+    transform: translateY(-3px); box-shadow: var(--shadow-md);
+  }
+  .feat-6 .ico { font-size: 40px; margin-bottom: 14px; }
+  .feat-6 h3 { font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+  .feat-6 p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  @media (max-width: 900px) { .features-6 { grid-template-columns: 1fr; } }
+
+  /* Compare table toggle */
+  .compare-toggle {
+    margin-top: 32px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden;
+  }
+  .compare-toggle summary {
+    padding: 16px 24px; cursor: pointer;
+    font-weight: 600; font-size: 15px;
+    list-style: none; text-align: center;
+  }
+  .compare-toggle summary::-webkit-details-marker { display: none; }
+  .compare-toggle summary::after {
+    content: "▼"; margin-left: 8px; font-size: 11px;
+    color: var(--cyan); display: inline-block; transition: transform 0.2s;
+  }
+  .compare-toggle[open] summary::after { transform: rotate(180deg); }
+  .compare-toggle .pricing-table-wrap { padding: 0 16px 16px; }
+  .compare-toggle .pricing-table { border: none; box-shadow: none; }
+
   /* Plan cards (3) */
   .plan-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .plan-card {
@@ -527,126 +565,47 @@
   </div>
 </section>
 
-<!-- 5-11. DEEP FEATURES (7 sections) -->
+<!-- FEATURES: 6 cards -->
 <section id="features">
   <div class="container">
     <div class="section-title">
       <span class="tag">CORE FEATURES</span>
-      <h2>核心功能 · <span class="grad">七大主打</span></h2>
-      <p>社區管理 + 企業 HR 一次到位，下方一站式生命週期完整列出全部功能</p>
+      <h2>核心功能 · <span class="grad">六大主打</span></h2>
+      <p>社區管理 + 企業 HR 一次到位</p>
+    </div>
+    <div class="features-6">
+      <div class="feat-6">
+        <div class="ico">🤖</div>
+        <h3>AI 自動建工單</h3>
+        <p>主管拍照丟給 Bot，AI 萃取出維修任務、自動指派、設到期日。嚴格 raw_evidence 比對防 hallucinate。</p>
+      </div>
+      <div class="feat-6">
+        <div class="ico">🏢</div>
+        <h3>多社區統一管理</h3>
+        <p>左上社區切換器一拉即切。每個案場資料隔離、員工可跨社區排班。新建社區 4 步驟 wizard。</p>
+      </div>
+      <div class="feat-6">
+        <div class="ico">💬</div>
+        <h3>LINE + Telegram 雙 App</h3>
+        <p>住戶用最熟的 LINE 報修預約，員工用 Telegram Mini App 處理工單。LIFF 綁定門牌三層下拉。</p>
+      </div>
+      <div class="feat-6">
+        <div class="ico">🚗</div>
+        <h3>訪客預約 + 車位 + QR</h3>
+        <p>住戶 LIFF 線上預約，自動配車位、發 QR。警衛掃碼放行即時推播住戶。No-show 自動釋放車位。</p>
+      </div>
+      <div class="feat-6">
+        <div class="ico">⏰</div>
+        <h3>HR 套裝</h3>
+        <p>定位打卡（GPS 擋下異地）、線上排班、請假/加班/補卡 Mini App、薪資公式引擎含勞健保級距。</p>
+      </div>
+      <div class="feat-6">
+        <div class="ico">⭐</div>
+        <h3>服務評分 + 後台</h3>
+        <p>住戶 LIFF 匿名評（5 星 + 文字），SHA256 hash 防刷。後台統計：服務平均、員工排行 🥇🥈🥉。</p>
+      </div>
     </div>
 
-    <!-- 5. AI 自動建工單 -->
-    <div class="deep-feat">
-      <div class="deep-text">
-        <span class="step">FEATURE 01</span>
-        <h3>AI 自動建工單 — 拍張照就好</h3>
-        <p>巡邏發現問題？拍照丟給 Bot，AI 自動萃取出維修任務、指派負責人、設定到期日。再也不用人工輸入。</p>
-        <ul>
-          <li>主管 TG 拍照 → AI 萃取任務（位置、項目、急迫性）</li>
-          <li>嚴格 raw_evidence 比對，禁止場景聯想（防 AI 亂編）</li>
-          <li>自動指派 + 推播給負責員工</li>
-          <li>員工 LINE 收到通知 → 完工回報拍照結案</li>
-        </ul>
-      </div>
-      <div class="deep-visual"><div><div class="big-icon">🤖</div><div class="visual-label">AI VISION + EXTRACT</div></div></div>
-    </div>
-
-    <!-- 6. 多社區管理 -->
-    <div class="deep-feat">
-      <div class="deep-text">
-        <span class="step">FEATURE 02</span>
-        <h3>多社區統一管理 — 一個後台管 N 個案場</h3>
-        <p>左上社區切換器一拉，所有資料即時切換。總公司不用一個一個開 Excel，案場資料、員工、車位、公告全部隔離又互通。</p>
-        <ul>
-          <li>每個案場獨立戶數、車位、員工、公告</li>
-          <li>共用員工跨社區排班（機動人員）</li>
-          <li>後台 cookie 自動注入 community_id 過濾</li>
-          <li>新建社區 Wizard：基本→門牌→車位→公設 4 步驟</li>
-        </ul>
-      </div>
-      <div class="deep-visual"><div><div class="big-icon">🏢</div><div class="visual-label">MULTI-SITE CONTROL</div></div></div>
-    </div>
-
-    <!-- 7. LINE + TG 雙 App -->
-    <div class="deep-feat">
-      <div class="deep-text">
-        <span class="step">FEATURE 03</span>
-        <h3>LINE 住戶端 + Telegram 員工端</h3>
-        <p>住戶用最熟的 LINE 報修預約，員工用 Telegram 處理工單。各自最方便的工具，後台統一整合。</p>
-        <ul>
-          <li>住戶 LINE Rich Menu 雙 Tab：服務 / 互動</li>
-          <li>員工 Telegram Mini App：打卡/班表/請假/補卡</li>
-          <li>LIFF 綁定門牌：棟→樓→戶 三層下拉</li>
-          <li>主管 inline button 審批，結果即時推播</li>
-        </ul>
-      </div>
-      <div class="deep-visual"><div><div class="big-icon">💬</div><div class="visual-label">DUAL CHANNEL · LINE + TG</div></div></div>
-    </div>
-
-    <!-- 8. 訪客預約 + 車位 -->
-    <div class="deep-feat">
-      <div class="deep-text">
-        <span class="step">FEATURE 04</span>
-        <h3>訪客預約 + 車位池 + QR 通行</h3>
-        <p>住戶 LINE 線上預約，系統自動配車位，發 QR 給訪客。警衛掃碼放行，即時推播住戶。</p>
-        <ul>
-          <li>私人 / 商業 訪客分流（商業需確認收款）</li>
-          <li>車位池即時可用 / 衝突檢查（race-safe）</li>
-          <li>QR Code 自動生成，shareTargetPicker 一鍵傳訪客</li>
-          <li>No-show 自動釋放車位（寬限期可設定）</li>
-        </ul>
-      </div>
-      <div class="deep-visual"><div><div class="big-icon">🚗</div><div class="visual-label">VISITOR + PARKING</div></div></div>
-    </div>
-
-    <!-- 9. HR 套裝 -->
-    <div class="deep-feat">
-      <div class="deep-text">
-        <span class="step">FEATURE 05</span>
-        <h3>HR 套裝 — 打卡 / 排班 / 薪資全包</h3>
-        <p>從打卡到出薪一條龍。中小企業 HR 不用再買三套系統。</p>
-        <ul>
-          <li>定位打卡：haversine 距離計算，超範圍擋下</li>
-          <li>線上排班：互動月曆，換人加人彈窗，工時統計</li>
-          <li>請假額度自動算（含已申請未核可）</li>
-          <li>薪資公式引擎 + 勞健保級距 + CSV 匯出</li>
-        </ul>
-      </div>
-      <div class="deep-visual"><div><div class="big-icon">⏰</div><div class="visual-label">HR · ATTENDANCE TO PAYROLL</div></div></div>
-    </div>
-
-    <!-- 10. 公告 + 行事曆 -->
-    <div class="deep-feat">
-      <div class="deep-text">
-        <span class="step">FEATURE 06</span>
-        <h3>社區公告 + 行事曆 對內外分流</h3>
-        <p>同一個後台，社區活動推給住戶 LINE，公司內部會議只給員工看，scope 自動隔離。</p>
-        <ul>
-          <li>公告：Quill 富文本編輯器 + 附件 + 置頂</li>
-          <li>行事曆：scope=community 給住戶 / scope=company 給員工</li>
-          <li>iCal 訂閱（員工版），LINE LIFF 月曆 view（住戶版）</li>
-          <li>社區類別獨立管理，不會混到內部行事曆</li>
-        </ul>
-      </div>
-      <div class="deep-visual"><div><div class="big-icon">📅</div><div class="visual-label">ANNOUNCE + CALENDAR</div></div></div>
-    </div>
-
-    <!-- 11. 服務評分 + 後台 -->
-    <div class="deep-feat">
-      <div class="deep-text">
-        <span class="step">FEATURE 07</span>
-        <h3>服務評分 + 後台儀表板</h3>
-        <p>住戶 LIFF 匿名評分，後台看排行榜。SHA256 hash 防刷，員工 KPI 一目了然。</p>
-        <ul>
-          <li>雙 Tab：評服務類別 / 評員工</li>
-          <li>5 星 + 文字意見（選填），匿名提交</li>
-          <li>24 小時防重複評同對象（hash 比對）</li>
-          <li>後台統計：服務平均、員工排行 🥇🥈🥉</li>
-        </ul>
-      </div>
-      <div class="deep-visual"><div><div class="big-icon">⭐</div><div class="visual-label">RATING + ANALYTICS</div></div></div>
-    </div>
   </div>
 </section>
 
@@ -677,121 +636,6 @@
   </div>
 </section>
 
-<!-- 14. PRICING MAIN CARD -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">RECOMMENDED PLAN</span>
-      <h2>完整版 · <span class="grad">最受歡迎</span></h2>
-      <p>LINE 住戶端 + AI 排班 + 服務評分 一次到位</p>
-    </div>
-    <div class="pricing-main">
-      <span class="hot">★ 最熱門選擇</span>
-      <h3>完整版</h3>
-      <div class="price">$6,000</div>
-      <div class="price-unit">每案場 / 每月</div>
-      <ul>
-        <li>含基礎版全部功能（TG 員工管理 + 多社區）</li>
-        <li>LINE 住戶端（訪客 / 報修 / 公告 / 包裹 / 公設 / 繳費）</li>
-        <li>AI 自動建工單（拍照即建單）</li>
-        <li>AI 智慧排班</li>
-        <li>服務評分系統（住戶匿名評）</li>
-        <li>多社區統一後台</li>
-      </ul>
-      <a href="#contact" class="cta">立即諮詢</a>
-    </div>
-  </div>
-</section>
-
-<!-- 15. PRICING COMPARISON TABLE -->
-<section>
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">PLAN COMPARISON</span>
-      <h2>三檔方案 · <span class="grad">功能比對</span></h2>
-    </div>
-    <div class="pricing-table-wrap">
-      <table class="pricing-table">
-        <thead>
-          <tr>
-            <th>功能項目</th>
-            <th class="center">基礎版</th>
-            <th class="center featured">完整版 ★</th>
-            <th class="center">旗艦版</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>月費 / 案場</strong></td>
-            <td class="center">$4,000</td>
-            <td class="center featured-col"><strong>$6,000</strong></td>
-            <td class="center">$10,000 起</td>
-          </tr>
-          <tr>
-            <td>TG 員工管理（打卡 / 排班 / 請假 / 補卡）</td>
-            <td class="center"><span class="check">✓</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>多社區統一管理</td>
-            <td class="center"><span class="check">✓</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>出勤報表 + CSV 匯出</td>
-            <td class="center"><span class="check">✓</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>員工 / 部門管理</td>
-            <td class="center"><span class="check">✓</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>LINE 住戶端（訪客 / 報修 / 公告 / 包裹 / 公設 / 繳費）</td>
-            <td class="center"><span class="dash">—</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>AI 自動建工單</td>
-            <td class="center"><span class="dash">—</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>AI 智慧排班</td>
-            <td class="center"><span class="dash">—</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>服務評分系統</td>
-            <td class="center"><span class="dash">—</span></td>
-            <td class="center featured-col"><span class="check">✓</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>自動算薪（含勞健保級距）</td>
-            <td class="center"><span class="dash">—</span></td>
-            <td class="center featured-col"><span class="dash">—</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>客製化功能 / 專屬窗口 / SLA</td>
-            <td class="center"><span class="dash">—</span></td>
-            <td class="center featured-col"><span class="dash">—</span></td>
-            <td class="center"><span class="check">✓</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
 
 <!-- 16. FAQ -->
 <section id="faq">
@@ -814,14 +658,6 @@
         <div class="faq-body">可以。Excel/CSV 格式都能匯入：員工姓名、員編、部門、職位、聯絡方式、薪資基準等欄位，導入時由我們協助一次處理完。</div>
       </details>
       <details class="faq-item">
-        <summary>多個社區會互相干擾嗎？</summary>
-        <div class="faq-body">不會。每個案場資料完全隔離（戶數、車位、員工、公告各自獨立）。共用的只有「機動人員」可跨社區排班，但工時、薪資仍按各社區拆算。</div>
-      </details>
-      <details class="faq-item">
-        <summary>定位打卡會不會誤判？員工說在公司但其實沒到？</summary>
-        <div class="faq-body">系統用 GPS haversine 距離計算，超出設定半徑（10-2000 公尺可調）會直接擋下，不寫入打卡紀錄。電腦版 Telegram 會用 Wi-Fi 三角定位精度差，建議規定員工用手機版打卡。</div>
-      </details>
-      <details class="faq-item">
         <summary>薪資公式可以客製嗎？我們有自己的加班費算法</summary>
         <div class="faq-body">旗艦版內建台灣勞基法公式（平日加班 1.34/1.67、休息日 1.34/1.67/2.67、勞健保級距）。客製公式（如績效獎金、特殊補貼計算）可依貴公司規則調整。基礎版/完整版內建出勤統計但不含自動算薪。</div>
       </details>
@@ -829,28 +665,16 @@
         <summary>可以先試用看看嗎？</summary>
         <div class="faq-body">可以。提供 14 天免費試用 1 個案場 / 5 名員工。試用期間完整功能不限制，期滿可選方案正式導入或結束。</div>
       </details>
-      <details class="faq-item">
-        <summary>資料安全嗎？</summary>
-        <div class="faq-body">所有資料採 HTTPS 加密傳輸，住戶 LINE ID 用 SHA256 hash 後再儲存（評分功能）。後台需登入，每個請求都有審計日誌。LINE / Telegram 平台本身亦提供端對端加密通訊。</div>
-      </details>
-      <details class="faq-item">
-        <summary>報價之外還有什麼費用？</summary>
-        <div class="faq-body">月費包含：系統使用、雲端託管、AI API 用量、技術支援、版本更新。一次性導入費依方案規模另計，可在試營運後再收。無耗材、無人數限制。</div>
-      </details>
-      <details class="faq-item">
-        <summary>可以中途升級或降級方案嗎？</summary>
-        <div class="faq-body">可以。基礎版 → 完整版 → 旗艦版 隨時升級，資料無縫接軌。降級需評估資料保留範圍（部分功能模組關閉後資料會封存但不刪除）。</div>
-      </details>
     </div>
   </div>
 </section>
 
-<!-- 17. PLAN CARDS (3) -->
-<section>
+<!-- PRICING: 3 plans + collapsible compare -->
+<section id="pricing">
   <div class="container">
     <div class="section-title">
-      <span class="tag">CHOOSE YOUR PLAN</span>
-      <h2>選擇適合你的方案</h2>
+      <span class="tag">PRICING</span>
+      <h2>三檔方案 · <span class="grad">選一個開始</span></h2>
     </div>
     <div class="plan-cards">
       <div class="plan-card">
@@ -896,58 +720,38 @@
         <a href="#contact" class="plan-cta">洽談需求</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 18. LIFECYCLE -->
-<section>
-  <div class="container">
-    <div class="section-title">
-      <span class="tag">ALL-IN-ONE</span>
-      <h2>一站式解決方案 · <span class="grad">完整生命週期</span></h2>
-      <p>從住戶搬入到員工發薪，全流程一個系統搞定</p>
-    </div>
-    <div class="lifecycle">
-      <div class="lifecycle-flow">
-        <div class="step">🏠 住戶綁定</div>
-        <span class="arrow">→</span>
-        <div class="step">🛎️ 日常服務</div>
-        <span class="arrow">→</span>
-        <div class="step">🔧 任務派發</div>
-        <span class="arrow">→</span>
-        <div class="step">⏰ 員工執行</div>
-        <span class="arrow">→</span>
-        <div class="step">💰 結薪統計</div>
+    <details class="compare-toggle">
+      <summary>📋 展開完整功能比較表</summary>
+      <div class="pricing-table-wrap">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>功能項目</th>
+              <th class="center">基礎版</th>
+              <th class="center featured">完整版 ★</th>
+              <th class="center">旗艦版</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>月費 / 案場</strong></td><td class="center">$4,000</td><td class="center featured-col"><strong>$6,000</strong></td><td class="center">$10,000 起</td></tr>
+            <tr><td>TG 員工管理（打卡 / 排班 / 請假 / 補卡）</td><td class="center"><span class="check">✓</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>多社區統一管理</td><td class="center"><span class="check">✓</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>出勤報表 + CSV 匯出</td><td class="center"><span class="check">✓</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>員工 / 部門管理</td><td class="center"><span class="check">✓</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>LINE 住戶端（訪客 / 報修 / 公告 / 包裹 / 公設 / 繳費）</td><td class="center"><span class="dash">—</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>AI 自動建工單</td><td class="center"><span class="dash">—</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>AI 智慧排班</td><td class="center"><span class="dash">—</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>服務評分系統</td><td class="center"><span class="dash">—</span></td><td class="center featured-col"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>自動算薪（含勞健保級距）</td><td class="center"><span class="dash">—</span></td><td class="center featured-col"><span class="dash">—</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>客製化功能 / 專屬窗口 / SLA</td><td class="center"><span class="dash">—</span></td><td class="center featured-col"><span class="dash">—</span></td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="lifecycle-icons">
-        <div class="lifecycle-icon"><div class="ico">🏘️</div><div class="label">門牌建檔</div></div>
-        <div class="lifecycle-icon"><div class="ico">🚗</div><div class="label">訪客預約</div></div>
-        <div class="lifecycle-icon"><div class="ico">📦</div><div class="label">包裹通知</div></div>
-        <div class="lifecycle-icon"><div class="ico">🔧</div><div class="label">報修工單</div></div>
-        <div class="lifecycle-icon"><div class="ico">🤖</div><div class="label">AI 派工</div></div>
-        <div class="lifecycle-icon"><div class="ico">📍</div><div class="label">定位打卡</div></div>
-        <div class="lifecycle-icon"><div class="ico">📅</div><div class="label">線上排班</div></div>
-        <div class="lifecycle-icon"><div class="ico">📝</div><div class="label">請假審批</div></div>
-        <div class="lifecycle-icon"><div class="ico">📊</div><div class="label">出勤報表</div></div>
-        <div class="lifecycle-icon"><div class="ico">💰</div><div class="label">薪資計算</div></div>
-        <div class="lifecycle-icon"><div class="ico">⭐</div><div class="label">服務評分</div></div>
-        <div class="lifecycle-icon"><div class="ico">📢</div><div class="label">社區公告</div></div>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
-<!-- 20. FINAL CTA -->
-<section class="final-cta">
-  <h2>還在用 Excel 和 LINE 群組？<br><span class="grad">來，讓 AI 接手</span></h2>
-  <p>14 天免費試用 · 無綁約 · 不滿意隨時取消</p>
-  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-    <a href="#contact" class="cta">免費預約 Demo →</a>
-    <a href="#pricing" class="cta-ghost">看完整方案</a>
-  </div>
-</section>
-
-<!-- 21. CONTACT -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="section-title">
