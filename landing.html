@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JYC 智慧社區管理系統 · 重磅推出</title>
+<meta name="description" content="JYC 智慧社區管理系統 — 社區管理 × 企業 HR 一站式 AI 平台。LINE 住戶端 + Telegram 員工端，多社區統一管理。">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple: #8b5cf6;
+    --cyan: #06b6d4;
+    --pink: #ec4899;
+    --bg: #0a0a1a;
+    --bg2: #13132a;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --text: #e8e8f0;
+    --muted: #8b8ba7;
+    --green: #22c55e;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(600px at 10% 20%, rgba(139,92,246,0.15), transparent 60%),
+      radial-gradient(500px at 90% 30%, rgba(6,182,212,0.12), transparent 60%),
+      radial-gradient(700px at 50% 80%, rgba(236,72,153,0.10), transparent 60%);
+    z-index: -1; pointer-events: none;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(18px);
+    background: rgba(10,10,26,0.7);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .brand {
+    font-weight: 700; font-size: 18px; letter-spacing: 0.5px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  nav .links { display: flex; gap: 24px; align-items: center; }
+  nav .links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+  nav .nav-cta {
+    padding: 8px 18px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: white !important; font-weight: 600; font-size: 13px;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero { padding: 100px 24px 60px; text-align: center; }
+  .hero .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3);
+    font-size: 13px; color: #f9a8d4; margin-bottom: 24px; font-weight: 600;
+  }
+  .hero h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+  .hero h1 .grad {
+    background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 50%, var(--pink) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 680px; margin: 0 auto 36px; }
+  .hero .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta {
+    display: inline-flex; gap: 10px; align-items: center;
+    padding: 14px 28px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: white; text-decoration: none; font-weight: 600;
+    box-shadow: 0 10px 30px rgba(139,92,246,0.35);
+    transition: transform 0.2s;
+  }
+  .cta:hover { transform: translateY(-2px); }
+  .cta-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--card);
+    color: var(--text); text-decoration: none; font-weight: 600;
+  }
+  .cta-ghost:hover { border-color: rgba(139,92,246,0.4); }
+
+  /* Audience toggle */
+  .audience-toggle {
+    display: inline-flex; padding: 4px; gap: 4px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    border-radius: 999px; margin-bottom: 28px;
+  }
+  .audience-toggle button {
+    padding: 8px 18px; border-radius: 999px;
+    background: transparent; color: var(--muted);
+    border: none; cursor: pointer;
+    font-size: 14px; font-weight: 600;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .audience-toggle button.active {
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: white;
+  }
+
+  /* Sections */
+  section { padding: 70px 0; }
+  .section-title { text-align: center; margin-bottom: 48px; }
+  .section-title .tag {
+    font-size: 13px; font-weight: 700; letter-spacing: 2px; color: var(--cyan);
+    text-transform: uppercase; margin-bottom: 12px; display: block;
+  }
+  .section-title h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; }
+  .section-title h2 .grad {
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .section-title p { color: var(--muted); margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+  /* Pain Before/After */
+  .pain-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch;
+  }
+  .pain-card {
+    padding: 36px; border-radius: 20px;
+    background: var(--card); border: 1px solid var(--border);
+  }
+  .pain-card.before { border-color: rgba(239,68,68,0.25); background: linear-gradient(180deg, rgba(239,68,68,0.06), transparent); }
+  .pain-card.after { border-color: rgba(34,197,94,0.25); background: linear-gradient(180deg, rgba(34,197,94,0.06), transparent); }
+  .pain-card .label {
+    display: inline-block; font-size: 12px; padding: 4px 12px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 1px; margin-bottom: 16px;
+  }
+  .pain-card.before .label { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .pain-card.after .label { background: rgba(34,197,94,0.15); color: #86efac; }
+  .pain-card h3 { font-size: 20px; margin-bottom: 16px; }
+  .pain-card ul { list-style: none; }
+  .pain-card ul li {
+    padding: 10px 0 10px 28px; color: var(--muted); font-size: 15px;
+    border-bottom: 1px dashed var(--border); position: relative;
+  }
+  .pain-card ul li:last-child { border-bottom: none; }
+  .pain-card.before li::before { content: "✗"; position: absolute; left: 4px; color: #f87171; font-weight: 700; }
+  .pain-card.after li::before { content: "✓"; position: absolute; left: 4px; color: #4ade80; font-weight: 700; }
+
+  /* 12 Features grid */
+  .features-12 {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .feat-12 {
+    padding: 24px 20px; border-radius: 14px;
+    background: var(--card); border: 1px solid var(--border);
+    text-align: center; transition: all 0.3s;
+  }
+  .feat-12:hover { border-color: rgba(139,92,246,0.4); transform: translateY(-2px); }
+  .feat-12 .ico { font-size: 32px; margin-bottom: 10px; }
+  .feat-12 h4 { font-size: 15px; margin-bottom: 6px; font-weight: 700; }
+  .feat-12 p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .feat-12 .group {
+    display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 6px;
+    margin-bottom: 8px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .feat-12 .group.community { background: rgba(139,92,246,0.15); color: #c4b5fd; }
+  .feat-12 .group.hr { background: rgba(6,182,212,0.15); color: #67e8f9; }
+
+  /* Deep feature row */
+  .deep-feat {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    align-items: center; margin-bottom: 80px;
+  }
+  .deep-feat:nth-child(even) > .deep-text { order: 2; }
+  .deep-feat .deep-text .step {
+    display: inline-block; font-size: 12px; padding: 4px 12px; border-radius: 6px;
+    background: rgba(139,92,246,0.15); color: #c4b5fd;
+    font-weight: 700; letter-spacing: 1px; margin-bottom: 14px;
+  }
+  .deep-feat .deep-text h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; margin-bottom: 16px; line-height: 1.3; }
+  .deep-feat .deep-text > p { color: var(--muted); margin-bottom: 20px; font-size: 15px; }
+  .deep-feat .deep-text ul { list-style: none; }
+  .deep-feat .deep-text ul li {
+    padding: 8px 0 8px 26px; position: relative; font-size: 15px;
+  }
+  .deep-feat .deep-text ul li::before {
+    content: "▸"; position: absolute; left: 0; color: var(--cyan); font-weight: 700;
+  }
+  .deep-visual {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; min-height: 280px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    background-image:
+      linear-gradient(135deg, rgba(139,92,246,0.08), rgba(6,182,212,0.06));
+  }
+  .deep-visual .big-icon { font-size: 96px; }
+  .deep-visual .visual-label {
+    margin-top: 16px; font-size: 13px; color: var(--muted); letter-spacing: 1px;
+  }
+
+  /* Promises */
+  .promises { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .promise {
+    padding: 32px 24px; border-radius: 20px; text-align: center;
+    background: var(--card); border: 1px solid var(--border);
+  }
+  .promise.a { background: linear-gradient(180deg, rgba(139,92,246,0.1), transparent); border-color: rgba(139,92,246,0.3); }
+  .promise.b { background: linear-gradient(180deg, rgba(6,182,212,0.1), transparent); border-color: rgba(6,182,212,0.3); }
+  .promise.c { background: linear-gradient(180deg, rgba(236,72,153,0.1), transparent); border-color: rgba(236,72,153,0.3); }
+  .promise .ico { font-size: 44px; margin-bottom: 12px; }
+  .promise h3 { font-size: 22px; margin-bottom: 10px; }
+  .promise p { color: var(--muted); font-size: 14px; }
+
+  /* Pricing main card */
+  .pricing-main {
+    max-width: 580px; margin: 0 auto;
+    padding: 40px;
+    background: linear-gradient(180deg, rgba(139,92,246,0.12), rgba(6,182,212,0.08));
+    border: 1px solid rgba(139,92,246,0.4);
+    border-radius: 28px; text-align: center;
+    box-shadow: 0 20px 60px rgba(139,92,246,0.2);
+  }
+  .pricing-main .hot {
+    display: inline-block; padding: 6px 16px; border-radius: 999px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    color: #0a0a1a; font-weight: 700; font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .pricing-main h3 { font-size: 28px; margin-bottom: 12px; }
+  .pricing-main .price {
+    font-size: 56px; font-weight: 800;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1; margin-bottom: 4px;
+  }
+  .pricing-main .price-unit { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .pricing-main ul { list-style: none; text-align: left; margin-bottom: 28px; }
+  .pricing-main ul li {
+    padding: 8px 0 8px 28px; position: relative; font-size: 15px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pricing-main ul li::before { content: "✓"; position: absolute; left: 4px; color: #4ade80; font-weight: 700; }
+
+  /* Pricing comparison table */
+  .pricing-table-wrap { overflow-x: auto; }
+  .pricing-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .pricing-table th, .pricing-table td {
+    padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .pricing-table thead th {
+    background: rgba(255,255,255,0.04);
+    font-size: 13px; letter-spacing: 1px; color: var(--muted);
+    text-transform: uppercase;
+  }
+  .pricing-table thead th.featured {
+    color: #c4b5fd; background: rgba(139,92,246,0.1);
+  }
+  .pricing-table td.center { text-align: center; }
+  .pricing-table .check { color: #4ade80; font-weight: 700; }
+  .pricing-table .dash { color: var(--muted); }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-table .featured-col { background: rgba(139,92,246,0.05); }
+
+  /* FAQ */
+  .faq-list { max-width: 820px; margin: 0 auto; }
+  .faq-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 12px; overflow: hidden;
+  }
+  .faq-item summary {
+    padding: 18px 24px; cursor: pointer; font-weight: 600; font-size: 15px;
+    list-style: none; position: relative; padding-right: 50px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+"; position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+    font-size: 22px; color: var(--cyan); font-weight: 300; transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item .faq-body {
+    padding: 0 24px 20px; color: var(--muted); font-size: 14px; line-height: 1.7;
+  }
+
+  /* Plan cards (3) */
+  .plan-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .plan-card {
+    padding: 32px 24px; border-radius: 20px;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .plan-card:hover { transform: translateY(-4px); }
+  .plan-card.featured {
+    border-color: rgba(139,92,246,0.5);
+    background: linear-gradient(180deg, rgba(139,92,246,0.12), rgba(6,182,212,0.06));
+    box-shadow: 0 20px 60px rgba(139,92,246,0.2);
+    position: relative;
+  }
+  .plan-card.featured::before {
+    content: "★ 最熱門"; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    padding: 6px 16px; border-radius: 999px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    color: #0a0a1a; font-weight: 700; font-size: 12px;
+    box-shadow: 0 4px 12px rgba(251,191,36,0.4);
+  }
+  .plan-card .plan-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .plan-card .plan-target { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+  .plan-card .plan-price {
+    font-size: 36px; font-weight: 800; line-height: 1;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .plan-card .plan-unit { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 24px; }
+  .plan-card ul { list-style: none; flex-grow: 1; margin-bottom: 24px; }
+  .plan-card ul li { padding: 6px 0 6px 22px; font-size: 13px; position: relative; color: var(--muted); }
+  .plan-card ul li::before { content: "✓"; position: absolute; left: 0; color: #4ade80; font-weight: 700; }
+  .plan-card .plan-cta {
+    display: block; padding: 12px; border-radius: 999px; text-align: center;
+    text-decoration: none; font-weight: 600; font-size: 14px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text); transition: all 0.2s;
+  }
+  .plan-card.featured .plan-cta {
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: white; border-color: transparent;
+  }
+  .plan-card .plan-cta:hover { transform: translateY(-1px); }
+
+  /* Lifecycle */
+  .lifecycle {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 40px;
+  }
+  .lifecycle-flow {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 32px;
+  }
+  .lifecycle-flow .step {
+    padding: 12px 18px; border-radius: 12px;
+    background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.3);
+    font-size: 14px; font-weight: 600;
+  }
+  .lifecycle-flow .arrow { color: var(--muted); align-self: center; font-size: 20px; }
+  .lifecycle-icons {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+  }
+  .lifecycle-icon {
+    text-align: center; padding: 16px 8px;
+    border-radius: 12px; background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+  }
+  .lifecycle-icon .ico { font-size: 28px; margin-bottom: 6px; }
+  .lifecycle-icon .label { font-size: 12px; color: var(--muted); }
+
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    padding: 80px 24px;
+    background: linear-gradient(180deg, rgba(139,92,246,0.1), rgba(6,182,212,0.06));
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin: 40px 0 0;
+  }
+  .final-cta h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; margin-bottom: 16px; }
+  .final-cta h2 .grad {
+    background: linear-gradient(90deg, var(--purple) 0%, var(--cyan) 50%, var(--pink) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .final-cta p { color: var(--muted); margin-bottom: 32px; font-size: 16px; }
+
+  /* Contact */
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    max-width: 900px; margin: 0 auto;
+  }
+  .contact-card {
+    padding: 24px; border-radius: 16px; text-align: center;
+    background: var(--card); border: 1px solid var(--border);
+  }
+  .contact-card .ico { font-size: 32px; margin-bottom: 10px; }
+  .contact-card h4 { font-size: 15px; margin-bottom: 6px; }
+  .contact-card .placeholder {
+    font-size: 13px; color: var(--muted); font-family: monospace;
+    background: rgba(255,255,255,0.04); padding: 6px 10px; border-radius: 6px;
+    display: inline-block; margin-top: 4px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 50px 24px 30px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    margin-bottom: 32px;
+  }
+  .footer-grid h5 { font-size: 13px; letter-spacing: 1px; color: var(--cyan); margin-bottom: 12px; text-transform: uppercase; }
+  .footer-grid ul { list-style: none; }
+  .footer-grid ul li { padding: 4px 0; }
+  .footer-grid ul li a { color: var(--muted); text-decoration: none; font-size: 13px; }
+  .footer-grid ul li a:hover { color: var(--text); }
+  .footer-brand { font-weight: 700; font-size: 18px; letter-spacing: 0.5px; margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .footer-grid p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    color: var(--muted); font-size: 12px;
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    nav { padding: 12px 16px; }
+    nav .links a:not(.nav-cta) { display: none; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .features-12 { grid-template-columns: repeat(2, 1fr); }
+    .deep-feat { grid-template-columns: 1fr; gap: 24px; margin-bottom: 56px; }
+    .deep-feat:nth-child(even) > .deep-text { order: unset; }
+    .promises { grid-template-columns: 1fr; }
+    .plan-cards { grid-template-columns: 1fr; }
+    .lifecycle-icons { grid-template-columns: repeat(3, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-table { font-size: 12px; }
+    .pricing-table th, .pricing-table td { padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. NAV -->
+<nav>
+  <div class="brand">JYC 智慧社區管理系統</div>
+  <div class="links">
+    <a href="#features">功能</a>
+    <a href="#pricing">方案</a>
+    <a href="#faq">常見問題</a>
+    <a href="#contact" class="nav-cta">聯絡業務</a>
+  </div>
+</nav>
+
+<!-- 2. HERO with audience toggle -->
+<section class="hero">
+  <span class="badge">🎉 重磅推出 · 2026 全新升級</span>
+
+  <div class="audience-toggle" role="tablist">
+    <button data-audience="community" class="active">🏘️ 社區管委會 / 物業</button>
+    <button data-audience="hr">🏢 中小企業 HR</button>
+  </div>
+
+  <h1 data-hero-title>
+    <span data-h-community>讓總公司管理 33 個案場</span><span data-h-hr style="display:none">考勤、排班、薪資</span><br>
+    <span class="grad" data-h-community>像在隔壁一樣輕鬆</span><span class="grad" data-h-hr style="display:none">用一支 LINE 全部搞定</span>
+  </h1>
+  <p data-hero-sub>
+    <span data-h-community>AI 自動建工單 × 訪客預約 QR × 多社區統一管理 — 從住戶 LINE 到員工 Telegram，一站貫穿。</span><span data-h-hr style="display:none">定位打卡 + 線上排班 + 自動算薪 + 法定扣款 — 中小企業人資省下八成行政時間。</span>
+  </p>
+  <div class="cta-row">
+    <a href="#pricing" class="cta">查看方案 →</a>
+    <a href="#contact" class="cta-ghost">預約 Demo</a>
+  </div>
+</section>
+
+<!-- 3. PAIN BEFORE/AFTER -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">PAIN POINTS</span>
+      <h2>還在用 Excel + 紙本 + LINE 群組嗎？</h2>
+      <p>傳統社區與企業管理的痛，我們都懂</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card before">
+        <span class="label">BEFORE · 過去</span>
+        <h3>每天救火、表單滿天飛</h3>
+        <ul>
+          <li>住戶 LINE 群組訊息淹沒，重要報修被洗掉</li>
+          <li>訪客登記用紙本，車位衝突一團亂</li>
+          <li>員工打卡只能拍照傳 LINE，主管手動對</li>
+          <li>排班用 Excel 改到吐，請假還要紙本簽核</li>
+          <li>薪資每月人工算，加班費爭議常爆發</li>
+          <li>多個案場各管各的,總公司拿不到即時資料</li>
+        </ul>
+      </div>
+      <div class="pain-card after">
+        <span class="label">AFTER · 用 JYC 之後</span>
+        <h3>AI 幫你跑完所有流程</h3>
+        <ul>
+          <li>住戶 LINE 一鍵報修、訪客預約自動配車位</li>
+          <li>主管 Telegram 拍照，AI 自動建立工單</li>
+          <li>定位打卡 GPS 驗證,異地打卡自動擋下</li>
+          <li>線上排班 + Mini App 請假，主管一鍵核准</li>
+          <li>薪資公式引擎自動算，含勞健保級距</li>
+          <li>多社區一個後台統管,即時報表 CSV 匯出</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 12 FEATURES GRID -->
+<section id="features">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">CORE FEATURES</span>
+      <h2>一套系統 · <span class="grad">12 大核心功能</span></h2>
+      <p>社區管理 + 企業 HR 一次到位，告別東拼西湊</p>
+    </div>
+    <div class="features-12">
+      <div class="feat-12"><div class="group community">社區</div><div class="ico">🏘️</div><h4>訪客預約 QR</h4><p>線上預約自動配車位，掃碼即放行</p></div>
+      <div class="feat-12"><div class="group community">社區</div><div class="ico">🔧</div><h4>報修工單（AI）</h4><p>住戶 LINE 一鍵報修，主管拍照 AI 自動建單</p></div>
+      <div class="feat-12"><div class="group community">社區</div><div class="ico">📢</div><h4>社區公告</h4><p>後台 Quill 編輯器，附件圖片一次發</p></div>
+      <div class="feat-12"><div class="group community">社區</div><div class="ico">📦</div><h4>包裹通知</h4><p>到件登記推播住戶 LINE，領取掃碼確認</p></div>
+      <div class="feat-12"><div class="group community">社區</div><div class="ico">🏊</div><h4>公設預約</h4><p>健身房/交誼廳/KTV 線上預約</p></div>
+      <div class="feat-12"><div class="group community">社區</div><div class="ico">💳</div><h4>繳費查詢</h4><p>管理費帳單即時查詢，逾期自動提醒</p></div>
+      <div class="feat-12"><div class="group hr">HR</div><div class="ico">📍</div><h4>定位打卡</h4><p>LINE/Telegram GPS 驗證，異地打卡擋下</p></div>
+      <div class="feat-12"><div class="group hr">HR</div><div class="ico">📅</div><h4>線上排班</h4><p>互動式月曆，換人加人彈窗，自動統計工時</p></div>
+      <div class="feat-12"><div class="group hr">HR</div><div class="ico">📝</div><h4>請假/加班/補卡</h4><p>Mini App 一鍵送，額度自動扣，主管一鍵核</p></div>
+      <div class="feat-12"><div class="group hr">HR</div><div class="ico">💰</div><h4>自動算薪</h4><p>公式引擎 + 勞健保級距，月底一鍵試算</p></div>
+      <div class="feat-12"><div class="group hr">HR</div><div class="ico">📊</div><h4>出勤報表</h4><p>月出勤統計 + CSV 匯出，會計直接吃</p></div>
+      <div class="feat-12"><div class="group hr">HR</div><div class="ico">👥</div><h4>員工/部門管理</h4><p>員編、部門、機動人員、見習狀態一頁掌握</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5-11. DEEP FEATURES (7 sections) -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">DEEP DIVE</span>
+      <h2>七大主打功能 · <span class="grad">逐一展示</span></h2>
+    </div>
+
+    <!-- 5. AI 自動建工單 -->
+    <div class="deep-feat">
+      <div class="deep-text">
+        <span class="step">FEATURE 01</span>
+        <h3>AI 自動建工單 — 拍張照就好</h3>
+        <p>巡邏發現問題？拍照丟給 Bot，AI 自動萃取出維修任務、指派負責人、設定到期日。再也不用人工輸入。</p>
+        <ul>
+          <li>主管 TG 拍照 → AI 萃取任務（位置、項目、急迫性）</li>
+          <li>嚴格 raw_evidence 比對，禁止場景聯想（防 AI 亂編）</li>
+          <li>自動指派 + 推播給負責員工</li>
+          <li>員工 LINE 收到通知 → 完工回報拍照結案</li>
+        </ul>
+      </div>
+      <div class="deep-visual"><div><div class="big-icon">🤖</div><div class="visual-label">AI VISION + EXTRACT</div></div></div>
+    </div>
+
+    <!-- 6. 多社區管理 -->
+    <div class="deep-feat">
+      <div class="deep-text">
+        <span class="step">FEATURE 02</span>
+        <h3>多社區統一管理 — 一個後台管 N 個案場</h3>
+        <p>左上社區切換器一拉，所有資料即時切換。總公司不用一個一個開 Excel，案場資料、員工、車位、公告全部隔離又互通。</p>
+        <ul>
+          <li>每個案場獨立戶數、車位、員工、公告</li>
+          <li>共用員工跨社區排班（機動人員）</li>
+          <li>後台 cookie 自動注入 community_id 過濾</li>
+          <li>新建社區 Wizard：基本→門牌→車位→公設 4 步驟</li>
+        </ul>
+      </div>
+      <div class="deep-visual"><div><div class="big-icon">🏢</div><div class="visual-label">MULTI-SITE CONTROL</div></div></div>
+    </div>
+
+    <!-- 7. LINE + TG 雙 App -->
+    <div class="deep-feat">
+      <div class="deep-text">
+        <span class="step">FEATURE 03</span>
+        <h3>LINE 住戶端 + Telegram 員工端</h3>
+        <p>住戶用最熟的 LINE 報修預約，員工用 Telegram 處理工單。各自最方便的工具，後台統一整合。</p>
+        <ul>
+          <li>住戶 LINE Rich Menu 雙 Tab：服務 / 互動</li>
+          <li>員工 Telegram Mini App：打卡/班表/請假/補卡</li>
+          <li>LIFF 綁定門牌：棟→樓→戶 三層下拉</li>
+          <li>主管 inline button 審批，結果即時推播</li>
+        </ul>
+      </div>
+      <div class="deep-visual"><div><div class="big-icon">💬</div><div class="visual-label">DUAL CHANNEL · LINE + TG</div></div></div>
+    </div>
+
+    <!-- 8. 訪客預約 + 車位 -->
+    <div class="deep-feat">
+      <div class="deep-text">
+        <span class="step">FEATURE 04</span>
+        <h3>訪客預約 + 車位池 + QR 通行</h3>
+        <p>住戶 LINE 線上預約，系統自動配車位，發 QR 給訪客。警衛掃碼放行，即時推播住戶。</p>
+        <ul>
+          <li>私人 / 商業 訪客分流（商業需確認收款）</li>
+          <li>車位池即時可用 / 衝突檢查（race-safe）</li>
+          <li>QR Code 自動生成，shareTargetPicker 一鍵傳訪客</li>
+          <li>No-show 自動釋放車位（寬限期可設定）</li>
+        </ul>
+      </div>
+      <div class="deep-visual"><div><div class="big-icon">🚗</div><div class="visual-label">VISITOR + PARKING</div></div></div>
+    </div>
+
+    <!-- 9. HR 套裝 -->
+    <div class="deep-feat">
+      <div class="deep-text">
+        <span class="step">FEATURE 05</span>
+        <h3>HR 套裝 — 打卡 / 排班 / 薪資全包</h3>
+        <p>從打卡到出薪一條龍。中小企業 HR 不用再買三套系統。</p>
+        <ul>
+          <li>定位打卡：haversine 距離計算，超範圍擋下</li>
+          <li>線上排班：互動月曆，換人加人彈窗，工時統計</li>
+          <li>請假額度自動算（含已申請未核可）</li>
+          <li>薪資公式引擎 + 勞健保級距 + CSV 匯出</li>
+        </ul>
+      </div>
+      <div class="deep-visual"><div><div class="big-icon">⏰</div><div class="visual-label">HR · ATTENDANCE TO PAYROLL</div></div></div>
+    </div>
+
+    <!-- 10. 公告 + 行事曆 -->
+    <div class="deep-feat">
+      <div class="deep-text">
+        <span class="step">FEATURE 06</span>
+        <h3>社區公告 + 行事曆 對內外分流</h3>
+        <p>同一個後台，社區活動推給住戶 LINE，公司內部會議只給員工看，scope 自動隔離。</p>
+        <ul>
+          <li>公告：Quill 富文本編輯器 + 附件 + 置頂</li>
+          <li>行事曆：scope=community 給住戶 / scope=company 給員工</li>
+          <li>iCal 訂閱（員工版），LINE LIFF 月曆 view（住戶版）</li>
+          <li>社區類別獨立管理，不會混到內部行事曆</li>
+        </ul>
+      </div>
+      <div class="deep-visual"><div><div class="big-icon">📅</div><div class="visual-label">ANNOUNCE + CALENDAR</div></div></div>
+    </div>
+
+    <!-- 11. 服務評分 + 後台 -->
+    <div class="deep-feat">
+      <div class="deep-text">
+        <span class="step">FEATURE 07</span>
+        <h3>服務評分 + 後台儀表板</h3>
+        <p>住戶 LIFF 匿名評分，後台看排行榜。SHA256 hash 防刷，員工 KPI 一目了然。</p>
+        <ul>
+          <li>雙 Tab：評服務類別 / 評員工</li>
+          <li>5 星 + 文字意見（選填），匿名提交</li>
+          <li>24 小時防重複評同對象（hash 比對）</li>
+          <li>後台統計：服務平均、員工排行 🥇🥈🥉</li>
+        </ul>
+      </div>
+      <div class="deep-visual"><div><div class="big-icon">⭐</div><div class="visual-label">RATING + ANALYTICS</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. PROMISES -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">CORE PROMISE</span>
+      <h2>三大承諾 · <span class="grad">為什麼選 JYC</span></h2>
+    </div>
+    <div class="promises">
+      <div class="promise a">
+        <div class="ico">🤖</div>
+        <h3>AI 真的有幫到忙</h3>
+        <p>不是噱頭。AI 萃取嚴格防 hallucinate，主管拍照真的能直接建單。</p>
+      </div>
+      <div class="promise b">
+        <div class="ico">🏘️</div>
+        <h3>多社區一次管</h3>
+        <p>一個後台管 N 個案場。從天母到信義，總公司即時掌握全局。</p>
+      </div>
+      <div class="promise c">
+        <div class="ico">📱</div>
+        <h3>住戶 + 員工雙 App</h3>
+        <p>住戶用 LINE，員工用 Telegram。各自最熟，採用率最高。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14. PRICING MAIN CARD -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">RECOMMENDED PLAN</span>
+      <h2>標準方案 · <span class="grad">最受歡迎</span></h2>
+      <p>多數 4-15 案場規模選這個</p>
+    </div>
+    <div class="pricing-main">
+      <span class="hot">★ 最熱門選擇</span>
+      <h3>標準方案</h3>
+      <div class="price">$4,000</div>
+      <div class="price-unit">每案場 / 每月（首年方案）</div>
+      <ul>
+        <li>訪客預約 + 報修工單 + 公告 + 包裹</li>
+        <li>公設預約 + 繳費查詢</li>
+        <li>HR 套裝（打卡 / 排班 / 請假 / 薪資）</li>
+        <li>AI 自動建工單</li>
+        <li>多社區統一管理後台</li>
+        <li>LINE 住戶端 + Telegram 員工端</li>
+      </ul>
+      <a href="#contact" class="cta">立即諮詢</a>
+    </div>
+  </div>
+</section>
+
+<!-- 15. PRICING COMPARISON TABLE -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">PLAN COMPARISON</span>
+      <h2>三檔方案 · <span class="grad">功能比對</span></h2>
+    </div>
+    <div class="pricing-table-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>功能項目</th>
+            <th class="center">試點</th>
+            <th class="center featured">標準 ★</th>
+            <th class="center">旗艦</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>月費 / 案場</strong></td>
+            <td class="center">$3,000</td>
+            <td class="center featured-col"><strong>$4,000</strong></td>
+            <td class="center">$5,400</td>
+          </tr>
+          <tr>
+            <td>適用案場數</td>
+            <td class="center">1 – 3</td>
+            <td class="center featured-col">4 – 15</td>
+            <td class="center">16+</td>
+          </tr>
+          <tr>
+            <td>訪客預約 / 報修 / 公告 / 包裹</td>
+            <td class="center"><span class="check">✓</span></td>
+            <td class="center featured-col"><span class="check">✓</span></td>
+            <td class="center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>HR 套裝（打卡 / 排班 / 薪資）</td>
+            <td class="center"><span class="check">✓</span></td>
+            <td class="center featured-col"><span class="check">✓</span></td>
+            <td class="center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>公設預約 / 繳費查詢</td>
+            <td class="center"><span class="dash">—</span></td>
+            <td class="center featured-col"><span class="check">✓</span></td>
+            <td class="center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>AI 自動建工單</td>
+            <td class="center"><span class="dash">—</span></td>
+            <td class="center featured-col"><span class="check">✓</span></td>
+            <td class="center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>多社區統一管理</td>
+            <td class="center"><span class="dash">—</span></td>
+            <td class="center featured-col"><span class="check">✓</span></td>
+            <td class="center"><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>客製功能 / SLA / 專屬窗口</td>
+            <td class="center"><span class="dash">—</span></td>
+            <td class="center featured-col"><span class="dash">—</span></td>
+            <td class="center"><span class="check">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 16. FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">FAQ</span>
+      <h2>常見問題</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>導入需要多久？</summary>
+        <div class="faq-body">標準導入 2-4 週：第 1 週基本資料建檔、第 2 週門牌/車位/公設批次匯入、第 3 週員工 LINE/TG 綁定、第 4 週試營運。試點方案（1-3 案場）可壓縮到 2 週內完成。</div>
+      </details>
+      <details class="faq-item">
+        <summary>住戶要下載 App 嗎？</summary>
+        <div class="faq-body">不用。住戶端整合進 LINE，加好友掃 QR 即可使用，不用安裝 App、不佔手機空間。員工端用 Telegram Mini App，同樣免安裝。</div>
+      </details>
+      <details class="faq-item">
+        <summary>已經有員工資料，可以匯入嗎？</summary>
+        <div class="faq-body">可以。Excel/CSV 格式都能匯入：員工姓名、員編、部門、職位、聯絡方式、薪資基準等欄位，導入時由我們協助一次處理完。</div>
+      </details>
+      <details class="faq-item">
+        <summary>多個社區會互相干擾嗎？</summary>
+        <div class="faq-body">不會。每個案場資料完全隔離（戶數、車位、員工、公告各自獨立）。共用的只有「機動人員」可跨社區排班，但工時、薪資仍按各社區拆算。</div>
+      </details>
+      <details class="faq-item">
+        <summary>定位打卡會不會誤判？員工說在公司但其實沒到？</summary>
+        <div class="faq-body">系統用 GPS haversine 距離計算，超出設定半徑（10-2000 公尺可調）會直接擋下，不寫入打卡紀錄。電腦版 Telegram 會用 Wi-Fi 三角定位精度差，建議規定員工用手機版打卡。</div>
+      </details>
+      <details class="faq-item">
+        <summary>薪資公式可以客製嗎？我們有自己的加班費算法</summary>
+        <div class="faq-body">標準方案內建台灣勞基法公式（平日加班 1.34/1.67、休息日 1.34/1.67/2.67、勞健保級距）。客製公式（如績效獎金、特殊補貼計算）屬旗艦方案範圍，可依貴公司規則調整。</div>
+      </details>
+      <details class="faq-item">
+        <summary>可以先試用看看嗎？</summary>
+        <div class="faq-body">可以。提供 14 天免費試用 1 個案場 / 5 名員工。試用期間完整功能不限制，期滿可選方案正式導入或結束。</div>
+      </details>
+      <details class="faq-item">
+        <summary>資料安全嗎？</summary>
+        <div class="faq-body">所有資料採 HTTPS 加密傳輸，住戶 LINE ID 用 SHA256 hash 後再儲存（評分功能）。後台需登入，每個請求都有審計日誌。LINE / Telegram 平台本身亦提供端對端加密通訊。</div>
+      </details>
+      <details class="faq-item">
+        <summary>報價之外還有什麼費用？</summary>
+        <div class="faq-body">標準方案月費包含：系統使用、雲端託管、AI API 用量、技術支援、版本更新。一次性費用：導入服務費（試點 $0 / 標準 $30,000 / 旗艦另議）。無耗材、無人數限制。</div>
+      </details>
+      <details class="faq-item">
+        <summary>可以中途升級或降級方案嗎？</summary>
+        <div class="faq-body">可以。試點 → 標準免費升級，資料無縫接軌。降級需評估資料保留範圍（部分功能模組關閉後資料會封存但不刪除）。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 17. PLAN CARDS (3) -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">CHOOSE YOUR PLAN</span>
+      <h2>選擇適合你的方案</h2>
+    </div>
+    <div class="plan-cards">
+      <div class="plan-card">
+        <div class="plan-name">試點方案</div>
+        <div class="plan-target">小型物業 / 單一案場 / 想先試看看</div>
+        <div class="plan-price">$3,000</div>
+        <div class="plan-unit">每案場 / 每月（1-3 案場）</div>
+        <ul>
+          <li>訪客預約 + 報修 + 公告 + 包裹</li>
+          <li>HR 套裝（打卡/排班/薪資）</li>
+          <li>LINE + Telegram 雙 App</li>
+          <li>基本後台報表</li>
+        </ul>
+        <a href="#contact" class="plan-cta">了解詳情</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">標準方案</div>
+        <div class="plan-target">中型物業 / 4-15 案場 / 多數客戶選這個</div>
+        <div class="plan-price">$4,000</div>
+        <div class="plan-unit">每案場 / 每月</div>
+        <ul>
+          <li>包含試點全部功能</li>
+          <li>公設預約 + 繳費查詢</li>
+          <li>AI 自動建工單</li>
+          <li>多社區統一管理後台</li>
+          <li>標準技術支援</li>
+        </ul>
+        <a href="#contact" class="plan-cta">了解詳情</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">旗艦方案</div>
+        <div class="plan-target">大型物業集團 / 16+ 案場 / 需客製</div>
+        <div class="plan-price">$5,400</div>
+        <div class="plan-unit">每案場 / 每月</div>
+        <ul>
+          <li>包含標準全部功能</li>
+          <li>客製功能開發</li>
+          <li>SLA 服務水準保證</li>
+          <li>專屬客戶窗口</li>
+          <li>導入培訓 + 員工教育訓練</li>
+        </ul>
+        <a href="#contact" class="plan-cta">了解詳情</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 18. LIFECYCLE -->
+<section>
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">ALL-IN-ONE</span>
+      <h2>一站式解決方案 · <span class="grad">完整生命週期</span></h2>
+      <p>從住戶搬入到員工發薪，全流程一個系統搞定</p>
+    </div>
+    <div class="lifecycle">
+      <div class="lifecycle-flow">
+        <div class="step">🏠 住戶綁定</div>
+        <span class="arrow">→</span>
+        <div class="step">🛎️ 日常服務</div>
+        <span class="arrow">→</span>
+        <div class="step">🔧 任務派發</div>
+        <span class="arrow">→</span>
+        <div class="step">⏰ 員工執行</div>
+        <span class="arrow">→</span>
+        <div class="step">💰 結薪統計</div>
+      </div>
+      <div class="lifecycle-icons">
+        <div class="lifecycle-icon"><div class="ico">🏘️</div><div class="label">門牌建檔</div></div>
+        <div class="lifecycle-icon"><div class="ico">🚗</div><div class="label">訪客預約</div></div>
+        <div class="lifecycle-icon"><div class="ico">📦</div><div class="label">包裹通知</div></div>
+        <div class="lifecycle-icon"><div class="ico">🔧</div><div class="label">報修工單</div></div>
+        <div class="lifecycle-icon"><div class="ico">🤖</div><div class="label">AI 派工</div></div>
+        <div class="lifecycle-icon"><div class="ico">📍</div><div class="label">定位打卡</div></div>
+        <div class="lifecycle-icon"><div class="ico">📅</div><div class="label">線上排班</div></div>
+        <div class="lifecycle-icon"><div class="ico">📝</div><div class="label">請假審批</div></div>
+        <div class="lifecycle-icon"><div class="ico">📊</div><div class="label">出勤報表</div></div>
+        <div class="lifecycle-icon"><div class="ico">💰</div><div class="label">薪資計算</div></div>
+        <div class="lifecycle-icon"><div class="ico">⭐</div><div class="label">服務評分</div></div>
+        <div class="lifecycle-icon"><div class="ico">📢</div><div class="label">社區公告</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 20. FINAL CTA -->
+<section class="final-cta">
+  <h2>還在用 Excel 和 LINE 群組？<br><span class="grad">來，讓 AI 接手</span></h2>
+  <p>14 天免費試用 · 無綁約 · 不滿意隨時取消</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="#contact" class="cta">免費預約 Demo →</a>
+    <a href="#pricing" class="cta-ghost">看完整方案</a>
+  </div>
+</section>
+
+<!-- 21. CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-title">
+      <span class="tag">CONTACT</span>
+      <h2>對我們的產品有興趣嗎？</h2>
+      <p>歡迎聯絡業務窗口，我們會盡快與您聯繫</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="ico">✉️</div>
+        <h4>客服信箱</h4>
+        <span class="placeholder">contact@待填</span>
+      </div>
+      <div class="contact-card">
+        <div class="ico">💬</div>
+        <h4>LINE 業務</h4>
+        <span class="placeholder">@待填</span>
+      </div>
+      <div class="contact-card">
+        <div class="ico">🕐</div>
+        <h4>服務時間</h4>
+        <span class="placeholder">週一～五 待填</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 22. FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">JYC 智慧社區管理系統</div>
+      <p>AI 驅動的社區管理 + 企業 HR 一站式解決方案。從訪客預約到員工薪資，全流程數位化。</p>
+    </div>
+    <div>
+      <h5>產品</h5>
+      <ul>
+        <li><a href="#features">功能介紹</a></li>
+        <li><a href="#pricing">方案價格</a></li>
+        <li><a href="#faq">常見問題</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>關於</h5>
+      <ul>
+        <li><a href="index.html">系統架構</a></li>
+        <li><a href="jyc-demos.html">功能展示</a></li>
+        <li><a href="jyc-architecture.html">技術說明</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>聯絡</h5>
+      <ul>
+        <li><a href="#contact">業務洽詢</a></li>
+        <li><a href="#contact">預約 Demo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 JYC 智慧社區管理系統 · All rights reserved</span>
+    <span>Powered by AI</span>
+  </div>
+</footer>
+
+<script>
+  // Audience toggle
+  const buttons = document.querySelectorAll('.audience-toggle button');
+  const heroEls = {
+    community: document.querySelectorAll('[data-h-community]'),
+    hr: document.querySelectorAll('[data-h-hr]'),
+  };
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const audience = btn.dataset.audience;
+      buttons.forEach(b => b.classList.toggle('active', b === btn));
+      heroEls.community.forEach(el => el.style.display = audience === 'community' ? '' : 'none');
+      heroEls.hr.forEach(el => el.style.display = audience === 'hr' ? '' : 'none');
+    });
+  });
+</script>
+
+</body>
+</html>
