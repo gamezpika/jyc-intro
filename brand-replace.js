@@ -5,14 +5,13 @@
 
 (function () {
   const params = new URLSearchParams(window.location.search);
-  const defaultKey = window.BRAND_DEFAULT_KEY || 'jyc';
-  const brandKey = params.get('brand') || defaultKey;
+  const brandKey = params.get('brand') || 'jyc';
   const presets = window.BRAND_PRESETS || {};
-  const brand = presets[brandKey] || presets[defaultKey] || presets.jyc;
+  const brand = presets[brandKey] || presets.jyc;
 
   if (!brand) return;
-  // 怡盛模式（jyc）字眼跟原本一樣，跳過替換省 CPU
-  if (brandKey === 'jyc' && brand.full === 'JYC 怡盛物業') return;
+  // jyc 模式 = 顯示怡盛真名 = HTML 原樣，不用跑替換
+  if (brandKey === 'jyc') return;
 
   // 替換規則（順序很重要：長字串先換，避免短字串先換掉一部分）
   function applyBrand(text) {
