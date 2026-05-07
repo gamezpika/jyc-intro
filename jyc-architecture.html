@@ -787,6 +787,153 @@
   </div>
 </section>
 
+<section id="ai-spotlight" style="padding:60px 24px; background:linear-gradient(135deg,#faf9ff,#f0f9ff); border-top:1px solid #e5e7eb">
+  <div style="max-width:1100px; margin:0 auto">
+    <h2 style="margin:0 0 8px; font-size:1.6rem; text-align:center">🤖 AI 亮點 · <span class="grad">四大智慧應用</span></h2>
+    <p style="margin:0 0 28px; text-align:center; color:#6b7280; font-size:.92rem">把 AI 真正落地在物業每天的工作流，這四個場景最有感</p>
+
+    <style>
+      .ai-tabs-wrap { background:#fff; border:1px solid #e5e7eb; border-radius:14px; box-shadow:0 4px 16px rgba(124,58,237,.06); overflow:hidden }
+      .ai-tabs-wrap input[type="radio"] { display:none }
+      .ai-tabs-bar { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid #f1f5f9; background:#fafbff }
+      .ai-tabs-bar label { padding:14px 12px; text-align:center; font-weight:600; font-size:.9rem; color:#94a3b8; cursor:pointer; transition:all .15s; border-bottom:3px solid transparent }
+      .ai-tabs-bar label:hover { color:#7c3aed; background:#f5f3ff }
+      .ai-content { display:none; padding:28px 30px }
+      #ai-1:checked ~ .ai-tabs-bar label[for="ai-1"],
+      #ai-2:checked ~ .ai-tabs-bar label[for="ai-2"],
+      #ai-3:checked ~ .ai-tabs-bar label[for="ai-3"],
+      #ai-4:checked ~ .ai-tabs-bar label[for="ai-4"] {
+        color:#7c3aed; border-bottom-color:#7c3aed; background:#fff
+      }
+      #ai-1:checked ~ .ai-content.c1,
+      #ai-2:checked ~ .ai-content.c2,
+      #ai-3:checked ~ .ai-content.c3,
+      #ai-4:checked ~ .ai-content.c4 { display:block }
+      .ai-content h3 { margin:0 0 6px; font-size:1.2rem; color:#1a1a2e }
+      .ai-content .ai-sub { color:#7c3aed; font-size:.78rem; font-weight:600; letter-spacing:1px; margin-bottom:16px }
+      .ai-content p { margin:0 0 14px; color:#4b5563; line-height:1.7; font-size:.92rem }
+      .ai-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:18px }
+      .ai-card { background:#faf9ff; border:1px solid #e9e5ff; border-radius:10px; padding:14px 16px }
+      .ai-card .ai-icon { font-size:1.4rem; margin-bottom:6px }
+      .ai-card h4 { margin:0 0 4px; font-size:.9rem; color:#5b21b6 }
+      .ai-card p { margin:0; font-size:.8rem; color:#6b7280; line-height:1.5 }
+      .ai-flow { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:12px; padding:14px; background:#f8fafc; border-radius:8px; font-size:.85rem }
+      .ai-flow .step { background:#fff; border:1px solid #e5e7eb; padding:6px 12px; border-radius:6px; color:#374151 }
+      .ai-flow .arrow { color:#a78bfa; font-weight:700 }
+      @media (max-width:680px) {
+        .ai-tabs-bar { grid-template-columns:repeat(2,1fr) }
+        .ai-tabs-bar label { font-size:.82rem; padding:12px 8px }
+        .ai-content { padding:22px 18px }
+      }
+    </style>
+
+    <div class="ai-tabs-wrap">
+      <input type="radio" id="ai-1" name="ai-tabs" checked>
+      <input type="radio" id="ai-2" name="ai-tabs">
+      <input type="radio" id="ai-3" name="ai-tabs">
+      <input type="radio" id="ai-4" name="ai-tabs">
+
+      <div class="ai-tabs-bar">
+        <label for="ai-1">💬 群組訊息<br>任務萃取</label>
+        <label for="ai-2">🗓️ AI 自動<br>排班系統</label>
+        <label for="ai-3">📷 報修照片<br>智慧辨識</label>
+        <label for="ai-4">🚨 異常人物<br>即時警示</label>
+      </div>
+
+      <!-- Tab 1: 任務萃取 -->
+      <div class="ai-content c1">
+        <div class="ai-sub">主管群組 × Telegram</div>
+        <h3>從一句話到一張任務卡，全自動</h3>
+        <p>主管在 Telegram 群裡丟一句話，AI 自動拆解成完整任務，派給對的人，員工回報後再自動結案 — 主管只要把話講出來，剩下系統幫你跑完。</p>
+        <div class="ai-flow">
+          <span class="step">主管丟訊息</span>
+          <span class="arrow">→</span>
+          <span class="step">AI 萃取</span>
+          <span class="arrow">→</span>
+          <span class="step">派人 + 期限</span>
+          <span class="arrow">→</span>
+          <span class="step">員工回報</span>
+          <span class="arrow">→</span>
+          <span class="step">AI 結案</span>
+        </div>
+        <div class="ai-grid">
+          <div class="ai-card"><div class="ai-icon">🎯</div><h4>意圖辨識</h4><p>識別「派工 / 詢問 / 通知 / 申訴」等訊息類型</p></div>
+          <div class="ai-card"><div class="ai-icon">📍</div><h4>位置抽取</h4><p>從自然語言抓出案場、樓層、戶別</p></div>
+          <div class="ai-card"><div class="ai-icon">⏰</div><h4>時限判定</h4><p>「今天下班前」「下週一」自動換算具體日期</p></div>
+          <div class="ai-card"><div class="ai-icon">✅</div><h4>結案判定</h4><p>員工回報內容識別任務是否完成、有無新延伸</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 2: AI 排班 -->
+      <div class="ai-content c2">
+        <div class="ai-sub">月排班 × 案場 × 員工</div>
+        <h3>30 天 × N 員工 × N 案場，一鍵 AI 出班</h3>
+        <p>每月排班最費神。AI 排班同時考慮值班規則、員工偏好、案場人力需求、勞基法限制，一鍵生成整月班表 + 違規警示，主管只要做最後微調。</p>
+        <div class="ai-flow">
+          <span class="step">設定規則</span>
+          <span class="arrow">→</span>
+          <span class="step">✨ AI 出班</span>
+          <span class="arrow">→</span>
+          <span class="step">⚡ 補缺微調</span>
+          <span class="arrow">→</span>
+          <span class="step">主管最終確認</span>
+        </div>
+        <div class="ai-grid">
+          <div class="ai-card"><div class="ai-icon">⚖️</div><h4>勞基法檢查</h4><p>連班時數、休假間隔自動把關</p></div>
+          <div class="ai-card"><div class="ai-icon">👥</div><h4>個人偏好</h4><p>員工指定案場、避開時段全列入考量</p></div>
+          <div class="ai-card"><div class="ai-icon">🏢</div><h4>案場人力需求</h4><p>每個案場每天最低人力數自動補滿</p></div>
+          <div class="ai-card"><div class="ai-icon">⚠️</div><h4>違規即時提示</h4><p>排班結果若有違規，紅字標出待修</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: 報修照片辨識 -->
+      <div class="ai-content c3">
+        <div class="ai-sub">住戶 LINE × 報修流程</div>
+        <h3>住戶傳張照片，AI 直接判定要派哪一隊</h3>
+        <p>住戶從 LINE 上傳故障照片 + 簡單描述，AI 辨識故障類型、嚴重度，自動分類到對應的處理隊伍（水電 / 公設 / 外牆 / 一般），警衛室不用再重新人工分類。</p>
+        <div class="ai-flow">
+          <span class="step">住戶傳照片</span>
+          <span class="arrow">→</span>
+          <span class="step">AI 圖像辨識</span>
+          <span class="arrow">→</span>
+          <span class="step">分類 + 嚴重度</span>
+          <span class="arrow">→</span>
+          <span class="step">自動派工</span>
+        </div>
+        <div class="ai-grid">
+          <div class="ai-card"><div class="ai-icon">💧</div><h4>漏水/管路</h4><p>水漬、漏點、管線辨識</p></div>
+          <div class="ai-card"><div class="ai-icon">⚡</div><h4>電器/燈具</h4><p>插座、燈具、開關狀態辨識</p></div>
+          <div class="ai-card"><div class="ai-icon">🚪</div><h4>門窗/五金</h4><p>門鎖、窗框、五金損壞辨識</p></div>
+          <div class="ai-card"><div class="ai-icon">🆘</div><h4>緊急判定</h4><p>嚴重故障自動標紅，優先派工</p></div>
+        </div>
+      </div>
+
+      <!-- Tab 4: 異常人物警示 -->
+      <div class="ai-content c4">
+        <div class="ai-sub">廠商 QR × 訪客動線 × 警衛</div>
+        <h3>廠商沒按時走、訪客跑錯區，警衛即時收到警示</h3>
+        <p>廠商與訪客進出時掃 QR 留下軌跡，AI 即時比對動線、停留時間、進入時段，發現異常立刻推播給警衛室與案場主管，事後也能調閱完整紀錄。</p>
+        <div class="ai-flow">
+          <span class="step">QR 掃碼</span>
+          <span class="arrow">→</span>
+          <span class="step">動線追蹤</span>
+          <span class="arrow">→</span>
+          <span class="step">AI 異常判定</span>
+          <span class="arrow">→</span>
+          <span class="step">警衛即時警示</span>
+        </div>
+        <div class="ai-grid">
+          <div class="ai-card"><div class="ai-icon">⏱️</div><h4>超時逗留</h4><p>廠商超過預計工時未離場，自動警示</p></div>
+          <div class="ai-card"><div class="ai-icon">🌙</div><h4>異常時段</h4><p>非營業時段進入、深夜活動自動標記</p></div>
+          <div class="ai-card"><div class="ai-icon">🗺️</div><h4>跨區移動</h4><p>廠商超出申請工作區域立刻提示</p></div>
+          <div class="ai-card"><div class="ai-icon">📜</div><h4>完整軌跡</h4><p>事後可調閱每位人員的完整進出紀錄</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <footer>
   <p>© 2026 JYC 怡盛物業管理股份有限公司 · AI 智慧管理系統</p>
   <p style="margin-top:8px; font-size:12px;">Powered by WorkBot AI · Telegram × LINE × Web 全平台整合</p>
