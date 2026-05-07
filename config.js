@@ -26,9 +26,9 @@ window.BRAND_PRESETS = {
   // 奇亞資訊（新案場）
   kiya: {
     full:    '奇亞資訊',
-    short:   '奇亞',
-    formal:  '奇亞資訊股份有限公司',
+    short:   '奇亞資訊',
+    formal:  '奇亞資訊',
     product: 'KiyaX AI',
-    prefix:  'KiyaX',
+    prefix:  '奇亞資訊',
   },
 };
