@@ -28,7 +28,7 @@
       .replace(/JYC 系統架構/g, brand.prefix + ' 系統架構')
       .replace(/JYC 實機影片展示/g, brand.prefix + ' 實機影片展示')
       .replace(/JYC 專案/g, brand.prefix + ' 專案')
-      .replace(/怡盛物業管理集團/g, brand.short + '物業管理集團')
+      .replace(/怡盛物業管理集團/g, brand.short + '  物業管理系統')
       .replace(/怡盛智慧管理系統/g, brand.short + '智慧管理系統')
       .replace(/怡盛智慧物業/g, brand.short + '智慧物業')
       .replace(/怡盛物業/g, brand.short + '物業')
