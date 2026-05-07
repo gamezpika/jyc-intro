@@ -840,49 +840,55 @@
         <label for="ai-4">🚨 異常人物<br>即時警示</label>
       </div>
 
-      <!-- Tab 1: 任務萃取 -->
+      <!-- Tab 1: 群組訊息 AI 中樞（整合 6 個 AI 子模組）-->
       <div class="ai-content c1">
-        <div class="ai-sub">主管群組 × Telegram</div>
-        <h3>從一句話到一張任務卡，全自動</h3>
-        <p>主管在 Telegram 群裡丟一句話，AI 自動拆解成完整任務，派給對的人，員工回報後再自動結案 — 主管只要把話講出來，剩下系統幫你跑完。</p>
+        <div class="ai-sub">Telegram 主管群 · 6 個 AI 模組整合</div>
+        <h3>主管丟一句話，AI 自動拆任務、派人、追蹤、結案、歸檔</h3>
+        <p>主管不用學任何指令、不用填表單，在 Telegram 群裡像平常聊天一樣丟訊息，背後 6 個 AI 模組接力處理：從訊息萃取到任務分類、員工回報識別、多級結案判定、對話摘要、批次歸檔分析，組成完整的「群組溝通 AI 中樞」。</p>
         <div class="ai-flow">
           <span class="step">主管丟訊息</span>
           <span class="arrow">→</span>
-          <span class="step">AI 萃取</span>
+          <span class="step">萃取</span>
           <span class="arrow">→</span>
-          <span class="step">派人 + 期限</span>
+          <span class="step">分類 + 派人</span>
           <span class="arrow">→</span>
           <span class="step">員工回報</span>
           <span class="arrow">→</span>
-          <span class="step">AI 結案</span>
+          <span class="step">結案 + 歸檔</span>
         </div>
         <div class="ai-grid">
-          <div class="ai-card"><div class="ai-icon">🎯</div><h4>意圖辨識</h4><p>識別「派工 / 詢問 / 通知 / 申訴」等訊息類型</p></div>
-          <div class="ai-card"><div class="ai-icon">📍</div><h4>位置抽取</h4><p>從自然語言抓出案場、樓層、戶別</p></div>
-          <div class="ai-card"><div class="ai-icon">⏰</div><h4>時限判定</h4><p>「今天下班前」「下週一」自動換算具體日期</p></div>
-          <div class="ai-card"><div class="ai-icon">✅</div><h4>結案判定</h4><p>員工回報內容識別任務是否完成、有無新延伸</p></div>
+          <div class="ai-card"><div class="ai-icon">🎯</div><h4>任務萃取</h4><p>每分鐘掃群訊息，抓出任務內容、案場、戶別、期限、優先度</p></div>
+          <div class="ai-card"><div class="ai-icon">🗂️</div><h4>任務分類</h4><p>派工 / 詢問 / 通知 / 申訴 / 故障 自動分桶處理</p></div>
+          <div class="ai-card"><div class="ai-icon">✅</div><h4>結案偵測</h4><p>員工回報「修好了 / 已處理」自動判定關單</p></div>
+          <div class="ai-card"><div class="ai-icon">💬</div><h4>/close 自然語言</h4><p>主管打「水管那件結了」一句話關單，不用點按鈕</p></div>
+          <div class="ai-card"><div class="ai-icon">🧩</div><h4>/bk 任務拆解</h4><p>複雜任務 AI 一鍵拆成多個子任務排序執行</p></div>
+          <div class="ai-card"><div class="ai-icon">📊</div><h4>/sum × /report</h4><p>群組長串對話 10 秒摘要、千則訊息自動分類歸檔</p></div>
         </div>
       </div>
 
-      <!-- Tab 2: AI 排班 -->
+      <!-- Tab 2: AI 排班引擎（整合排班全流程） -->
       <div class="ai-content c2">
-        <div class="ai-sub">月排班 × 案場 × 員工</div>
-        <h3>30 天 × N 員工 × N 案場，一鍵 AI 出班</h3>
-        <p>每月排班最費神。AI 排班同時考慮值班規則、員工偏好、案場人力需求、勞基法限制，一鍵生成整月班表 + 違規警示，主管只要做最後微調。</p>
+        <div class="ai-sub">月排班 × 全流程 AI 接力</div>
+        <h3>30 天 × N 員工 × N 案場，AI 一鍵生成 + 補缺 + 違規偵測</h3>
+        <p>整月排班過去要花主管整週手排，AI 引擎接力處理：先讀取案場人力需求 + 員工偏好 + 勞基法規則，一次出整月班表；再用補缺微調 AI 補齊空格；最後違規偵測 AI 自動標紅異常。主管只要做最後一步確認。</p>
         <div class="ai-flow">
-          <span class="step">設定規則</span>
+          <span class="step">案場 + 員工 + 規則</span>
           <span class="arrow">→</span>
           <span class="step">✨ AI 出班</span>
           <span class="arrow">→</span>
-          <span class="step">⚡ 補缺微調</span>
+          <span class="step">⚡ AI 補缺</span>
           <span class="arrow">→</span>
-          <span class="step">主管最終確認</span>
+          <span class="step">⚠️ 違規偵測</span>
+          <span class="arrow">→</span>
+          <span class="step">主管確認</span>
         </div>
         <div class="ai-grid">
-          <div class="ai-card"><div class="ai-icon">⚖️</div><h4>勞基法檢查</h4><p>連班時數、休假間隔自動把關</p></div>
-          <div class="ai-card"><div class="ai-icon">👥</div><h4>個人偏好</h4><p>員工指定案場、避開時段全列入考量</p></div>
-          <div class="ai-card"><div class="ai-icon">🏢</div><h4>案場人力需求</h4><p>每個案場每天最低人力數自動補滿</p></div>
-          <div class="ai-card"><div class="ai-icon">⚠️</div><h4>違規即時提示</h4><p>排班結果若有違規，紅字標出待修</p></div>
+          <div class="ai-card"><div class="ai-icon">🤖</div><h4>AI 月排班</h4><p>Gemini 同時考慮 30 天 × 多員工 × 多案場輸出整月班表</p></div>
+          <div class="ai-card"><div class="ai-icon">⚡</div><h4>補缺微調</h4><p>初版排班空格 AI 從可調員工自動補滿</p></div>
+          <div class="ai-card"><div class="ai-icon">⚖️</div><h4>勞基法檢查</h4><p>連班時數、休假間隔、月總工時自動把關</p></div>
+          <div class="ai-card"><div class="ai-icon">👥</div><h4>個人偏好</h4><p>員工指定上班案場 / 避開時段 / 排休偏好全納入</p></div>
+          <div class="ai-card"><div class="ai-icon">🏢</div><h4>案場最低人力</h4><p>每個案場每天最低人力需求自動補滿</p></div>
+          <div class="ai-card"><div class="ai-icon">🚨</div><h4>違規矩陣</h4><p>違規格紅字標出，點開直接看原因 + 建議調整</p></div>
         </div>
       </div>
 
@@ -908,25 +914,29 @@
         </div>
       </div>
 
-      <!-- Tab 4: 異常人物警示 -->
+      <!-- Tab 4: AI 安全守護（異常監控全鏈） -->
       <div class="ai-content c4">
-        <div class="ai-sub">廠商 QR × 訪客動線 × 警衛</div>
-        <h3>廠商沒按時走、訪客跑錯區，警衛即時收到警示</h3>
-        <p>廠商與訪客進出時掃 QR 留下軌跡，AI 即時比對動線、停留時間、進入時段，發現異常立刻推播給警衛室與案場主管，事後也能調閱完整紀錄。</p>
+        <div class="ai-sub">廠商 × 訪客 × 員工 三類人員行為偵測</div>
+        <h3>所有人進出留下軌跡，AI 即時比對歷史 + 規則，異常立刻推警衛</h3>
+        <p>廠商、訪客、員工進出時都掃 QR 或刷卡留下軌跡。AI 即時把當下行為跟歷史模式 + 案場規則比對，發現超時 / 異常時段 / 跨區移動 / 異常停留立刻推播警衛室與主管，事後也能調閱完整動線重建。</p>
         <div class="ai-flow">
-          <span class="step">QR 掃碼</span>
+          <span class="step">QR / 卡片掃描</span>
           <span class="arrow">→</span>
-          <span class="step">動線追蹤</span>
+          <span class="step">軌跡記錄</span>
           <span class="arrow">→</span>
           <span class="step">AI 異常判定</span>
           <span class="arrow">→</span>
-          <span class="step">警衛即時警示</span>
+          <span class="step">分級警示</span>
+          <span class="arrow">→</span>
+          <span class="step">主管 + 警衛同步</span>
         </div>
         <div class="ai-grid">
-          <div class="ai-card"><div class="ai-icon">⏱️</div><h4>超時逗留</h4><p>廠商超過預計工時未離場，自動警示</p></div>
-          <div class="ai-card"><div class="ai-icon">🌙</div><h4>異常時段</h4><p>非營業時段進入、深夜活動自動標記</p></div>
-          <div class="ai-card"><div class="ai-icon">🗺️</div><h4>跨區移動</h4><p>廠商超出申請工作區域立刻提示</p></div>
-          <div class="ai-card"><div class="ai-icon">📜</div><h4>完整軌跡</h4><p>事後可調閱每位人員的完整進出紀錄</p></div>
+          <div class="ai-card"><div class="ai-icon">⏱️</div><h4>超時逗留</h4><p>廠商超過預計工時未離場，自動推主管 + 警衛</p></div>
+          <div class="ai-card"><div class="ai-icon">🌙</div><h4>異常時段進入</h4><p>非工作時段進入、深夜活動自動標記</p></div>
+          <div class="ai-card"><div class="ai-icon">🗺️</div><h4>跨區移動</h4><p>廠商超出申請工作區域、訪客誤入機房立刻警示</p></div>
+          <div class="ai-card"><div class="ai-icon">📈</div><h4>行為模式比對</h4><p>跟歷史進出模式比對，偏離常態自動評分</p></div>
+          <div class="ai-card"><div class="ai-icon">🔔</div><h4>分級推播</h4><p>輕微/中度/嚴重 三級警示，分送不同窗口</p></div>
+          <div class="ai-card"><div class="ai-icon">📜</div><h4>動線重建</h4><p>事後 AI 串接所有掃碼點重建完整路徑時間軸</p></div>
         </div>
       </div>
     </div>
