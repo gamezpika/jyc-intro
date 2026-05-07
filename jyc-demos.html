@@ -135,8 +135,18 @@
     border-radius: 16px; overflow: hidden;
     box-shadow: 0 4px 16px rgba(15,23,42,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
+    scroll-margin-top: 100px;
   }
   .video-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(15,23,42,0.1); }
+  @keyframes target-flash {
+    0%   { box-shadow: 0 0 0 0 rgba(124,58,237,0.7), 0 4px 16px rgba(15,23,42,0.05); }
+    50%  { box-shadow: 0 0 0 12px rgba(124,58,237,0.0), 0 12px 30px rgba(124,58,237,0.25); }
+    100% { box-shadow: 0 0 0 0 rgba(124,58,237,0.0), 0 4px 16px rgba(15,23,42,0.05); }
+  }
+  .video-card.target-hit {
+    animation: target-flash 1.6s ease-out 2;
+    border-color: var(--purple);
+  }
   .video-card video { width: 100%; display: block; background: #f1f5f9; aspect-ratio: 16/9; object-fit: contain; }
   .video-meta { padding: 16px 20px; }
   .video-meta .step { font-size: 11px; letter-spacing: 1.5px; color: var(--cyan); font-weight: 700; margin-bottom: 4px; }
@@ -953,7 +963,16 @@
     var h = location.hash;
     if (!h || h.length < 2) return;
     var t = document.getElementById(h.slice(1));
-    if (t) t.scrollIntoView({block:'start'});
+    if (!t) return;
+    t.scrollIntoView({block:'start', behavior:'smooth'});
+    // 影片卡：閃一下高亮 + 嘗試播放
+    if (t.classList.contains('video-card')) {
+      t.classList.remove('target-hit');
+      void t.offsetWidth;
+      t.classList.add('target-hit');
+      var v = t.querySelector('video');
+      if (v) { try { v.muted = true; v.play().catch(function(){}); } catch(e){} }
+    }
   }
   window.addEventListener('load', function(){ setTimeout(jumpToHash, 50); });
   window.addEventListener('hashchange', jumpToHash);
