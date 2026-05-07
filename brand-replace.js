@@ -1,16 +1,18 @@
 // 品牌字眼動態替換腳本
 //
-// 從網址讀 ?brand=xx 參數，掃整個頁面把寫死的品牌字眼換成對應品牌
-// 不加參數 → default（怡盛）→ 跟原本一樣，無感
+// 預設模式 = config.js 的 BRAND_DEFAULT_KEY 決定
+// 臨時切換 = 網址加 ?brand=xx 覆蓋預設
 
 (function () {
   const params = new URLSearchParams(window.location.search);
-  const brandKey = params.get('brand') || 'default';
+  const defaultKey = window.BRAND_DEFAULT_KEY || 'jyc';
+  const brandKey = params.get('brand') || defaultKey;
   const presets = window.BRAND_PRESETS || {};
-  const brand = presets[brandKey] || presets.default;
+  const brand = presets[brandKey] || presets[defaultKey] || presets.jyc;
 
   if (!brand) return;
-  if (brandKey === 'default') return; // 不加參數時不做任何事
+  // 怡盛模式（jyc）字眼跟原本一樣，跳過替換省 CPU
+  if (brandKey === 'jyc' && brand.full === 'JYC 怡盛物業') return;
 
   // 替換規則（順序很重要：長字串先換，避免短字串先換掉一部分）
   function applyBrand(text) {
