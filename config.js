@@ -23,12 +23,12 @@ window.BRAND_PRESETS = {
     prefix:  '示範',
   },
 
-  // 奇亞資訊（新案場）
+  // 奇亞資訊（新案場）—— 中文 + 英文簡碼 KiyaX
   kiya: {
     full:    '奇亞資訊',
     short:   '奇亞資訊',
     formal:  '奇亞資訊',
     product: 'KiyaX AI',
-    prefix:  '奇亞資訊',
+    prefix:  'KiyaX',
   },
 };

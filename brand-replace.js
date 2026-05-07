@@ -18,6 +18,7 @@
     return text
       .replace(/JYC 怡盛物業管理股份有限公司/g, brand.formal)
       .replace(/JYC 怡盛物業/g, brand.full)
+      .replace(/JYC 怡盛/g, brand.full)
       .replace(/JYC 智慧社區管理系統/g, brand.product)
       .replace(/JYC 智慧社區行事曆/g, brand.prefix + ' 智慧社區行事曆')
       .replace(/JYC 智慧社區/g, brand.prefix + ' 智慧社區')
@@ -51,21 +52,37 @@
     }
   }
 
+  // 站內連結 + 後台連結（railway.app）自動帶 ?brand=xxx
+  function patchLinks() {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      const href = a.getAttribute('href');
+      if (!href) return;
+      if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      try {
+        const url = new URL(a.href, location.origin);
+        const isInternal = url.host === location.host;
+        const isBackend = url.host.includes('railway.app');
+        if (!isInternal && !isBackend) return;
+        if (!url.searchParams.has('brand')) {
+          url.searchParams.set('brand', brandKey);
+          a.setAttribute('href', url.toString());
+        }
+      } catch (err) {}
+    });
+  }
+
   function run() {
-    // <title>
     document.title = applyBrand(document.title);
 
-    // <meta name="description">
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.content = applyBrand(metaDesc.content);
 
-    // <meta property="og:*">
     document.querySelectorAll('meta[property^="og:"]').forEach((m) => {
       if (m.content) m.content = applyBrand(m.content);
     });
 
-    // body 內所有文字
     walkAndReplace(document.body);
+    patchLinks();
   }
 
   if (document.readyState === 'loading') {
