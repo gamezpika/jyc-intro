@@ -132,24 +132,24 @@
   .ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1120px;margin:0 auto;align-items:stretch}
   .tier{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
   .tier:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-  .tier-head{padding:18px 16px 16px;color:#fff;text-align:center}
+  .tier-head{padding:18px 16px 16px;color:#fff;text-align:center;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .t1 .tier-head{background:linear-gradient(160deg,#7fe9cf,#34c9a5)}
   .t2 .tier-head{background:linear-gradient(160deg,#7fd6ff,#3bb6e8)}
   .t3 .tier-head{background:linear-gradient(160deg,#b9a3ff,#8b6cf0)}
   .t4 .tier-head{background:linear-gradient(160deg,#8b6cf0,#6b3fd4)}
-  .tier-head .lv{font-size:12.5px;font-weight:800;letter-spacing:1px;opacity:.95}
-  .tier-head h3{font-size:21px;font-weight:900;margin-top:5px}
-  .tier-head .aud{font-size:12px;font-weight:600;opacity:.95;margin-top:5px;line-height:1.4}
-  .tier-head .price-tag{display:inline-block;margin-top:11px;background:rgba(255,255,255,.24);color:#fff;font-size:12px;font-weight:800;padding:4px 13px;border-radius:999px}
+  .tier-head .lv{font-size:14px;font-weight:800;letter-spacing:1px;opacity:.98}
+  .tier-head h3{font-size:25px;font-weight:900;margin-top:6px}
+  .tier-head .aud{font-size:13.5px;font-weight:600;opacity:.98;margin-top:7px;line-height:1.45}
+  .tier-head .price-tag{display:inline-block;margin-top:12px;background:rgba(255,255,255,.28);color:#fff;font-size:13px;font-weight:800;padding:5px 15px;border-radius:999px}
   .tier-body{flex:1;padding:15px 15px 17px;display:flex;flex-direction:column}
   .depthdots{display:flex;gap:4px;justify-content:center;margin-bottom:13px}
   .depthdots i{flex:1;max-width:30px;height:5px;border-radius:3px;background:var(--line)}
   .depthdots i.on{background:linear-gradient(90deg,#8b6cf0,#5ec8ff)}
-  .mods{display:flex;flex-direction:column;gap:7px}
-  .mod{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#574f78;background:#f7f5fc;border:1px solid var(--line);padding:7px 11px;border-radius:10px}
-  .mod img{width:20px;height:20px;object-fit:contain;flex-shrink:0}
-  .mod .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-  .inherit{margin-top:auto;padding-top:12px;font-size:12px;font-weight:700;color:var(--lav-d);display:flex;align-items:center;gap:6px}
+  .mods{display:flex;flex-direction:column;gap:8px}
+  .mod{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:#43406a;background:#f6f4fc;border:1px solid var(--line);padding:9px 13px;border-radius:11px}
+  .mod img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
+  .mod .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .inherit{margin-top:auto;padding-top:13px;font-size:13px;font-weight:800;color:var(--lav-d);display:flex;align-items:center;gap:6px}
   .ladder-note{text-align:center;color:var(--mut);font-size:13.5px;margin-top:22px}
   @media(max-width:900px){.ladder{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:520px){.ladder{grid-template-columns:1fr}}
