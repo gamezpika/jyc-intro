@@ -128,33 +128,31 @@
   .story-plan span{font-size:10.5px;background:rgba(255,255,255,.75);color:var(--mut);padding:2px 9px;border-radius:999px;font-weight:700}
   @media(max-width:840px){.ta{grid-template-columns:1fr}}
 
-  /* TIER LADDER */
-  .ladder{display:flex;flex-direction:column;gap:15px;max-width:900px;margin:0 auto}
-  .tier{display:flex;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
-  .tier:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-  .tier-rail{width:96px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:18px 0;color:#fff;text-align:center}
-  .tier-rail .lv{font-size:23px;font-weight:900;line-height:1}
-  .tier-rail .rl{font-size:12px;font-weight:800;opacity:.95}
-  .t1 .tier-rail{background:linear-gradient(160deg,#7fe9cf,#34c9a5)}
-  .t2 .tier-rail{background:linear-gradient(160deg,#7fd6ff,#3bb6e8)}
-  .t3 .tier-rail{background:linear-gradient(160deg,#b9a3ff,#8b6cf0)}
-  .t4 .tier-rail{background:linear-gradient(160deg,#8b6cf0,#6b3fd4)}
-  .t5 .tier-rail{background:linear-gradient(160deg,#7c5cf0,#f472b6)}
-  .tier-main{flex:1;padding:17px 22px;min-width:0}
-  .tier-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
-  .tier-top h3{font-size:20px;font-weight:900}
-  .tier-top .aud{font-size:13.5px;color:var(--mut);font-weight:600}
-  .tier-top .price-tag{margin-left:auto;font-size:12.5px;font-weight:800;padding:5px 13px;border-radius:999px;white-space:nowrap}
-  .depthdots{display:flex;gap:4px;margin-top:9px}
-  .depthdots i{width:22px;height:5px;border-radius:3px;background:var(--line)}
+  /* TIER LADDER（直式定價卡） */
+  .ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1120px;margin:0 auto;align-items:stretch}
+  .tier{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
+  .tier:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .tier-head{padding:18px 16px 16px;color:#fff;text-align:center}
+  .t1 .tier-head{background:linear-gradient(160deg,#7fe9cf,#34c9a5)}
+  .t2 .tier-head{background:linear-gradient(160deg,#7fd6ff,#3bb6e8)}
+  .t3 .tier-head{background:linear-gradient(160deg,#b9a3ff,#8b6cf0)}
+  .t4 .tier-head{background:linear-gradient(160deg,#8b6cf0,#6b3fd4)}
+  .tier-head .lv{font-size:12.5px;font-weight:800;letter-spacing:1px;opacity:.95}
+  .tier-head h3{font-size:21px;font-weight:900;margin-top:5px}
+  .tier-head .aud{font-size:12px;font-weight:600;opacity:.95;margin-top:5px;line-height:1.4}
+  .tier-head .price-tag{display:inline-block;margin-top:11px;background:rgba(255,255,255,.24);color:#fff;font-size:12px;font-weight:800;padding:4px 13px;border-radius:999px}
+  .tier-body{flex:1;padding:15px 15px 17px;display:flex;flex-direction:column}
+  .depthdots{display:flex;gap:4px;justify-content:center;margin-bottom:13px}
+  .depthdots i{flex:1;max-width:30px;height:5px;border-radius:3px;background:var(--line)}
   .depthdots i.on{background:linear-gradient(90deg,#8b6cf0,#5ec8ff)}
-  .mods{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
-  .mod{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#574f78;background:#f5f3fc;border:1px solid var(--line);padding:5px 11px;border-radius:999px}
-  .mod img{width:18px;height:18px;object-fit:contain}
+  .mods{display:flex;flex-direction:column;gap:7px}
+  .mod{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#574f78;background:#f7f5fc;border:1px solid var(--line);padding:7px 11px;border-radius:10px}
+  .mod img{width:20px;height:20px;object-fit:contain;flex-shrink:0}
   .mod .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-  .inherit{margin-top:11px;font-size:12.5px;font-weight:700;color:var(--lav-d);display:flex;align-items:center;gap:6px}
-  .ladder-note{text-align:center;color:var(--mut);font-size:13.5px;margin-top:20px}
-  @media(max-width:560px){.tier-rail{width:72px}.tier-top .price-tag{margin-left:0}}
+  .inherit{margin-top:auto;padding-top:12px;font-size:12px;font-weight:700;color:var(--lav-d);display:flex;align-items:center;gap:6px}
+  .ladder-note{text-align:center;color:var(--mut);font-size:13.5px;margin-top:22px}
+  @media(max-width:900px){.ladder{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.ladder{grid-template-columns:1fr}}
 
   /* SCENARIOS */
   .scn{display:flex;flex-direction:column;gap:30px}
@@ -462,9 +460,13 @@
     <div class="ladder">
       <!-- L1 -->
       <div class="tier t1 rv">
-        <div class="tier-rail"><span class="lv">L1</span><span class="rl">入門</span></div>
-        <div class="tier-main">
-          <div class="tier-top"><h3>基礎</h3><span class="aud">無預算小社區・自管透天</span><span class="price-tag" style="background:var(--soft-mint);color:#0a8f5f">免費引流</span></div>
+        <div class="tier-head">
+          <div class="lv">L1 · 入門</div>
+          <h3>基礎</h3>
+          <div class="aud">無預算小社區<br>自管透天</div>
+          <span class="price-tag">免費引流</span>
+        </div>
+        <div class="tier-body">
           <div class="depthdots"><i class="on"></i><i></i><i></i><i></i></div>
           <div class="mods">
             <span class="mod"><img src="assets/icons/announce.png" alt="">社區公告</span>
@@ -476,9 +478,13 @@
       </div>
       <!-- L2 -->
       <div class="tier t2 rv">
-        <div class="tier-rail"><span class="lv">L2</span><span class="rl">主力</span></div>
-        <div class="tier-main">
-          <div class="tier-top"><h3>標準</h3><span class="aud">一般社區大樓</span><span class="price-tag" style="background:var(--soft-sky);color:#2a7fb0">主力方案</span></div>
+        <div class="tier-head">
+          <div class="lv">L2 · 主力</div>
+          <h3>標準</h3>
+          <div class="aud">一般社區大樓</div>
+          <span class="price-tag">主力方案</span>
+        </div>
+        <div class="tier-body">
           <div class="depthdots"><i class="on"></i><i class="on"></i><i></i><i></i></div>
           <div class="mods">
             <span class="mod"><img src="assets/icons/pass.png" alt="">訪客 QR</span>
@@ -492,9 +498,13 @@
       </div>
       <!-- L3 -->
       <div class="tier t3 rv">
-        <div class="tier-rail"><span class="lv">L3</span><span class="rl">加值</span></div>
-        <div class="tier-main">
-          <div class="tier-top"><h3>互動</h3><span class="aud">重視住戶參與的管委會</span><span class="price-tag" style="background:var(--soft-lav);color:var(--lav-d)">加值升級</span></div>
+        <div class="tier-head">
+          <div class="lv">L3 · 加值</div>
+          <h3>互動</h3>
+          <div class="aud">重視住戶參與的管委會</div>
+          <span class="price-tag">加值升級</span>
+        </div>
+        <div class="tier-body">
           <div class="depthdots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
           <div class="mods">
             <span class="mod"><img src="assets/icons/star.png" alt="">服務評分</span>
@@ -507,9 +517,13 @@
       </div>
       <!-- L4 -->
       <div class="tier t4 rv">
-        <div class="tier-rail"><span class="lv">L4</span><span class="rl">專業</span></div>
-        <div class="tier-main">
-          <div class="tier-top"><h3>物業專業</h3><span class="aud">物業管理公司・B2B 多案場</span><span class="price-tag" style="background:#ece4ff;color:#5a3fd0">高單價</span></div>
+        <div class="tier-head">
+          <div class="lv">L4 · 專業</div>
+          <h3>物業專業</h3>
+          <div class="aud">物業管理公司<br>B2B 多案場</div>
+          <span class="price-tag">高單價</span>
+        </div>
+        <div class="tier-body">
           <div class="depthdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
           <div class="mods">
             <span class="mod"><img src="assets/icons/dashboard.png" alt="">多案場後台</span>
