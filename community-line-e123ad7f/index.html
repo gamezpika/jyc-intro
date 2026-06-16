@@ -122,15 +122,10 @@
   .sec-head h2{font-size:clamp(27px,3.6vw,40px);font-weight:900;margin-top:16px;line-height:1.2}
   .sec-head p{color:var(--mut);margin-top:14px;font-size:16.5px}
 
-  /* PAIN HOOK 痛點開場 */
-  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:0 auto}
-  .pain-q{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;font-size:15.5px;font-weight:700;color:var(--ink);box-shadow:var(--shadow-sm);transition:.25s}
-  .pain-q:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#ffd2e0}
-  .pain-q .qx{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:#ffe9ef;color:#ff5d8f;font-weight:900;display:grid;place-items:center;font-size:17px}
-  .pain-bridge{text-align:center;font-size:21px;font-weight:800;color:var(--mut);margin-top:32px}
-  .pain-bridge b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  @media(max-width:820px){.pain-grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:520px){.pain-grid{grid-template-columns:1fr}}
+  /* TA PAIN 痛點（整合進 TA 卡片） */
+  .story-pains{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;padding-top:2px}
+  .story-pains .pq{display:flex;gap:9px;align-items:flex-start;font-size:13px;font-weight:600;color:#574f78;line-height:1.5}
+  .story-pains .pq i{flex-shrink:0;width:18px;height:18px;border-radius:6px;background:#ffe9ef;color:#ff5d8f;font-weight:900;font-style:normal;display:grid;place-items:center;font-size:11px;margin-top:1px}
 
   /* TA STORYBOARD */
   .ta{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -430,24 +425,6 @@
   </div>
 </header>
 
-<!-- ===== PAIN HOOK 痛點開場 ===== -->
-<section id="pains" style="padding-top:64px">
-  <div class="wrap">
-    <div class="sec-head rv" style="margin-bottom:38px">
-      <h2>這些社區管理的日常，是不是也天天煩你？</h2>
-    </div>
-    <div class="pain-grid">
-      <div class="pain-q rv"><span class="qx">?</span>公告貼了，住戶根本沒在看？</div>
-      <div class="pain-q rv"><span class="qx">?</span>報修電話接不完，又沒紀錄可查？</div>
-      <div class="pain-q rv"><span class="qx">?</span>管理費、繳費對帳，每月對到頭痛？</div>
-      <div class="pain-q rv"><span class="qx">?</span>排班、請假還在用 Excel 跟紙本喬？</div>
-      <div class="pain-q rv"><span class="qx">?</span>訪客登記、車位安排一團亂？</div>
-      <div class="pain-q rv"><span class="qx">?</span>員工打卡造假、出勤工時算不清？</div>
-    </div>
-    <p class="pain-bridge rv">這些每天的麻煩，<b>一個 LINE 就能解決</b> ↓</p>
-  </div>
-</section>
-
 <!-- ===== TA / WHO ===== -->
 <section id="who">
   <div class="wrap">
@@ -459,6 +436,10 @@
     <div class="ta">
       <!-- TA1 物業公司 分鏡 -->
       <div class="story rv">
+        <div class="story-pains">
+          <div class="pq"><i>?</i>多案場狀態散在各群組，要的當下看不到？</div>
+          <div class="pq"><i>?</i>排班、出勤、工單還在 Excel 跟紙本喬？</div>
+        </div>
         <div class="story-frame" data-story>
           <div class="panel on">
             <img class="frame" src="assets/ta1_1.png" alt="物業經理被各案場狀態淹沒">
@@ -485,6 +466,10 @@
 
       <!-- TA2 社區 分鏡 -->
       <div class="story rv">
+        <div class="story-pains">
+          <div class="pq"><i>?</i>公告沒人看、管理費對帳對到頭痛？</div>
+          <div class="pq"><i>?</i>訪客登記、報修流程老舊又一團亂？</div>
+        </div>
         <div class="story-frame" data-story>
           <div class="panel on">
             <img class="frame" src="assets/ta2_1.png" alt="住戶對著公佈欄一頭霧水">
@@ -511,6 +496,10 @@
 
       <!-- TA3 包租代管 / 房東 分鏡 -->
       <div class="story rv">
+        <div class="story-pains">
+          <div class="pq"><i>?</i>套房收租、退租押金追到累？</div>
+          <div class="pq"><i>?</i>房客報修、繳費分散，難管難追？</div>
+        </div>
         <div class="story-frame" data-story>
           <div class="panel on">
             <img class="frame" src="assets/ta3_1.png" alt="房東被一堆鑰匙帳單淹沒">
