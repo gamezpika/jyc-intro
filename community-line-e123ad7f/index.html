@@ -260,6 +260,17 @@
   @media(max-width:820px){.sec-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:480px){.sec-grid{grid-template-columns:1fr}}
 
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;transition:.2s}
+  .faq details[open]{border-color:#d9cdff}
+  .faq summary{list-style:none;cursor:pointer;padding:17px 22px;font-size:16px;font-weight:800;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:24px;font-weight:600;color:var(--lav-d);transition:.25s;flex-shrink:0;line-height:1}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details[open] summary{color:var(--lav-d)}
+  .faq .ans{padding:0 22px 18px;color:var(--mut);font-size:14.5px;line-height:1.8}
+
   /* CTA */
   .final{text-align:center}
   .final-box{background:var(--grad);border-radius:30px;padding:60px 30px;color:#fff;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(124,92,240,.3)}
@@ -856,6 +867,26 @@
       <div class="sec-card rv"><div class="si"><img src="assets/icons/encrypt.png" alt=""></div><h3>資料加密</h3><p>全程 HTTPS 加密傳輸、資料庫加密儲存，密碼以雜湊保存，杜絕外洩風險。</p></div>
       <div class="sec-card rv"><div class="si"><img src="assets/icons/official.png" alt=""></div><h3>LINE 官方平台</h3><p>建在 LINE 官方 API／LIFF 之上，住戶免裝第三方 App，走官方安全通道。</p></div>
       <div class="sec-card rv"><div class="si"><img src="assets/icons/backup.png" alt=""></div><h3>定期備份</h3><p>資料定期自動備份於穩定雲端，意外可快速還原，服務不中斷。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:linear-gradient(180deg,#fff,#f6f3ff)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-tag"><svg class="ic" style="color:var(--lav-d)"><use href="#i-chat"/></svg>常見問題</div>
+      <h2>導入前，先解答你的疑慮</h2>
+    </div>
+    <div class="faq">
+      <details class="rv"><summary>住戶不用 LINE、長輩不會用怎麼辦？</summary><div class="ans">台灣 LINE 普及率極高，住戶不必下載新 App，只要加社區官方帳號好友、綁一次門牌就能用；介面是大按鈕圖文選單，長輩也容易上手。少數沒在用 LINE 的住戶，管理處仍可代為操作，或沿用原本管道並行。</div></details>
+      <details class="rv"><summary>導入要多久？會不會很麻煩？</summary><div class="ans">不用大改現況。我們依你的棟別門牌、案場與哨點把系統設定好並協助匯入住戶／員工資料，最快幾天就能上線；全程有我們協助，不必自己摸索（詳見上方「三步驟，立即上線」）。</div></details>
+      <details class="rv"><summary>住戶個資安全嗎？會不會外洩？</summary><div class="ans">住戶資料僅用於社區管理、權限分級存取，全程加密傳輸與儲存、定期備份；系統建在 LINE 官方平台上，走官方安全通道（詳見上方「資安與合規」）。</div></details>
+      <details class="rv"><summary>我們社區已經有物業或舊系統，可以換過來嗎？</summary><div class="ans">可以。住戶資料與門牌可協助匯入，新舊管道能並行過渡、降低切換風險；資料留在社區端，換物業也不會被綁架。</div></details>
+      <details class="rv"><summary>員工、保全要另外裝 App 嗎？</summary><div class="ans">不用。員工端一樣走 LINE——打卡、看班表、請假、處理工單都在 LINE 完成，不必額外安裝或學新軟體。</div></details>
+      <details class="rv"><summary>費用怎麼算？</summary><div class="ans">依社區／案場規模與選用方案（L1–L4）而定，可彈性組合需要的功能。歡迎與我們聯絡、提供你的規模，我們提供報價。</div></details>
+      <details class="rv"><summary>小社區、沒有管委會也能用嗎？</summary><div class="ans">可以。L1 入門方案就適合無預算的小社區或自管透天，先把公告、繳費、報修用起來，之後再依需求升級到更完整的方案。</div></details>
+      <details class="rv"><summary>訪客 QR、定位打卡需要另外買設備嗎？</summary><div class="ans">基本功能用住戶／員工自己的手機就能做（掃碼、傳送位置）；若要搭配門口刷碼機等硬體可另外規劃，但非必要。</div></details>
     </div>
   </div>
 </section>
